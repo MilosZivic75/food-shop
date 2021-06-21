@@ -2,6 +2,8 @@ package beans;
 
 import java.util.Date;
 
+import enumerations.UserRoles;
+
 public class User {
 	private String username;
 	private String password;

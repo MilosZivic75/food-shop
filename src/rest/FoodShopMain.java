@@ -19,12 +19,12 @@ public class FoodShopMain {
 
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		
-		/*get("rest/products/", (req, res) -> {
+		get("rest/", (req, res) -> {
 			res.type("application/json");
-			return g.toJson(productService.getProducts());
+			return "SUCCESS";
 		});
 		
-		post("rest/products/add", (req, res) -> {
+		/*post("rest/products/add", (req, res) -> {
 			res.type("application/json");
 			Product pd = g.fromJson(req.body(), Product.class);
 			productService.addProduct(pd);

@@ -3,11 +3,13 @@ package beans;
 import java.util.ArrayList;
 import java.util.Date;
 
+import enumerations.UserRoles;
+
 public class Customer extends User {
 	private ArrayList<Order> allOrders;
 	private Cart cart;
 	private int collectedPoints;
-	private CustomerTypes customerType;
+	private CustomerType customerType;
 	
 	public Customer() {
 		super();
@@ -18,7 +20,7 @@ public class Customer extends User {
 	}
 	
 	public Customer(String username, String password, String name, String lastName, String sex, Date birthDate,
-			UserRoles userRole, ArrayList<Order> allOrders, Cart cart, int collectedPoints, CustomerTypes customerType) {
+			UserRoles userRole, ArrayList<Order> allOrders, Cart cart, int collectedPoints, CustomerType customerType) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
 		this.allOrders = allOrders;
 		this.cart = cart;
@@ -44,10 +46,10 @@ public class Customer extends User {
 	public void setCollectedPoints(int collectedPoints) {
 		this.collectedPoints = collectedPoints;
 	}
-	public CustomerTypes getCustomerType() {
+	public CustomerType getCustomerType() {
 		return customerType;
 	}
-	public void setCustomerType(CustomerTypes customerType) {
+	public void setCustomerType(CustomerType customerType) {
 		this.customerType = customerType;
 	}
 }

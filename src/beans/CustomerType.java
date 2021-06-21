@@ -1,7 +1,9 @@
 package beans;
 
+import enumerations.CustomerTypes;
+
 public class CustomerType {
-	private String name;
+	private CustomerTypes customerType;
 	private double discount;
 	private int points;
 	
@@ -9,19 +11,19 @@ public class CustomerType {
 		super();
 	}
 
-	public CustomerType(String name, double discount, int points) {
+	public CustomerType(CustomerTypes customerType, double discount, int points) {
 		super();
-		this.name = name;
+		this.customerType = customerType;
 		this.discount = discount;
 		this.points = points;
 	}
 
-	public String getName() {
-		return name;
+	public CustomerTypes getCustomerType() {
+		return customerType;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setCustomerType(CustomerTypes customerType) {
+		this.customerType = customerType;
 	}
 
 	public double getDiscount() {
