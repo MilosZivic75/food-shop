@@ -1,4 +1,4 @@
-package rest;
+package spark;
 
 import static spark.Spark.get;
 import static spark.Spark.port;
