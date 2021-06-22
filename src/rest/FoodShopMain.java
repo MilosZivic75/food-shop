@@ -20,7 +20,6 @@ public class FoodShopMain {
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
 		
 		get("rest/", (req, res) -> {
-			res.type("application/json");
 			return "SUCCESS";
 		});
 		
