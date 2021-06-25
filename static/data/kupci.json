@@ -1,0 +1,65 @@
+{
+  "pera": {
+    "allOrders": [],
+    "cart": {
+      "articles": {},
+      "customerUsername": "pera",
+      "price": 0.0
+    },
+    "collectedPoints": 0,
+    "customerType": {
+      "customerType": "REGULAR",
+      "discount": 0.0,
+      "points": 0
+    },
+    "username": "pera",
+    "password": "pera",
+    "name": "Petar",
+    "lastName": "Petrovic",
+    "sex": "Muški",
+    "birthDate": "2021-06-11",
+    "userRole": "CUSTOMER"
+  },
+  "qq": {
+    "allOrders": [],
+    "cart": {
+      "articles": {},
+      "customerUsername": "qq",
+      "price": 0.0
+    },
+    "collectedPoints": 0,
+    "customerType": {
+      "customerType": "REGULAR",
+      "discount": 0.0,
+      "points": 0
+    },
+    "username": "qq",
+    "password": "qq",
+    "name": "Petar",
+    "lastName": "Petrovic",
+    "sex": "Muški",
+    "birthDate": "2021-06-08",
+    "userRole": "CUSTOMER"
+  },
+  "mare": {
+    "allOrders": [],
+    "cart": {
+      "articles": {},
+      "customerUsername": "mare",
+      "price": 0.0
+    },
+    "collectedPoints": 0,
+    "customerType": {
+      "customerType": "REGULAR",
+      "discount": 0.0,
+      "points": 0
+    },
+    "username": "mare",
+    "password": "mare",
+    "name": "Marko",
+    "lastName": "Markovic",
+    "sex": "Muški",
+    "birthDate": "2021-06-01",
+    "userRole": "CUSTOMER"
+  }
+}

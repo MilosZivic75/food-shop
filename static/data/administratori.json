@@ -1,0 +1,20 @@
+{
+  "jova": {
+    "username": "jova",
+    "password": "jova",
+    "name": "Jovan",
+    "lastName": "Stanivuković",
+    "sex": "Muški",
+    "birthDate": "1968-07-12",
+    "userRole": "ADMINISTRATOR"
+  },
+  "ljilja": {
+    "username": "ljilja",
+    "password": "ljilja",
+    "name": "Ljiljana",
+    "lastName": "Pekić",
+    "sex": "Ženski",
+    "birthDate": "1970-02-21",
+    "userRole": "ADMINISTRATOR"
+  }
+}

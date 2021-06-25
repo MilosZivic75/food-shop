@@ -20,7 +20,7 @@ public class Customer extends User {
 			UserRoles userRole) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
 		allOrders = new ArrayList<Order>();
-		cart = new Cart(new HashMap<Article, Integer>(), this, 0);
+		cart = new Cart(new HashMap<Article, Integer>(), this.getUsername(), 0);
 		collectedPoints = 0;
 		customerType = new CustomerType(CustomerTypes.REGULAR, 0, 0);
 	}

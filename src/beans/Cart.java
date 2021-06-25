@@ -4,17 +4,17 @@ import java.util.HashMap;
 
 public class Cart {
 	private HashMap<Article, Integer> articles;
-	private Customer customer;
+	private String customerUsername;
 	private double price;
 	
 	public Cart() {
 		super();
 	}
 
-	public Cart(HashMap<Article, Integer> articles, Customer customer, double price) {
+	public Cart(HashMap<Article, Integer> articles, String customerUsername, double price) {
 		super();
 		this.articles = articles;
-		this.customer = customer;
+		this.customerUsername = customerUsername;
 		this.price = price;
 	}
 
@@ -26,12 +26,12 @@ public class Cart {
 		this.articles = articles;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public String getCustomer() {
+		return customerUsername;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomer(String customerName) {
+		this.customerUsername = customerName;
 	}
 
 	public double getPrice() {
