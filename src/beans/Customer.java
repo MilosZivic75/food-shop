@@ -2,7 +2,9 @@ package beans;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
+import enumerations.CustomerTypes;
 import enumerations.UserRoles;
 
 public class Customer extends User {
@@ -17,6 +19,10 @@ public class Customer extends User {
 	public Customer(String username, String password, String name, String lastName, String sex, Date birthDate,
 			UserRoles userRole) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
+		allOrders = new ArrayList<Order>();
+		cart = new Cart(new HashMap<Article, Integer>(), this, 0);
+		collectedPoints = 0;
+		customerType = new CustomerType(CustomerTypes.REGULAR, 0, 0);
 	}
 	
 	public Customer(String username, String password, String name, String lastName, String sex, Date birthDate,

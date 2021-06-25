@@ -15,6 +15,7 @@ public class Deliverer extends User {
 	public Deliverer(String username, String password, String name, String lastName, String sex, Date birthDate,
 			UserRoles userRole) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
+		orders = new ArrayList<Order>();
 	}
 
 	public Deliverer(String username, String password, String name, String lastName, String sex, Date birthDate,

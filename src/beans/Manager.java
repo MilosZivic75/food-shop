@@ -14,6 +14,7 @@ public class Manager extends User {
 	public Manager(String username, String password, String name, String lastName, String sex, Date birthDate,
 			UserRoles userRole) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
+		restaurant = new Restaurant();
 	}
 
 	public Manager(String username, String password, String name, String lastName, String sex, Date birthDate,
