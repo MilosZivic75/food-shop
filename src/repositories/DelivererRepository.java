@@ -5,22 +5,22 @@ import java.util.HashMap;
 
 import com.google.gson.reflect.TypeToken;
 
-import beans.Customer;
+import beans.Deliverer;
 
-public class CustomerRepository extends Repository<String, Customer> {
-	
+public class DelivererRepository extends Repository<String, Deliverer> {
+
 	@Override
 	protected String getPath() {
-		return "static/data/kupci.json";
+		return "static/data/dostavljaci.json";
 	}
 
 	@Override
 	protected Type getType() {
-		return new TypeToken<HashMap<String, Customer>>(){}.getType();
+		return new TypeToken<HashMap<String, Deliverer>>(){}.getType();
 	}
 
 	@Override
-	protected String getKey(Customer entity) {
+	protected String getKey(Deliverer entity) {
 		return entity.getUsername();
 	}
 
