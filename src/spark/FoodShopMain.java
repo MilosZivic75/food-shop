@@ -28,7 +28,6 @@ import repositories.ManagerRepository;
 import services.AdministratorService;
 import services.CustomerService;
 import services.DelivererService;
-import services.IService;
 import services.ManagerService;
 
 public class FoodShopMain {
