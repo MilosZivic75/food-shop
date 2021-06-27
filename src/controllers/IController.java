@@ -1,9 +1,9 @@
-package repositories;
+package controllers;
 
 import java.util.List;
 import java.util.Map;
 
-public interface IRepository<K, T> {
+public interface IController<K, T> {
 	public boolean create(T entity);
 	public boolean update(T entity);
 	public T read(K key);

@@ -11,7 +11,7 @@ public class ManagerRepository extends Repository<String, Manager> {
 
 	@Override
 	protected String getPath() {
-		return "static/data/menadzeri.json";
+		return "static/data/managers.json";
 	}
 
 	@Override

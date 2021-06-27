@@ -16,7 +16,7 @@
     "password": "pera",
     "name": "Petar",
     "lastName": "Petrovic",
-    "sex": "Muöki",
+    "sex": "Mu≈°ki",
     "birthDate": "2021-06-11",
     "userRole": "CUSTOMER"
   },
@@ -37,7 +37,7 @@
     "password": "qq",
     "name": "Petar",
     "lastName": "Petrovic",
-    "sex": "Muöki",
+    "sex": "Mu≈°ki",
     "birthDate": "2021-06-08",
     "userRole": "CUSTOMER"
   },
@@ -58,7 +58,7 @@
     "password": "mare",
     "name": "Marko",
     "lastName": "Markovic",
-    "sex": "Muöki",
+    "sex": "Mu≈°ki",
     "birthDate": "2021-06-01",
     "userRole": "CUSTOMER"
   }

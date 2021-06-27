@@ -11,7 +11,7 @@ public class DelivererRepository extends Repository<String, Deliverer> {
 
 	@Override
 	protected String getPath() {
-		return "static/data/dostavljaci.json";
+		return "static/data/deliverers.json";
 	}
 
 	@Override

@@ -11,7 +11,7 @@ public class CustomerRepository extends Repository<String, Customer> {
 	
 	@Override
 	protected String getPath() {
-		return "static/data/kupci.json";
+		return "static/data/customers.json";
 	}
 
 	@Override

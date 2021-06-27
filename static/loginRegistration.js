@@ -15,12 +15,31 @@ $(document).ready(function () {
 			password: password
 		})
 		.then(function (response) {
-			if(response.data === 'SUCCESS') {
+			if(response.data === 'SUCCESS/administrator') {
 				$('#success').text('Korisnik je uspesno prijavljen.');
 				$('#success').show().delay(3000).fadeOut();
 				console.log(response)
+				window.location = 'pages/administrator.html'
 			}
-			else {
+			else if(response.data === 'SUCCESS/manager') {
+				$('#success').text('Korisnik je uspesno prijavljen.');
+				$('#success').show().delay(3000).fadeOut();
+				console.log(response)
+				window.location = 'pages/manager.html'
+			}
+			else if(response.data === 'SUCCESS/deliverer') {
+				$('#success').text('Korisnik je uspesno prijavljen.');
+				$('#success').show().delay(3000).fadeOut();
+				console.log(response)
+				window.location = 'pages/deliverer.html'
+			}
+			else if(response.data === 'SUCCESS/customer') {
+				$('#success').text('Korisnik je uspesno prijavljen.');
+				$('#success').show().delay(3000).fadeOut();
+				console.log(response)
+				window.location = 'pages/customer.html'
+			}
+			else if (response.data === 'ERROR') {
 				$('#error').text('Pogresno korisnicko ime i/ili lozinka.');
 				$('#error').show().delay(3000).fadeOut();
 				console.log(response)
@@ -57,6 +76,7 @@ $(document).ready(function () {
 				$('#successReg').text('Korisnik je uspesno registrovan.');
 				$('#successReg').show().delay(3000).fadeOut();
 				console.log(response)
+				window.location = 'pages/customer.html'
 			}
 			else {
 				$('#errorReg').text('Korisnik sa datim korisničkim imenom već postoji.');

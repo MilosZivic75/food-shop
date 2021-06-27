@@ -11,7 +11,7 @@ public class AdministratorRepository extends Repository<String, Administrator> {
 	
 	@Override
 	protected String getPath() {
-		return "static/data/administratori.json";
+		return "static/data/administrators.json";
 	}
 
 	@Override

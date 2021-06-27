@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.lang.reflect.Type;
 
@@ -21,21 +22,6 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 	protected abstract Type getType();
 
 	protected abstract K getKey(T entity);
-
-	/*
-	 * public HashMap<K, T> getAllMap() throws JsonSyntaxException, JsonIOException,
-	 * FileNotFoundException { String path = getPath(); Type type = getType();
-	 * 
-	 * return g.fromJson(new FileReader(path), type); }
-	 * 
-	 * public void add(K key, T entity) throws JsonSyntaxException, JsonIOException,
-	 * IOException { String path = getPath();
-	 * 
-	 * HashMap<K, T> entities = getAllMap();
-	 * 
-	 * entities.put(key, entity); FileWriter fileWriter = new FileWriter(path);
-	 * g.toJson(entities, fileWriter); fileWriter.flush(); fileWriter.close(); }
-	 */
 
 	private Map<K, T> readFile() {
 		String path = getPath();
@@ -86,26 +72,41 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 
 	@Override
 	public boolean update(T entity) {
-		// TODO Auto-generated method stub
-		return false;
+		Map<K, T> entities = readFile();
+		K key = getKey(entity);
+		if (!entities.containsKey(key)) {
+			return false;
+		}
+		entities.put(key, entity);
+		writeFile(entities);
+
+		return true;
 	}
 
 	@Override
 	public T read(K key) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<K, T> entities = readFile();
+		if (!entities.containsKey(key)) {
+			return null;
+		}
+		return entities.get(key);
 	}
 
 	@Override
 	public boolean delete(T entity) {
-		// TODO Auto-generated method stub
-		return false;
+		return deleteById(getKey(entity));
 	}
 
 	@Override
 	public boolean deleteById(K key) {
-		// TODO Auto-generated method stub
-		return false;
+		Map<K, T> entities = readFile();
+		if (!entities.containsKey(key)) {
+			return false;
+		}
+		entities.remove(key);
+		writeFile(entities);
+
+		return true;
 	}
 
 	@Override
@@ -113,4 +114,8 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 		return readFile();
 	}
 
+	@Override
+	public List<T> readAllEntities() {
+		return (List<T>) readFile().values();
+	}
 }

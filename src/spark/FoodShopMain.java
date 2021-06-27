@@ -10,8 +10,26 @@ import java.io.File;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import beans.Administrator;
+import beans.Customer;
+import beans.Deliverer;
+import beans.Manager;
 import beans.User;
+import controllers.AdministratorController;
+import controllers.CustomerController;
+import controllers.DelivererController;
+import controllers.ManagerController;
 import controllers.UserController;
+import enumerations.UserRoles;
+import repositories.AdministratorRepository;
+import repositories.CustomerRepository;
+import repositories.DelivererRepository;
+import repositories.ManagerRepository;
+import services.AdministratorService;
+import services.CustomerService;
+import services.DelivererService;
+import services.IService;
+import services.ManagerService;
 
 public class FoodShopMain {
 
@@ -36,7 +54,19 @@ public class FoodShopMain {
 			if (loggedUser == null) {
 				return "ERROR";
 			}
-			return "SUCCESS";
+			if (user.getUserRole() == UserRoles.CUSTOMER) {
+				Customer customer = new CustomerController(new CustomerService(new CustomerRepository())).read(user.getUsername());
+				return "SUCCESS/customer";
+			} else if (user.getUserRole() == UserRoles.DELIVERER) {
+				Deliverer deliverer = new DelivererController(new DelivererService(new DelivererRepository())).read(user.getUsername());
+				return "SUCCESS/deliverer";
+			} else if (user.getUserRole() == UserRoles.MANAGER) {
+				Manager manager = new ManagerController(new ManagerService(new ManagerRepository())).read(user.getUsername());
+				return "SUCCESS/deliverer";
+			} else {
+				Administrator administrator = new AdministratorController(new AdministratorService(new AdministratorRepository())).read(user.getUsername()); 
+				return "SUCCESS/administrator";
+			}
 		});
 		
 		post("/registration", (req, res) -> {
