@@ -8,7 +8,7 @@ public class Article {
 	private String name;
 	private double price;
 	private ArticleTypes articleType;
-	private Restaurant restaurant;
+	private String restaurantID;
 	private double amount;
 	private String description;
 	private Image image;
@@ -17,13 +17,13 @@ public class Article {
 		super();
 	}
 
-	public Article(String name, double price, ArticleTypes articleType, Restaurant restaurant, double amount,
+	public Article(String name, double price, ArticleTypes articleType, String restaurantID, double amount,
 			String description, Image image) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.articleType = articleType;
-		this.restaurant = restaurant;
+		this.restaurantID = restaurantID;
 		this.amount = amount;
 		this.description = description;
 		this.image = image;
@@ -53,12 +53,12 @@ public class Article {
 		this.articleType = articleType;
 	}
 
-	public Restaurant getRestaurant() {
-		return restaurant;
+	public String getRestaurant() {
+		return restaurantID;
 	}
 
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
+	public void setRestaurant(String restaurantID) {
+		this.restaurantID = restaurantID;
 	}
 
 	public double getAmount() {

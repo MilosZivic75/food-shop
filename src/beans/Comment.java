@@ -1,8 +1,8 @@
 package beans;
 
 public class Comment {
-	private Customer customer;
-	private Restaurant restaurant;
+	private String customerUsername;
+	private String restaurantID;
 	private String text;
 	private int grade;
 	
@@ -10,28 +10,28 @@ public class Comment {
 		super();
 	}
 
-	public Comment(Customer customer, Restaurant restaurant, String text, int grade) {
+	public Comment(String customerUsername, String restaurantID, String text, int grade) {
 		super();
-		this.customer = customer;
-		this.restaurant = restaurant;
+		this.customerUsername = customerUsername;
+		this.restaurantID = restaurantID;
 		this.text = text;
 		this.grade = grade;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public String getCustomer() {
+		return customerUsername;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomer(String customerUsername) {
+		this.customerUsername = customerUsername;
 	}
 
-	public Restaurant getRestaurant() {
-		return restaurant;
+	public String getRestaurant() {
+		return restaurantID;
 	}
 
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
+	public void setRestaurant(String restaurantID) {
+		this.restaurantID = restaurantID;
 	}
 
 	public String getText() {

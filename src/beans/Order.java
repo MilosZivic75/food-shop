@@ -8,25 +8,25 @@ import enumerations.OrderStatus;
 public class Order {
 	private String id;
 	private ArrayList<Article> articles;
-	private Restaurant restaurant;
+	private String restaurantID;
 	private Date date;
 	private double price;
-	private Customer customer;
+	private String customeUsername;
 	private OrderStatus orderStatus;
 	
 	public Order() {
 		super();
 	}
 
-	public Order(String id, ArrayList<Article> articles, Restaurant restaurant, Date date, double price,
-			Customer customer, OrderStatus orderStatus) {
+	public Order(String id, ArrayList<Article> articles, String restaurantID, Date date, double price,
+			String customeUsername, OrderStatus orderStatus) {
 		super();
 		this.id = id;
 		this.articles = articles;
-		this.restaurant = restaurant;
+		this.restaurantID = restaurantID;
 		this.date = date;
 		this.price = price;
-		this.customer = customer;
+		this.customeUsername = customeUsername;
 		this.orderStatus = orderStatus;
 	}
 
@@ -46,12 +46,12 @@ public class Order {
 		this.articles = articles;
 	}
 
-	public Restaurant getRestaurant() {
-		return restaurant;
+	public String getRestaurant() {
+		return restaurantID;
 	}
 
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
+	public void setRestaurant(String restaurantID) {
+		this.restaurantID = restaurantID;
 	}
 
 	public Date getDate() {
@@ -70,12 +70,12 @@ public class Order {
 		this.price = price;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public String getCustomer() {
+		return customeUsername;
 	}
 
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
+	public void setCustomer(String customeUsername) {
+		this.customeUsername = customeUsername;
 	}
 
 	public OrderStatus getOrderStatus() {
