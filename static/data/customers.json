@@ -41,6 +41,27 @@
     "birthDate": "2021-06-08",
     "userRole": "CUSTOMER"
   },
+  "the": {
+    "allOrders": [],
+    "cart": {
+      "articles": {},
+      "customerUsername": "the",
+      "price": 0.0
+    },
+    "collectedPoints": 0,
+    "customerType": {
+      "customerType": "REGULAR",
+      "discount": 0.0,
+      "points": 0
+    },
+    "username": "the",
+    "password": "great",
+    "name": "Vlada",
+    "lastName": "Zile",
+    "sex": "Ženski",
+    "birthDate": "2021-06-04",
+    "userRole": "CUSTOMER"
+  },
   "mare": {
     "allOrders": [],
     "cart": {

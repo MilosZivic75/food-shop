@@ -54,13 +54,13 @@ public class FoodShopMain {
 			if (loggedUser == null) {
 				return "ERROR";
 			}
-			if (user.getUserRole() == UserRoles.CUSTOMER) {
+			if (loggedUser.getUserRole() == UserRoles.CUSTOMER) {
 				Customer customer = new CustomerController(new CustomerService(new CustomerRepository())).read(user.getUsername());
 				return "SUCCESS/customer";
-			} else if (user.getUserRole() == UserRoles.DELIVERER) {
+			} else if (loggedUser.getUserRole() == UserRoles.DELIVERER) {
 				Deliverer deliverer = new DelivererController(new DelivererService(new DelivererRepository())).read(user.getUsername());
 				return "SUCCESS/deliverer";
-			} else if (user.getUserRole() == UserRoles.MANAGER) {
+			} else if (loggedUser.getUserRole() == UserRoles.MANAGER) {
 				Manager manager = new ManagerController(new ManagerService(new ManagerRepository())).read(user.getUsername());
 				return "SUCCESS/deliverer";
 			} else {
