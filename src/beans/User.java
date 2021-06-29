@@ -12,6 +12,7 @@ public class User {
 	private String sex;
 	private Date birthDate;
 	private UserRoles userRole;
+	private int deleted;
 	
 	public User() {
 		super();
@@ -27,6 +28,7 @@ public class User {
 		this.sex = sex;
 		this.birthDate = birthDate;
 		this.userRole = userRole;
+		this.deleted = 0;
 	}
 
 	public String getUsername() {
@@ -83,5 +85,13 @@ public class User {
 
 	public void setUserRole(UserRoles userRole) {
 		this.userRole = userRole;
+	}
+
+	public int getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
 	}
 }

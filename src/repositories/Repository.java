@@ -22,6 +22,10 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 	protected abstract Type getType();
 
 	protected abstract K getKey(T entity);
+	
+	protected abstract int getDeleted(T entity);
+	
+	protected abstract T setDeleted(T entity);
 
 	private Map<K, T> readFile() {
 		String path = getPath();
@@ -31,6 +35,7 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 			Map<K, T> retVal = g.fromJson(new FileReader(path), type);
 			if (retVal == null)
 				throw new FileNotFoundException();
+			retVal.entrySet().removeIf(entry -> getDeleted(entry.getValue()) == 1);
 			return retVal;
 		} catch (JsonIOException | JsonSyntaxException | FileNotFoundException e) {
 			try {
@@ -103,7 +108,9 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 		if (!entities.containsKey(key)) {
 			return false;
 		}
-		entities.remove(key);
+		T entity = setDeleted(entities.get(key));
+		entities.put(key, entity);
+		//entities.remove(key);
 		writeFile(entities);
 
 		return true;

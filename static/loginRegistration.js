@@ -59,6 +59,7 @@ $(document).ready(function () {
 				|| username.trim() === '' || password.trim() === '') {
 			$('#errorReg').text('Molimo popunite sva polja.');
 			$('#errorReg').show().delay(3000).fadeOut();
+			$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
 			return;
 		}
 
@@ -74,12 +75,14 @@ $(document).ready(function () {
 			if(response.data === 'SUCCESS') {
 				$('#successReg').text('Korisnik je uspesno registrovan.');
 				$('#successReg').show().delay(3000).fadeOut();
+				$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
 				console.log(response)
 				window.location = 'pages/customer.html'
 			}
 			else {
 				$('#errorReg').text('Korisnik sa datim korisničkim imenom već postoji.');
 				$('#errorReg').show().delay(3000).fadeOut();
+				$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
 				console.log(response)
 			}
 		})

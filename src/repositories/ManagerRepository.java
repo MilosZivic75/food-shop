@@ -24,4 +24,15 @@ public class ManagerRepository extends Repository<String, Manager> {
 		return entity.getUsername();
 	}
 
+	@Override
+	protected int getDeleted(Manager entity) {
+		return entity.getDeleted();
+	}
+
+	@Override
+	protected Manager setDeleted(Manager entity) {
+		entity.setDeleted(1);
+		return entity;
+	}
+
 }

@@ -6,7 +6,8 @@
     "lastName": "Stanivuković",
     "sex": "Muški",
     "birthDate": "1968-07-12",
-    "userRole": "ADMINISTRATOR"
+    "userRole": "ADMINISTRATOR",
+    "deleted": 0
   },
   "ljilja": {
     "username": "ljilja",
@@ -15,6 +16,7 @@
     "lastName": "Pekić",
     "sex": "Ženski",
     "birthDate": "1970-02-21",
-    "userRole": "ADMINISTRATOR"
+    "userRole": "ADMINISTRATOR",
+    "deleted": 0
   }
 }

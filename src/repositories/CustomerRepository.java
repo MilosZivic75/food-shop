@@ -24,4 +24,15 @@ public class CustomerRepository extends Repository<String, Customer> {
 		return entity.getUsername();
 	}
 
+	@Override
+	protected int getDeleted(Customer entity) {
+		return entity.getDeleted();
+	}
+
+	@Override
+	protected Customer setDeleted(Customer entity) {
+		entity.setDeleted(1);
+		return entity;
+	}
+
 }

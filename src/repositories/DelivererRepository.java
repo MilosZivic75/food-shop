@@ -24,4 +24,15 @@ public class DelivererRepository extends Repository<String, Deliverer> {
 		return entity.getUsername();
 	}
 
+	@Override
+	protected int getDeleted(Deliverer entity) {
+		return entity.getDeleted();
+	}
+
+	@Override
+	protected Deliverer setDeleted(Deliverer entity) {
+		entity.setDeleted(1);
+		return entity;
+	}
+
 }
