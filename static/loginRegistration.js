@@ -9,7 +9,6 @@ $(document).ready(function () {
 			$('#error').show().delay(3000).fadeOut();
 			return;
 		}
-
 		axios.post('/login', {
 			username: username,
 			password: password
