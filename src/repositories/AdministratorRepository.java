@@ -23,5 +23,16 @@ public class AdministratorRepository extends Repository<String, Administrator> {
 	protected String getKey(Administrator entity) {
 		return entity.getUsername();
 	}
+	
+	@Override
+	protected int getDeleted(Administrator entity) {
+		return entity.getDeleted();
+	}
+
+	@Override
+	protected Administrator setDeleted(Administrator entity) {
+		entity.setDeleted(1);
+		return entity;
+	}
 
 }
