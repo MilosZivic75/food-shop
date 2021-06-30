@@ -62,9 +62,11 @@ public class FoodShopMain {
 				return "SUCCESS/customer";
 			} else if (loggedUser.getUserRole() == UserRoles.DELIVERER) {
 				Deliverer deliverer = delivererController.read(loggedUser.getUsername());
+				session.attribute("user", deliverer);
 				return "SUCCESS/deliverer";
 			} else if (loggedUser.getUserRole() == UserRoles.MANAGER) {
 				Manager manager = managerController.read(loggedUser.getUsername());
+				session.attribute("user", manager);
 				return "SUCCESS/deliverer";
 			} else {
 				Administrator administrator = administratorController.read(loggedUser.getUsername());
@@ -82,5 +84,24 @@ public class FoodShopMain {
 			}
 			return "SUCCESS";
 		});
+		
+		get("/loggedUser", (req, res) -> {
+			res.type("application/json");
+			//String s = g.toJson(administratorController.read("jova"));
+			//System.out.println(s);
+			Session session = req.session();
+			User user = (User) session.attribute("user");
+			if (user.getUserRole() == UserRoles.CUSTOMER) {
+				return g.toJson((Customer)user);
+			} else if (user.getUserRole() == UserRoles.DELIVERER) {
+				return g.toJson((Deliverer)user);
+			} else if (user.getUserRole() == UserRoles.MANAGER) {
+				return g.toJson((Manager)user);
+			} else {
+				return g.toJson((Administrator)user);
+			}
+
+		});
+				
 	}
 }
