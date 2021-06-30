@@ -1,21 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profil</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-	<script src="js/jquery.min.js"></script>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-</head>
-<body>
-    <div class="row">
+Vue.component("profile", {
+    data: function () {
+        return {
+            user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
+        }
+    },
+    template: `<div class="row">
         <div class="col-1" >
             <div class="media">
                 <div class="media-left">
@@ -50,13 +39,13 @@
                     <div class="col-md-6">
                         <div class="form-group has-success">
                             <label for="firstname" style="font-size: 17px;"><b>Ime</b></label>
-                            <input type="text" data-validation="required" style="width: 300px; font-size: 17px;" name="firstName" id="firstname" value="Vladimir" class="form-control valid" data-validation-error-msg="Ovo je obavezno polje">
+                            <input type="text" data-validation="required" style="width: 300px; font-size: 17px;" name="firstName" id="firstname" v-model="user.name" class="form-control valid" data-validation-error-msg="Ovo je obavezno polje">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group has-success">
                             <label for="lastname" style="font-size: 17px;"><b>Prezime</b></label>
-                            <input type="text" data-validation="required" style="width: 300px; font-size: 17px;" name="lastName" id="lastname" value="Vrbica" class="form-control valid" data-validation-error-msg="Ovo je obavezno polje">
+                            <input type="text" data-validation="required" style="width: 300px; font-size: 17px;" name="lastName" id="lastname" v-model="user.lastName" class="form-control valid" data-validation-error-msg="Ovo je obavezno polje">
                         </div>
                     </div>
                 </div>
@@ -65,7 +54,7 @@
                     <div class="form-group has-success">
                         <div class="field-required">
                             <label for="username" style="font-size: 17px;"><b>Korisničko ime</b></label>
-                            <input type="text" readonly="readonly" id="username" style="width: 300px; font-size: 17px;" class="form-control valid" value="vlada" data-validation="required" data-validation-error-msg="Potrebno nam je vaše korisničko ime">
+                            <input type="text" readonly="readonly" id="username" style="width: 300px; font-size: 17px;" class="form-control valid" v-model="user.username" data-validation="required" data-validation-error-msg="Potrebno nam je vaše korisničko ime">
                         </div>
                     </div>
                 </div>
@@ -91,6 +80,14 @@
             <img src="../images/stock-food-photos-bundle-bypeople-deals.png" style="margin-top: 20px;" class="header-image" height="300px" width="1520px" alt="header image">
         </div>
     </div>
-    
-</body>
-</html>
+`
+    ,
+    mounted() {
+        axios
+            .get('/loggedUser')
+            .then(response => (this.user = response.data))
+    },
+    methods: {
+
+    }
+});
