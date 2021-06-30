@@ -1,4 +1,4 @@
-const Index = { template: '<x></x>' }
+const Index = { template: '<index></index>' }
 const Customer = { template: '<customer></customer>' }
 const Deliverer = { template: '<deliverer></deliverer>' }
 const Administrator = { template: '<administrator></administrator>' }

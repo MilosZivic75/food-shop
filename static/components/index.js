@@ -1,11 +1,11 @@
-Vue.component("x", {
+Vue.component("index", {
 	data: function () {
 		return {
 			user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
 		}
 	},
 	template: ` 
-<div class="bg" style="background-image: url('images/main-background.jpg'); width: 100%; height: 100%	">
+<div class="bg" style="background-image: url('images/main-background.jpg');">
 		<div class="container">
 			<div class="row justify-content-between">
 				<div class="col-4">
@@ -146,6 +146,41 @@ Vue.component("x", {
 					else if (response.data === 'ERROR') {
 						$('#error').text('Pogresno korisnicko ime i/ili lozinka.');
 						$('#error').show().delay(3000).fadeOut();
+						console.log(response)
+					}
+				})
+		},
+		registrateUser: function () {
+			event.preventDefault();
+			$('#errorReg').hide();
+			if (this.user.name.trim() === '' || this.user.lastName.trim() === '' || this.user.birthDate.trim() === '' 
+				|| this.user.sex.trim() === '' || this.user.username.trim() === '' || this.user.password.trim() === '') {
+				$('#errorReg').text('Molimo popunite sva polja.');
+				$('#errorReg').show().delay(3000).fadeOut();
+				$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
+				return;
+			}
+
+			axios.post('/registration', {
+				name: this.user.name,
+				lastName: this.user.lastName,
+				birthDate: this.user.birthDate,
+				sex: this.user.sex,
+				username: this.user.username,
+				password: this.user.password
+			})
+				.then(function (response) {
+					if (response.data === 'SUCCESS') {
+						$('#successReg').text('Korisnik je uspesno registrovan.');
+						$('#successReg').show().delay(3000).fadeOut();
+						$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
+						console.log(response)
+						router.push('/customer');
+					}
+					else {
+						$('#errorReg').text('Korisnik sa datim korisničkim imenom već postoji.');
+						$('#errorReg').show().delay(3000).fadeOut();
+						$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
 						console.log(response)
 					}
 				})
