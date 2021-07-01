@@ -1,10 +1,10 @@
 Vue.component("deliverer", {
-	data: function () {
-		return {
-			user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null, orders: null },
-		}
-	},
-	template: ` 
+    data: function () {
+        return {
+            user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null, orders: null },
+        }
+    },
+    template: ` 
     <div class="row">
 		<div class="col-md-4">
 			<div class="row">
@@ -39,7 +39,8 @@ Vue.component("deliverer", {
                                 {{user.name}}
                             </b>
                             <ul class="dropdown-menu" aria-labelledby="dropdownVisibilidad">
-                                <li><a class="dropdown-item" href="../index.html" style="font-size: 20px;" type="submit" > Odjavite se </a></li>
+                                <li><a class="dropdown-item" v-on:click="showProfile" style="font-size: 20px;" type="submit" > Profil </a></li>
+                                <li><a class="dropdown-item" v-on:click="logout" style="font-size: 20px;" type="submit" > Odjavite se </a></li>
                             </ul>
                         </div>
                     </div> 
@@ -49,13 +50,28 @@ Vue.component("deliverer", {
         </div>
     </div>
 `
-	,
+    ,
     mounted() {
-		axios
-			.get('/loggedUser')
-			.then(response => (this.user = response.data))
-	},
-	methods: {
-		
-	}
+        axios
+            .get('/loggedUser')
+            .then(response => {
+                if (response.data === 'ERROR') {
+                    router.push('/');
+                    return;
+                }
+                this.user = response.data;
+            });
+    },
+    methods: {
+        showProfile: function () {
+            event.preventDefault();
+            router.push('/userProfile');
+        },
+        logout: function () {
+            event.preventDefault();
+            router.push('/');
+            axios
+                .post('/logout');
+        }
+    }
 });
