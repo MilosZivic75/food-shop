@@ -7,7 +7,8 @@ Vue.component("administrator", {
     template: ` 
     <div class="container">
 		<div class="row justify-content-between">
-			<div class="col-4">
+			<div class="col-9">
+                <img width="80" height="80" class="media-object" src="../favicon.ico">
 				<h1 style="font-size:50px;">Web food shop</h1>
 			</div>
 			<div class="dropdown col-3 align-self-end">

@@ -1,40 +1,18 @@
 package services;
 
 import beans.Manager;
+import beans.User;
 import repositories.IRepository;
+import repositories.ManagerRepository;
 
 public class ManagerService extends Service<String, Manager> {
 
+	private ManagerRepository managerRepository = new ManagerRepository();
 	public ManagerService(IRepository<String, Manager> repository) {
 		super(repository);
 	}
-	/*private ManagerRepository managerRepository = new ManagerRepository();
 
-	public boolean create(Manager manager) {
-		return managerRepository.create(manager);
+	public boolean updateUserData(User user) {
+		return managerRepository.updateUserData(user);
 	}
-
-	public boolean update(Manager manager) {
-		return managerRepository.update(manager);
-	}
-
-	public Manager read(String key) {
-		return managerRepository.read(key);
-	}
-
-	public boolean delete(Manager manager) {
-		return managerRepository.delete(manager);
-	}
-
-	public boolean deleteById(String key) {
-		return managerRepository.deleteById(key);
-	}
-
-	public Map<String, Manager> readAll() {
-		return managerRepository.readAll();
-	}
-
-	public List<Manager> readAllManagers() {
-		return managerRepository.readAllEntities();
-	}*/
 }

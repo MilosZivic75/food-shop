@@ -1,10 +1,10 @@
 Vue.component("profile", {
-    data: function () {
-        return {
-            user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
-        }
-    },
-    template: `<div class="container-fluid">
+	data: function () {
+		return {
+			user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
+		}
+	},
+	template: `<div class="container-fluid">
 	<div class="row">
 		<div class="col-1">
 			<div class="media">
@@ -80,7 +80,7 @@ Vue.component("profile", {
 				<div class="row">
 					<div class="col-md-6" style="margin-top: 30px; ">
 						<button type="submit" name="submit" style="font-size: 17px;" id="submit_user_profile"
-							class="btn btn-warning btn-block">
+							class="btn btn-warning btn-block" v-on:click="save">
 							<b>Sačuvajte izmene </b></button>
 					</div>
 				</div>
@@ -95,28 +95,36 @@ Vue.component("profile", {
 	</div>
 </div>
 `
-    ,
-    mounted() {
-        axios
-            .get('/loggedUser')
-            .then(response => {
-                if (response.data === 'ERROR') {
-                    router.push('/');
-                    return;
-                } 
-                this.user = response.data;
-            });
-    },
-    methods: {
-        showProfile: function () {
-            event.preventDefault();
-            router.push('/userProfile');
-        },
-        logout: function () {
-            event.preventDefault();
-            router.push('/');
-            axios
-                .post('/logout');
-        }
-    }
+	,
+	mounted() {
+		axios
+			.get('/loggedUser')
+			.then(response => {
+				if (response.data === 'ERROR') {
+					router.push('/');
+					return;
+				}
+				this.user = response.data;
+			});
+	},
+	methods: {
+		showProfile: function () {
+			event.preventDefault();
+			router.push('/userProfile');
+		},
+		logout: function () {
+			event.preventDefault();
+			router.push('/');
+			axios
+				.post('/logout');
+		},
+		save: function () {
+			event.preventDefault();
+			axios
+				.post('/updateUser', this.user)
+				.then(function (response) {
+					console.log(response);
+				})
+		}
+	}
 });

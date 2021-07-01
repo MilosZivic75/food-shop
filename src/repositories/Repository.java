@@ -27,7 +27,7 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 	
 	protected abstract T setDeleted(T entity);
 
-	private Map<K, T> readFile() {
+	protected Map<K, T> readFile() {
 		String path = getPath();
 		Type type = getType();
 
@@ -49,7 +49,7 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 		}
 	}
 
-	private void writeFile(Map<K, T> entities) {
+	protected void writeFile(Map<K, T> entities) {
 		String path = getPath();
 
 		FileWriter fileWriter;

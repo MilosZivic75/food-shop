@@ -109,6 +109,25 @@ public class FoodShopMain {
 			req.session().invalidate();
 			return "SUCCESS";
 		});
+		
+		post("/updateUser", (req, res) -> {
+			User user = g.fromJson(req.body(), User.class);
+			
+			if (user.getUserRole() == UserRoles.CUSTOMER) {
+				customerController.updateUserData(user);
+				return "SUCCESS";
+			} else if (user.getUserRole() == UserRoles.DELIVERER) {
+				delivererController.updateUserData(user);
+				return "SUCCESS";
+			} else if (user.getUserRole() == UserRoles.MANAGER) {
+				managerController.updateUserData(user);
+				return "SUCCESS";
+			} else {
+				administratorController.updateUserData(user);
+				return "SUCCESS";
+			}
+			
+		});
 				
 	}
 }

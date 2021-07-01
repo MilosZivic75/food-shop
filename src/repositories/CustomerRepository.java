@@ -2,10 +2,12 @@ package repositories;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
 
 import beans.Customer;
+import beans.User;
 
 public class CustomerRepository extends Repository<String, Customer> {
 	
@@ -33,6 +35,23 @@ public class CustomerRepository extends Repository<String, Customer> {
 	protected Customer setDeleted(Customer entity) {
 		entity.setDeleted(1);
 		return entity;
+	}
+	
+	public boolean updateUserData(User user) {
+		Map<String, Customer> entities = readFile();
+		if (!entities.containsKey(user.getUsername())) {
+			return false;
+		}
+		Customer customer = entities.get(user.getUsername());
+		customer.setName(user.getName());
+		customer.setLastName(user.getLastName());
+		customer.setSex(user.getSex());
+		customer.setBirthDate(user.getBirthDate());
+		customer.setPassword(user.getPassword());
+		entities.put(customer.getUsername(), customer);
+		writeFile(entities);
+
+		return true;
 	}
 
 }

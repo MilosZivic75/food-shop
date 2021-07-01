@@ -7,7 +7,6 @@ import enumerations.RestaurantTypes;
 import enumerations.RestaurantStatus;
 
 public class Restaurant {
-	private String id;
 	private String name;
 	private RestaurantTypes restaurantType;
 	private ArrayList<Article> articles;
@@ -23,7 +22,6 @@ public class Restaurant {
 	public Restaurant(String name, RestaurantTypes restaurantType, ArrayList<Article> articles, RestaurantStatus status,
 			Location location, Image logo) {
 		super();
-		this.id = name + location;
 		this.name = name;
 		this.restaurantType = restaurantType;
 		this.articles = articles;
@@ -89,11 +87,4 @@ public class Restaurant {
 		this.deleted = deleted;
 	}
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
 }

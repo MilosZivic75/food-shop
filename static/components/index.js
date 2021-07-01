@@ -109,6 +109,11 @@ Vue.component("index", {
 			event.preventDefault();
 
 			$('#error').hide();
+			if (this.user.username === null || this.user.password === null) {
+				$('#error').text('Molimo popunite sva polja.');
+				$('#error').show().delay(3000).fadeOut();
+				return;
+			}
 			if (this.user.username.trim() === '' || this.user.password.trim() === '') {
 				$('#error').text('Molimo popunite sva polja.');
 				$('#error').show().delay(3000).fadeOut();
@@ -153,6 +158,13 @@ Vue.component("index", {
 		registrateUser: function () {
 			event.preventDefault();
 			$('#errorReg').hide();
+			if (this.user.name === null || this.user.lastName === null || this.user.birthDate === null 
+			|| this.user.sex === null || this.user.username === null || this.user.password === null) {
+				$('#errorReg').text('Molimo popunite sva polja.');
+				$('#errorReg').show().delay(3000).fadeOut();
+				$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
+				return;
+			}
 			if (this.user.name.trim() === '' || this.user.lastName.trim() === '' || this.user.birthDate.trim() === '' 
 				|| this.user.sex.trim() === '' || this.user.username.trim() === '' || this.user.password.trim() === '') {
 				$('#errorReg').text('Molimo popunite sva polja.');
