@@ -7,12 +7,14 @@ import enumerations.RestaurantTypes;
 import enumerations.RestaurantStatus;
 
 public class Restaurant {
+	private String id;
 	private String name;
 	private RestaurantTypes restaurantType;
 	private ArrayList<Article> articles;
 	private RestaurantStatus status;
 	private Location location;
 	private Image logo;
+	private int deleted;
 	
 	public Restaurant() {
 		super();
@@ -21,12 +23,14 @@ public class Restaurant {
 	public Restaurant(String name, RestaurantTypes restaurantType, ArrayList<Article> articles, RestaurantStatus status,
 			Location location, Image logo) {
 		super();
+		this.id = name + location;
 		this.name = name;
 		this.restaurantType = restaurantType;
 		this.articles = articles;
 		this.status = status;
 		this.location = location;
 		this.logo = logo;
+		this.deleted = 0;
 	}
 
 	public String getName() {
@@ -75,5 +79,21 @@ public class Restaurant {
 
 	public void setLogo(Image logo) {
 		this.logo = logo;
+	}
+
+	public int getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 }

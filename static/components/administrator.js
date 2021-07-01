@@ -17,22 +17,35 @@ Vue.component("administrator", {
 					{{user.name}}
 				</b>
 				<div class="dropdown-menu" aria-labelledby="dropdownMenu">
-					<a class="dropdown-item" href="#">Profil</a>
-					<a class="dropdown-item" v-on:click="logout" href="#">Odjavite se</a>
+					<a class="dropdown-item" v-on:click="showProfile">Profil</a>
+					<a class="dropdown-item" v-on:click="logout">Odjavite se</a>
 				</div>
 			</div>
 		</div>
 	</div>	  
-`
+    `
     ,
     mounted() {
         axios
             .get('/loggedUser')
-            .then(response => (this.user = response.data))
+            .then(response => {
+                if (response.data === 'ERROR') {
+                    router.push('/');
+                    return;
+                } 
+                this.user = response.data;
+            });
     },
     methods: {
+        showProfile: function () {
+            event.preventDefault();
+            router.push('/userProfile');
+        },
         logout: function () {
+            event.preventDefault();
             router.push('/');
+            axios
+                .post('/logout');
         }
     }
 });

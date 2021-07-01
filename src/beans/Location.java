@@ -39,4 +39,10 @@ public class Location {
 	public void setAddress(Address address) {
 		this.address = address;
 	}
+
+	@Override
+	public String toString() {
+		return "[" + longitude + ", " + latitude + ", " + address.getStreet() + " "
+				+ address.getNumber() + ", " + address.getPostalCode() + ", " + address.getCity() + "]";
+	}
 }

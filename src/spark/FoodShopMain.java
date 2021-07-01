@@ -87,10 +87,12 @@ public class FoodShopMain {
 		
 		get("/loggedUser", (req, res) -> {
 			res.type("application/json");
-			//String s = g.toJson(administratorController.read("jova"));
-			//System.out.println(s);
+			
 			Session session = req.session();
 			User user = (User) session.attribute("user");
+			if (user == null)
+				return "ERROR";
+			
 			if (user.getUserRole() == UserRoles.CUSTOMER) {
 				return g.toJson((Customer)user);
 			} else if (user.getUserRole() == UserRoles.DELIVERER) {
@@ -101,6 +103,11 @@ public class FoodShopMain {
 				return g.toJson((Administrator)user);
 			}
 
+		});
+		
+		post("/logout", (req, res) -> {
+			req.session().invalidate();
+			return "SUCCESS";
 		});
 				
 	}

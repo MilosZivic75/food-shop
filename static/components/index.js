@@ -122,31 +122,31 @@ Vue.component("index", {
 					if (response.data === 'SUCCESS/administrator') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
 						$('#success').show().delay(3000).fadeOut();
-						console.log(response)
+						console.log(response);
 						router.push('/administrator');
 					}
 					else if (response.data === 'SUCCESS/manager') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
 						$('#success').show().delay(3000).fadeOut();
-						console.log(response)
+						console.log(response);
 						router.push('/manager');
 					}
 					else if (response.data === 'SUCCESS/deliverer') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
 						$('#success').show().delay(3000).fadeOut();
-						console.log(response)
+						console.log(response);
 						router.push('/deliverer');
 					}
 					else if (response.data === 'SUCCESS/customer') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
 						$('#success').show().delay(3000).fadeOut();
-						console.log(response)
+						console.log(response);
 						router.push('/customer');
 					}
 					else if (response.data === 'ERROR') {
 						$('#error').text('Pogresno korisnicko ime i/ili lozinka.');
 						$('#error').show().delay(3000).fadeOut();
-						console.log(response)
+						console.log(response);
 					}
 				})
 		},
