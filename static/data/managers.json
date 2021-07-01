@@ -1,1 +1,15 @@
-{}
+{
+  "zika": {
+    "restaurant": {
+      "deleted": 0
+    },
+    "username": "zika",
+    "password": "zika",
+    "name": "Zivan",
+    "lastName": "Radosavljevic",
+    "sex": "Muški",
+    "birthDate": "1955-03-25",
+    "userRole": "MANAGER",
+    "deleted": 0
+  }
+}

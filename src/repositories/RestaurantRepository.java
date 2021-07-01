@@ -21,7 +21,7 @@ public class RestaurantRepository extends Repository<String, Restaurant> {
 
 	@Override
 	protected String getKey(Restaurant entity) {
-		return entity.getId();
+		return entity.getName();
 	}
 
 	@Override

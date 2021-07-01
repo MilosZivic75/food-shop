@@ -67,7 +67,7 @@ public class FoodShopMain {
 			} else if (loggedUser.getUserRole() == UserRoles.MANAGER) {
 				Manager manager = managerController.read(loggedUser.getUsername());
 				session.attribute("user", manager);
-				return "SUCCESS/deliverer";
+				return "SUCCESS/manager";
 			} else {
 				Administrator administrator = administratorController.read(loggedUser.getUsername());
 				session.attribute("user", administrator);
