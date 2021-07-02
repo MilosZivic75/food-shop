@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -123,6 +124,6 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 
 	@Override
 	public List<T> readAllEntities() {
-		return (List<T>) readFile().values();
+		return new ArrayList<T>(readFile().values());
 	}
 }

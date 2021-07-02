@@ -5,14 +5,20 @@ Vue.component("administrator", {
         }
     },
     template: ` 
+    <div>
     <div class="container">
 		<div class="row justify-content-between">
-			<div class="col-9">
-                <img width="80" height="80" class="media-object" src="../favicon.ico">
-				<h1 style="font-size:50px;">Web food shop</h1>
+			<div class="col-1 align-self-end">
+				<img width="80" height="80" src="../favicon.ico">
 			</div>
+			<div class="col-5 align-self-end">
+				<h1 style="font-size:40px; margin-left: -170px;">Web food shop</h1>
+			</div>
+
+
 			<div class="dropdown col-3 align-self-end">
-				<img src="../images/profile.png" width="30" height="30" style="margin-top: -12px;">
+				<img src="../images/profile.png" width="30"
+					height="30" style="margin-top: -12px;">
 				<b class="dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-haspopup="true"
 					aria-expanded="false" style="font-size: 30px;">
 					{{user.name}}
@@ -23,7 +29,14 @@ Vue.component("administrator", {
 				</div>
 			</div>
 		</div>
-	</div>	  
+	</div>
+	<div class="row">
+		<div>
+			<img src="../images/administrator-main.jpg" style="margin-top: 20px; position:absolute; bottom:0" class="header-image"
+				height="300px" width="100%" alt="header image">
+		</div>
+	</div>
+    </div>
     `
     ,
     mounted() {

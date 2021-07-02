@@ -142,43 +142,51 @@ Vue.component("index", {
 						$('#success').show().delay(3000).fadeOut();
 						console.log(response);
 						router.push('/administrator');
+						$('#loginModal').hide();
+						$('.modal-backdrop').hide();
 					}
 					else if (response.data === 'SUCCESS/manager') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
 						$('#success').show().delay(3000).fadeOut();
 						console.log(response);
 						router.push('/manager');
+						$('#loginModal').hide();
+						$('.modal-backdrop').hide();
 					}
 					else if (response.data === 'SUCCESS/deliverer') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
 						$('#success').show().delay(3000).fadeOut();
 						console.log(response);
 						router.push('/deliverer');
+						$('#loginModal').hide();
+						$('.modal-backdrop').hide();
 					}
 					else if (response.data === 'SUCCESS/customer') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
 						$('#success').show().delay(3000).fadeOut();
 						console.log(response);
 						router.push('/customer');
+						$('#loginModal').hide();
+						$('.modal-backdrop').hide();
 					}
 					else if (response.data === 'ERROR') {
 						$('#error').text('Pogresno korisnicko ime i/ili lozinka.');
 						$('#error').show().delay(3000).fadeOut();
 						console.log(response);
 					}
-				})
+				});
 		},
 		registrateUser: function () {
 			event.preventDefault();
 			$('#errorReg').hide();
-			if (this.user.name === null || this.user.lastName === null || this.user.birthDate === null 
-			|| this.user.sex === null || this.user.username === null || this.user.password === null) {
+			if (this.user.name === null || this.user.lastName === null || this.user.birthDate === null
+				|| this.user.sex === null || this.user.username === null || this.user.password === null) {
 				$('#errorReg').text('Molimo popunite sva polja.');
 				$('#errorReg').show().delay(3000).fadeOut();
 				$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
 				return;
 			}
-			if (this.user.name.trim() === '' || this.user.lastName.trim() === '' || this.user.birthDate.trim() === '' 
+			if (this.user.name.trim() === '' || this.user.lastName.trim() === '' || this.user.birthDate.trim() === ''
 				|| this.user.sex.trim() === '' || this.user.username.trim() === '' || this.user.password.trim() === '') {
 				$('#errorReg').text('Molimo popunite sva polja.');
 				$('#errorReg').show().delay(3000).fadeOut();
@@ -201,6 +209,8 @@ Vue.component("index", {
 						$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
 						console.log(response)
 						router.push('/customer');
+						$('#registrationModal').hide();
+						$('.modal-backdrop').hide();
 					}
 					else {
 						$('#errorReg').text('Korisnik sa datim korisničkim imenom već postoji.');
