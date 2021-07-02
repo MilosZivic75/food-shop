@@ -19,8 +19,8 @@ Vue.component("index", {
 					data-target="#registrationModal">Registracija</button>
 			</div>
 		</div>
-		<div class="row" style="margin-top: 200px; margin-left: 30px;" v-for="restaurant in restaurants"> 
-			<div class="col-2"> 
+		<div class="row" style="margin-top: 200px; margin-left: 30px;"> 
+			<div class="col-2" v-for="restaurant in restaurants"> 
 				<p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
 				<img :src="restaurant.logo" style="width: 40px; height: 40px;"><br />
 				Ime: {{restaurant.name}}<br>Tip: {{restaurant.restaurantType}}<br> Stanje: {{restaurant.status}}</p>
@@ -115,10 +115,7 @@ Vue.component("index", {
 	mounted() {
 		axios
 			.get('/getRestaurants')
-			.then(response => {
-				this.restaurants = response.data;
-				console.log(this.restaurants);
-			});
+			.then(response => ( this.restaurants = response.data ));
 	},
 	methods: {
 		loginUser: function () {

@@ -3,8 +3,6 @@ package beans;
 import java.util.ArrayList;
 import java.util.Date;
 
-import enumerations.UserRoles;
-
 public class Deliverer extends User {
 	private ArrayList<Order> orders;
 
@@ -13,13 +11,13 @@ public class Deliverer extends User {
 	}
 
 	public Deliverer(String username, String password, String name, String lastName, String sex, Date birthDate,
-			UserRoles userRole) {
+			String userRole) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
 		orders = new ArrayList<Order>();
 	}
 
 	public Deliverer(String username, String password, String name, String lastName, String sex, Date birthDate,
-			UserRoles userRole, ArrayList<Order> orders) {
+			String userRole, ArrayList<Order> orders) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
 		this.orders = orders;
 	}

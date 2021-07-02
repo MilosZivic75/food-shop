@@ -20,4 +20,8 @@ public class UserController {
 		return userService.registerUser(name, lastName, birthDate, sex, username, password);
 	}
 	
+	public User addUser(String name, String lastName, Date birthDate, String sex, String username, String password, String userRole) {
+		return userService.addUser(name, lastName, birthDate, sex, username, password, userRole);
+	}
+	
 }

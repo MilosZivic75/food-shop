@@ -15,10 +15,8 @@ import beans.Administrator;
 import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
-import beans.Restaurant;
 import beans.User;
 import controllers.*;
-import enumerations.UserRoles;
 import repositories.*;
 import services.*;
 
@@ -49,15 +47,15 @@ public class FoodShopMain {
 				return "ERROR";
 			}
 			Session session = req.session();
-			if (loggedUser.getUserRole() == UserRoles.CUSTOMER) {
+			if (loggedUser.getUserRole().equals("Kupac")) {
 				Customer customer = customerController.read(loggedUser.getUsername());
 				session.attribute("user", customer);
 				return "SUCCESS/customer";
-			} else if (loggedUser.getUserRole() == UserRoles.DELIVERER) {
+			} else if (loggedUser.getUserRole().equals("Dostavljač")) {
 				Deliverer deliverer = delivererController.read(loggedUser.getUsername());
 				session.attribute("user", deliverer);
 				return "SUCCESS/deliverer";
-			} else if (loggedUser.getUserRole() == UserRoles.MANAGER) {
+			} else if (loggedUser.getUserRole().equals("Menadžer")) {
 				Manager manager = managerController.read(loggedUser.getUsername());
 				session.attribute("user", manager);
 				return "SUCCESS/manager";
@@ -86,11 +84,11 @@ public class FoodShopMain {
 			if (user == null)
 				return "ERROR";
 			
-			if (user.getUserRole() == UserRoles.CUSTOMER) {
+			if (user.getUserRole().equals("Kupac")) {
 				return g.toJson((Customer)user);
-			} else if (user.getUserRole() == UserRoles.DELIVERER) {
+			} else if (user.getUserRole().equals("Dostavljač")) {
 				return g.toJson((Deliverer)user);
-			} else if (user.getUserRole() == UserRoles.MANAGER) {
+			} else if (user.getUserRole().equals("Menadžer")) {
 				return g.toJson((Manager)user);
 			} else {
 				return g.toJson((Administrator)user);
@@ -106,13 +104,13 @@ public class FoodShopMain {
 		post("/updateUser", (req, res) -> {
 			User user = g.fromJson(req.body(), User.class);
 			
-			if (user.getUserRole() == UserRoles.CUSTOMER) {
+			if (user.getUserRole().equals("Kupac")) {
 				customerController.updateUserData(user);
 				return "SUCCESS";
-			} else if (user.getUserRole() == UserRoles.DELIVERER) {
+			} else if (user.getUserRole().equals("Dostavljač")) {
 				delivererController.updateUserData(user);
 				return "SUCCESS";
-			} else if (user.getUserRole() == UserRoles.MANAGER) {
+			} else if (user.getUserRole().equals("Menadžer")) {
 				managerController.updateUserData(user);
 				return "SUCCESS";
 			} else {
@@ -123,9 +121,28 @@ public class FoodShopMain {
 		
 		get("/getRestaurants", (req, res) -> {
 			res.type("application/json");
-			String s = g.toJson(restaurantContoller.readAllEntities());
 			return g.toJson(restaurantContoller.readAllEntities());
 		});
+			
+		get("/getUsers", (req, res) -> {
+			res.type("application/json");
+			ArrayList<User> users = new ArrayList<User>();
+			users.addAll(administratorController.readAllEntities());
+			users.addAll(managerController.readAllEntities());
+			users.addAll(delivererController.readAllEntities());
+			users.addAll(customerController.readAllEntities());
 				
+			return g.toJson(users);
+		});
+		
+		post("/addUser", (req, res) -> {
+			res.type("application/json");
+			User user = g.fromJson(req.body(), User.class);
+			User addedUser = userController.addUser(user.getName(), user.getLastName(), user.getBirthDate(), user.getSex(), user.getUsername(), user.getPassword(), user.getUserRole());
+			if (addedUser == null) {
+				return "ERROR";
+			}
+			return "SUCCESS";
+		});
 	}
 }

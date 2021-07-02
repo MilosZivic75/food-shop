@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 import enumerations.CustomerTypes;
-import enumerations.UserRoles;
 
 public class Customer extends User {
 	private ArrayList<Order> allOrders;
@@ -17,7 +16,7 @@ public class Customer extends User {
 		super();
 	}
 	public Customer(String username, String password, String name, String lastName, String sex, Date birthDate,
-			UserRoles userRole) {
+			String userRole) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
 		allOrders = new ArrayList<Order>();
 		cart = new Cart(new HashMap<Article, Integer>(), this.getUsername(), 0);
@@ -26,7 +25,7 @@ public class Customer extends User {
 	}
 	
 	public Customer(String username, String password, String name, String lastName, String sex, Date birthDate,
-			UserRoles userRole, ArrayList<Order> allOrders, Cart cart, int collectedPoints, CustomerType customerType) {
+			String userRole, ArrayList<Order> allOrders, Cart cart, int collectedPoints, CustomerType customerType) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
 		this.allOrders = allOrders;
 		this.cart = cart;

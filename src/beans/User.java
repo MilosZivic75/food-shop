@@ -2,8 +2,6 @@ package beans;
 
 import java.util.Date;
 
-import enumerations.UserRoles;
-
 public class User {
 	private String username;
 	private String password;
@@ -11,7 +9,7 @@ public class User {
 	private String lastName;
 	private String sex;
 	private Date birthDate;
-	private UserRoles userRole;
+	private String userRole;
 	private int deleted;
 	
 	public User() {
@@ -19,7 +17,7 @@ public class User {
 	}
 
 	public User(String username, String password, String name, String lastName, String sex, Date birthDate,
-			UserRoles userRole) {
+			String userRole) {
 		super();
 		this.username = username;
 		this.password = password;
@@ -79,11 +77,11 @@ public class User {
 		this.birthDate = birthDate;
 	}
 
-	public UserRoles getUserRole() {
+	public String getUserRole() {
 		return userRole;
 	}
 
-	public void setUserRole(UserRoles userRole) {
+	public void setUserRole(String userRole) {
 		this.userRole = userRole;
 	}
 

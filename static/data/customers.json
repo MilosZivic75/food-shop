@@ -18,7 +18,7 @@
     "lastName": "Petrovic",
     "sex": "Muški",
     "birthDate": "2021-06-11",
-    "userRole": "CUSTOMER",
+    "userRole": "Kupac",
     "deleted": 0
   },
   "the": {
@@ -40,7 +40,7 @@
     "lastName": "Zile",
     "sex": "Ženski",
     "birthDate": "2021-06-04",
-    "userRole": "CUSTOMER",
+    "userRole": "Kupac",
     "deleted": 0
   },
   "mare": {
@@ -62,7 +62,7 @@
     "lastName": "Markovic",
     "sex": "Muški",
     "birthDate": "2021-06-01",
-    "userRole": "CUSTOMER",
+    "userRole": "Kupac",
     "deleted": 0
   },
   "vesna": {
@@ -84,7 +84,7 @@
     "lastName": "Kundacina",
     "sex": "Muški",
     "birthDate": "2001-12-31",
-    "userRole": "CUSTOMER",
+    "userRole": "Kupac",
     "deleted": 0
   }
 }
