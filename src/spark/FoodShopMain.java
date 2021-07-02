@@ -6,6 +6,7 @@ import static spark.Spark.post;
 import static spark.Spark.staticFiles;
 
 import java.io.File;
+import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -14,21 +15,12 @@ import beans.Administrator;
 import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
+import beans.Restaurant;
 import beans.User;
-import controllers.AdministratorController;
-import controllers.CustomerController;
-import controllers.DelivererController;
-import controllers.ManagerController;
-import controllers.UserController;
+import controllers.*;
 import enumerations.UserRoles;
-import repositories.AdministratorRepository;
-import repositories.CustomerRepository;
-import repositories.DelivererRepository;
-import repositories.ManagerRepository;
-import services.AdministratorService;
-import services.CustomerService;
-import services.DelivererService;
-import services.ManagerService;
+import repositories.*;
+import services.*;
 
 public class FoodShopMain {
 
@@ -38,6 +30,7 @@ public class FoodShopMain {
 	private static DelivererController delivererController = new DelivererController(new DelivererService(new DelivererRepository()));
 	private static ManagerController managerController = new ManagerController(new ManagerService(new ManagerRepository()));
 	private static AdministratorController administratorController = new AdministratorController(new AdministratorService(new AdministratorRepository()));
+	private static RestaurantController restaurantContoller = new RestaurantController(new RestaurantService(new RestaurantRepository()));
 	
 	public static void main(String[] args) throws Exception {
 		port(8080);
@@ -126,7 +119,12 @@ public class FoodShopMain {
 				administratorController.updateUserData(user);
 				return "SUCCESS";
 			}
-			
+		});
+		
+		get("/getRestaurants", (req, res) -> {
+			res.type("application/json");
+			String s = g.toJson(restaurantContoller.readAllEntities());
+			return g.toJson(restaurantContoller.readAllEntities());
 		});
 				
 	}

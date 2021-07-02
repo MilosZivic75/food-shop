@@ -45,6 +45,7 @@ public abstract class Repository<K, T> implements IRepository<K, T> {
 				writer.flush();
 				writer.close();
 			} catch (IOException e1) {
+				e1.printStackTrace();
 			}
 			return new HashMap<K, T>();
 		}

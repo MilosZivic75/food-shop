@@ -3,24 +3,21 @@ package beans;
 import java.awt.Image;
 import java.util.ArrayList;
 
-import enumerations.RestaurantTypes;
-import enumerations.RestaurantStatus;
-
 public class Restaurant {
 	private String name;
-	private RestaurantTypes restaurantType;
+	private String restaurantType;
 	private ArrayList<Article> articles;
-	private RestaurantStatus status;
+	private String status;
 	private Location location;
-	private Image logo;
+	private String logo;
 	private int deleted;
 	
 	public Restaurant() {
 		super();
 	}
 
-	public Restaurant(String name, RestaurantTypes restaurantType, ArrayList<Article> articles, RestaurantStatus status,
-			Location location, Image logo) {
+	public Restaurant(String name, String restaurantType, ArrayList<Article> articles, String status,
+			Location location, String logo) {
 		super();
 		this.name = name;
 		this.restaurantType = restaurantType;
@@ -39,11 +36,11 @@ public class Restaurant {
 		this.name = name;
 	}
 
-	public RestaurantTypes getRestaurantType() {
+	public String getRestaurantType() {
 		return restaurantType;
 	}
 
-	public void setRestaurantType(RestaurantTypes restaurantType) {
+	public void setRestaurantType(String restaurantType) {
 		this.restaurantType = restaurantType;
 	}
 
@@ -55,11 +52,11 @@ public class Restaurant {
 		this.articles = articles;
 	}
 
-	public RestaurantStatus getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(RestaurantStatus status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -71,11 +68,11 @@ public class Restaurant {
 		this.location = location;
 	}
 
-	public Image getLogo() {
+	public String getLogo() {
 		return logo;
 	}
 
-	public void setLogo(Image logo) {
+	public void setLogo(String logo) {
 		this.logo = logo;
 	}
 

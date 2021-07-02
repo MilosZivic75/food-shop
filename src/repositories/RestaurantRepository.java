@@ -11,7 +11,7 @@ public class RestaurantRepository extends Repository<String, Restaurant> {
 
 	@Override
 	protected String getPath() {
-		return "/static/data/restaurants.json";
+		return "static/data/restaurants.json";
 	}
 
 	@Override

@@ -21,8 +21,8 @@ Vue.component("index", {
 		</div>
 		<div class="row" style="margin-top: 200px; margin-left: 30px;" v-for="restaurant in restaurants"> 
 			<div class="col-2"> 
-				<p style="border:3px; border-style:solid; background-color:#669999; padding: 1em;">
-
+				<p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
+				<img :src="restaurant.logo" style="width: 40px; height: 40px;"><br />
 				Ime: {{restaurant.name}}<br>Tip: {{restaurant.restaurantType}}<br> Stanje: {{restaurant.status}}</p>
 			</div>
 		</div>
@@ -112,11 +112,14 @@ Vue.component("index", {
 </div>	 
 `
 	,
-	mounted () {
-        axios
-          .get('/getRestaurants')
-          .then(response => (this.restaurants = response.data))
-    },
+	mounted() {
+		axios
+			.get('/getRestaurants')
+			.then(response => {
+				this.restaurants = response.data;
+				console.log(this.restaurants);
+			});
+	},
 	methods: {
 		loginUser: function () {
 			event.preventDefault();

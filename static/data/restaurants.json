@@ -1,9 +1,10 @@
 {
   "McDonalds": {
     "name": "McDonalds",
-    "restaurantType": "FASTFOOD",
+    "restaurantType": "Brza hrana",
     "articles": [],
-    "status": "OPEN",
+    "status": "Otvoren",
+    "logo": "/images/mcLogo.png",
     "location": {
       "longitude": 28.0,
       "latitude": 30.0,
