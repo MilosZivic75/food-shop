@@ -5,17 +5,19 @@ public class Address {
 	private String number;
 	private String city;
 	private String postalCode;
+	private String country;
 	
 	public Address() {
 		super();
 	}
 
-	public Address(String street, String number, String city, String postalCode) {
+	public Address(String street, String number, String city, String postalCode, String country) {
 		super();
 		this.street = street;
 		this.number = number;
 		this.city = city;
 		this.postalCode = postalCode;
+		this.country = country;
 	}
 
 	public String getStreet() {
@@ -48,5 +50,13 @@ public class Address {
 
 	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
 	}
 }
