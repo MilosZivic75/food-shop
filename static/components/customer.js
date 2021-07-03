@@ -28,7 +28,7 @@ Vue.component("customer", {
                     </div>
                 </div>
                 <div >
-                    <button type="button" style="margin-left: 240px; margin-top: 30px; font-size: 25px;" class="btn btn-warning"> <b> Naruči </b></button>
+                    <button type="button" v-on:click="makeOrder" style="margin-left: 240px; margin-top: 30px; font-size: 25px;" class="btn btn-warning"> <b> Naruči </b></button>
                 </div>
         </div>
 
@@ -76,6 +76,10 @@ Vue.component("customer", {
             router.push('/');
             axios
                 .post('/logout');
+        },
+        makeOrder: function () {
+            event.preventDefault();
+            router.push('/order');
         }
     }
 });

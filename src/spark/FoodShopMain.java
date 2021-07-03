@@ -6,7 +6,6 @@ import static spark.Spark.post;
 import static spark.Spark.staticFiles;
 
 import java.io.File;
-import java.util.ArrayList;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -15,7 +14,6 @@ import beans.Administrator;
 import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
-import beans.Restaurant;
 import beans.User;
 import controllers.*;
 import enumerations.UserRoles;
