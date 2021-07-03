@@ -38,9 +38,10 @@ Vue.component("usersAdministrator", {
             Dodaj korisnika</button>
         </div>
         <div class="row" style="margin-top: 150px; margin-left: 30px;"> 
-			<div class="col-3" v-for="user in users"> 
+			<div class="col-2" v-for="user in users"> 
 				<p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
-				Ime: {{user.name}}<br>Prezime: {{user.lastName}}<br> Korisničko ime: {{user.username}}<br> Tip korisnika: {{user.userRole}}</p>
+				Ime: {{user.name}}<br>Prezime: {{user.lastName}}<br> Korisničko ime: {{user.username}}<br> Tip korisnika: {{user.userRole}}
+                <br> <button class="btn btn-danger btn-sm col-7" v-on:click="deleteUser(user.username)">Obriši</button></p>
 			</div>
 		</div>
         <div class="row">
@@ -109,20 +110,23 @@ Vue.component("usersAdministrator", {
     `
     ,
     mounted() {
-        axios
-            .get('/loggedUser')
-            .then(response => {
-                if (response.data === 'ERROR') {
-                    router.push('/');
-                    return;
-                }
-                this.user = response.data;
-            });
-        axios
-            .get('/getUsers')
-            .then(response => (this.users = response.data));
+        this.initSetup();
     },
     methods: {
+        initSetup: function () {
+            axios
+                .get('/loggedUser')
+                .then(response => {
+                    if (response.data === 'ERROR') {
+                        router.push('/');
+                        return;
+                    }
+                    this.user = response.data;
+                });
+            axios
+                .get('/getUsers')
+                .then(response => (this.users = response.data));
+        },
         showProfile: function () {
             event.preventDefault();
             router.push('/userProfile');
@@ -171,12 +175,12 @@ Vue.component("usersAdministrator", {
                 password: this.newUser.password,
                 userRole: this.newUser.userRole
             })
-                .then(function (response) {
+                .then(response => {
                     if (response.data === 'SUCCESS') {
                         $('#successAddUser').text('Korisnik je uspesno dodat.');
                         $('#successAddUser').show().delay(3000).fadeOut();
                         $('#addUserModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
-                        router.push('/usersAdministrator');
+                        this.initSetup();
 
                         $('#addUserModal').hide();
                         $('.modal-backdrop').hide();
@@ -186,7 +190,14 @@ Vue.component("usersAdministrator", {
                         $('#errorAddUser').show().delay(3000).fadeOut();
                         $('#addUserModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
                     }
-                })
+                });
+        },
+        deleteUser: function (username) {
+            axios.post('/deleteUser', {
+                username: username,
+            })
+                .then(response => (this.initSetup())
+                );
         }
     }
 });

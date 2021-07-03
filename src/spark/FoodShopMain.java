@@ -144,5 +144,13 @@ public class FoodShopMain {
 			}
 			return "SUCCESS";
 		});
+		
+		post("/deleteUser", (req, res) -> {
+			res.type("application/json");
+			User user = g.fromJson(req.body(), User.class);
+			userController.deleteUser(user.getUsername());
+			
+			return "SUCCESS";
+		});
 	}
 }

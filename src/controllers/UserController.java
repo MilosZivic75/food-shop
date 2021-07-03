@@ -24,4 +24,8 @@ public class UserController {
 		return userService.addUser(name, lastName, birthDate, sex, username, password, userRole);
 	}
 	
+	public void deleteUser(String username) {
+		userService.deleteUser(username);
+	}
+	
 }

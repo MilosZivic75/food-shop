@@ -10,17 +10,17 @@ const RestaurantsAdministrator = { template: '<restaurantsAdministrator></restau
 
 const router = new VueRouter({
 	mode: 'hash',
-	  routes: [
-		{ path: '/', name: 'home', component: Index},
-	    { path: '/customer', component: Customer},
-	    { path: '/deliverer', component: Deliverer},
-	    { path: '/administrator', component: Administrator},
-	    { path: '/manager', component: Manager},
-		{ path: '/userProfile', component: Profile},
-		{ path: '/order', component: Order},
-		{ path: '/usersAdministrator', component: UsersAdministrator},
-		{ path: '/restaurantsAdministrator', component: RestaurantsAdministrator}
-	  ]
+	routes: [
+		{ path: '/', name: 'home', component: Index },
+		{ path: '/customer', component: Customer },
+		{ path: '/deliverer', component: Deliverer },
+		{ path: '/administrator', component: Administrator },
+		{ path: '/manager', component: Manager },
+		{ path: '/userProfile', component: Profile },
+		{ path: '/order', component: Order },
+		{ path: '/usersAdministrator', component: UsersAdministrator },
+		{ path: '/restaurantsAdministrator', component: RestaurantsAdministrator }
+	]
 });
 
 var app = new Vue({
