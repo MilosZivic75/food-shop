@@ -1,12 +1,13 @@
 {
   "drag": {
+    "orders": [],
     "username": "drag",
     "password": "drop",
     "name": "Dragan",
     "lastName": "Draganić",
     "sex": "Muški",
     "birthDate": "1988-08-12",
-    "userRole": "DELIVERER",
-    "orders": []
+    "userRole": "Dostavljač",
+    "deleted": 0
   }
 }

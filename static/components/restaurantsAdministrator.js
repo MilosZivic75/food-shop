@@ -1,4 +1,4 @@
-Vue.component("administrator", {
+Vue.component("restaurantsAdministrator", {
     data: function () {
         return {
             user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },

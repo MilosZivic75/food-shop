@@ -8,7 +8,6 @@ import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
 import beans.User;
-import enumerations.UserRoles;
 import repositories.AdministratorRepository;
 import repositories.CustomerRepository;
 import repositories.DelivererRepository;
@@ -59,10 +58,33 @@ public class UserService {
 				managers.containsKey(username) || deliverers.containsKey(username)) {
 			return null;
 		}
-		Customer customer = new Customer(username, password, name, lastName, sex, birthDate, UserRoles.CUSTOMER);
+		Customer customer = new Customer(username, password, name, lastName, sex, birthDate, "Kupac");
 		customers.put(username, customer);
 		customerRepository.create(customer);
 		
 		return customer;
+	}
+	
+	public User addUser(String name, String lastName, Date birthDate, String sex, String username, String password, String userRole) {
+		if (customers.containsKey(username) || administrators.containsKey(username) || 
+				managers.containsKey(username) || deliverers.containsKey(username)) {
+			return null;
+		}
+		if (userRole.equals("Menadžer")) {
+			Manager manager = new Manager(username, password, name, lastName, sex, birthDate, userRole);
+			managers.put(manager.getUsername(), manager);
+			managerRepository.create(manager);
+			
+			return manager;
+		}
+		else if (userRole.equals("Dostavljač")) {
+			Deliverer deliverer = new Deliverer(username, password, name, lastName, sex, birthDate, userRole);
+			deliverers.put(deliverer.getUsername(), deliverer);
+			delivererRepository.create(deliverer);
+			
+			return deliverer;
+		}
+		
+		return null;
 	}
 }
