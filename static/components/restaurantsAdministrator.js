@@ -3,7 +3,13 @@ Vue.component("restaurantsAdministrator", {
         return {
             user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
             restaurants: null,
-            newRestaurant: {name: null, restaurantType: null, location: null, status: null, logo: null}
+            newRestaurant: {
+                name: null, restaurantType: null, location: {
+                    latitude: null, longitude: null,
+                    address: { street: null, number: null, postalCode: null, city: null, country: null }
+                }, status: null, logo: null
+            },
+            image: null
         }
     },
     template: ` 
@@ -67,35 +73,56 @@ Vue.component("restaurantsAdministrator", {
                                 <label for="floatingName">Naziv</label>
                             </div>
                             <div class="form-floating m-4">
-                                <input type="restaurantType" class="form-control" v-model="newRestaurant.restaurantType" id="floatingRestaurantType" placeholder="RestaurantType">
-                                <label for="floatingRestaurantType">Tip</label>
-                            </div>
-                            <div class="form-floating m-4">
-                                <input type="date" class="form-control" v-model="user.birthDate" id="floatingBirthDate" placeholDer="BirthDate">
-                                <label for="floatingBirthDate">Datum rođenja</label>
-                            </div>
-                            <div class="form-floating m-4">
-                                <select class="form-control" v-model="user.sex" id="floatingSex" placeholder="Sex">
-                                    <option value="Muški">Muški</option>
-                                    <option value="Ženski">Ženski</option>
+                                <select class="form-control" v-model="newRestaurant.restaurantType" id="floatingRestaurantType" placeholder="RestaurantType">
+                                    <option value="Kineski">Kineski</option>
+                                    <option value="Italijanski">Italijanski</option>
+                                    <option value="Sendviči">Sendviči</option>
+                                    <option value="Picerija">Picerija</option>
+                                    <option value="Brza hrana">Brza hrana</option>
+                                    <option value="Grill">Grill</option>
                                 </select>
-                                <label for="floatingSex">Pol</label>
+                                <label for="floatingRestaurantType">Tip restorana</label>
+                            </div>
+                            <div class="form-floating m-4">
+                                <select class="form-control" v-model="newRestaurant.status" id="floatingStatus" placeholder="Status">
+                                    <option value="Otvoren">Otvoren</option>
+                                    <option value="Zatvoren">Zatvoren</option>
+                                </select>
+                                <label for="floatingStatus">Status</label>
                             </div>
                             <div class="form-floating m-4 ">
-                                <input type="username" class="form-control" v-model="user.username" id="floatingUsername" placeholder="Username">
-                                <label for="floatingUsername">Korisničko ime</label>
+                                <input type="location" class="form-control"  readonly="readonly" id="floatingLocation" placeholder="Location">
+                                <label for="floatingLocation">Adresa</label>
+                                <a class="btn btn-primary" v-on:click="initModal"><i class="fa fa-map-marker mr-2"></i>Izaberite
+								lokaciju</a>
                             </div>
-                            <div class="form-floating m-4">
-                                <input type="password" class="form-control" v-model="user.password" id="floatingPasswordReg" placeholder="PasswordReg">
-                                <label for="floatingPasswordReg">Lozinka</label>
-                            </div>
+                            <input class="form-control form-control-lg m-4" accept="image/*" @change="onFileChanged" id="formFileLg" type="file" style="width: 90%;"/>
 
                             <button class="m-4 btn btn-lg btn-primary" v-on:click="addRestaurant" type="submit" style="width: 90%;">
                                 Dodaj</button>
-                            <div id="errorReg" class="alert alert-danger m-4" role="alert" style="display: none;"></div>
-                            <div id="successReg" class="alert alert-success m-4" role="alert" style="display: none;"></div>
+                            <div id="errorAddRes" class="alert alert-danger m-4" role="alert" style="display: none;"></div>
+                            <div id="successAddRes" class="alert alert-success m-4" role="alert" style="display: none;"></div>
                             <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="location-modal" tabindex="-1" role="dialog" aria-labelledby="location-modal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="address-label">Izaberite lokaciju</h5>
+                        <button type="button" v-on:click="closeMapModal" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="map" style="width: 100%; height: 400px;"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" v-on:click="closeMapModal" class="btn btn-primary" data-dismiss="modal"><i
+                                class="fa fa-check"></i>Završeno</button>
                     </div>
                 </div>
             </div>
@@ -139,8 +166,13 @@ Vue.component("restaurantsAdministrator", {
             axios
                 .post('/logout');
         },
-        addRestaurant: function() {
+        addRestaurant: function () {
             event.preventDefault();
+
+            const formData = new FormData()
+            formData.append('myFile', this.image, this.image.name)
+            axios.post('/uploadLogo', formData)
+            //console.log(this.image);
         },
         deleteRestaurant: function (name) {
             event.preventDefault();
@@ -149,6 +181,117 @@ Vue.component("restaurantsAdministrator", {
                 name: name,
             })
                 .then(response => (this.initSetup()));
-        }
+        },
+        initModal: function() {
+            event.preventDefault();
+
+            var map, marker;
+			
+			$("#location-modal").modal('show');
+			var location = new google.maps.LatLng(0, 0);
+			var mapProperty = {
+				center: location,
+				zoom: 17,
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			};
+			map = new google.maps.Map(document.getElementById('map'), mapProperty);
+			marker = new google.maps.Marker({
+				map: map,
+				draggable: true,
+				animation: google.maps.Animation.DROP,
+				position: location
+			});
+
+			this.geocodePosition(marker.getPosition());
+
+			google.maps.event.addListener(marker, 'dragend', () => {
+				map.setCenter(marker.getPosition());
+				this.geocodePosition(marker.getPosition());
+				$('#latitude').val(marker.getPosition().lat());
+				$('#longitude').val(marker.getPosition().lng());
+			});
+
+			currentLat = $('#latitude').val();
+			currentLng = $('#longitude').val();
+
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(position => {
+					pos = {
+						lat: position.coords.latitude,
+						lng: position.coords.longitude
+					};
+
+					$('#latitude').val(pos.lat);
+					$('#longitude').val(pos.lng);
+
+					marker.setPosition(pos);
+
+					map.setCenter(marker.getPosition());
+					this.geocodePosition(marker.getPosition());
+				});
+			}
+        },
+        geocodePosition: function(pos) {
+            geocoder = new google.maps.Geocoder();
+			geocoder.geocode({
+				latLng: pos
+			},
+				(results, status) => {
+					if (status == google.maps.GeocoderStatus.OK) {
+						console.log(results);
+                        for (let a of results[0].address_components) {
+                            if (a.types[0] === 'street_number')
+                                this.newRestaurant.location.address.number = cyrillicToLatin(a.long_name);
+                            else if (a.types[0] === 'route')
+                                this.newRestaurant.location.address.street = cyrillicToLatin(a.long_name);
+                            else if (a.types[0] === 'locality')
+                                this.newRestaurant.location.address.city = cyrillicToLatin(a.long_name);
+                            else if (a.types[0] === 'postal_code')
+                                this.newRestaurant.location.address.postalCode = cyrillicToLatin(a.long_name);
+                            else if (a.types[0] === 'country')
+                                this.newRestaurant.location.address.country = cyrillicToLatin(a.long_name);
+                        }
+                        console.log(this.newRestaurant);
+						$('#address-label').html(cyrillicToLatin(results[0].formatted_address));
+						$('#floatingLocation').val(cyrillicToLatin(results[0].formatted_address));
+					} else {
+						$('#address-label').html('Cannot determine address at this location.');
+					}
+				}
+			);
+        },
+        closeMapModal: function() {
+            event.preventDefault();
+
+            $('#location-modal').modal('hide');
+			//$('.modal-backdrop').hide();
+        },
+        onFileChanged: function(event) {
+            this.image = event.target.files[0];
+        },
+        uploadImage(event) {
+
+            const URL = '/uploadLogo'; 
+        
+            let data = new FormData();
+            data.append('name', 'my-picture');
+            data.append('file', event.target.files[0]); 
+        
+            let config = {
+              header : {
+                'Content-Type' : 'image/png'
+              }
+            }
+        
+            axios.put(
+              URL, 
+              data,
+              config
+            ).then(
+              response => {
+                console.log('image upload response > ', response)
+              }
+            )
+          }
     }
 });
