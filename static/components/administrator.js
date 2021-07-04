@@ -1,7 +1,7 @@
 Vue.component("administrator", {
     data: function () {
         return {
-            user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
+            user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null }
         }
     },
     template: ` 
@@ -12,7 +12,7 @@ Vue.component("administrator", {
                     <img width="80" height="80" src="../favicon.ico">
                 </div>
                 <div class="col-5 align-self-end">
-                    <h1 style="font-size:40px; margin-left: -170px;">Web food shop</h1>
+                    <h1 style="font-size:40px; margin-left: -100%;">Web food shop</h1>
                 </div>
 
                 <div class="dropdown col-3 align-self-end">

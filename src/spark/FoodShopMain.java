@@ -29,7 +29,7 @@ public class FoodShopMain {
 	private static DelivererController delivererController = new DelivererController(new DelivererService(new DelivererRepository()));
 	private static ManagerController managerController = new ManagerController(new ManagerService(new ManagerRepository()));
 	private static AdministratorController administratorController = new AdministratorController(new AdministratorService(new AdministratorRepository()));
-	private static RestaurantController restaurantContoller = new RestaurantController(new RestaurantService(new RestaurantRepository()));
+	private static RestaurantController restaurantController = new RestaurantController(new RestaurantService(new RestaurantRepository()));
 	
 	public static void main(String[] args) throws Exception {
 		port(8080);
@@ -122,7 +122,7 @@ public class FoodShopMain {
 		
 		get("/getRestaurants", (req, res) -> {
 			res.type("application/json");
-			return g.toJson(restaurantContoller.readAllEntities());
+			return g.toJson(restaurantController.readAllEntities());
 		});
 			
 		get("/getUsers", (req, res) -> {
@@ -163,6 +163,22 @@ public class FoodShopMain {
 				return "ERROR";
 			
 			return g.toJson(restaurant);
+
+		post("/deleteUser", (req, res) -> {
+			res.type("application/json");
+			User user = g.fromJson(req.body(), User.class);
+			userController.deleteUser(user.getUsername());
+			
+			return "SUCCESS";
+		});
+		
+		post("/deleteRestaurant", (req, res) -> {
+			res.type("application/json");
+			Restaurant restaurant = g.fromJson(req.body(), Restaurant.class);
+			restaurantController.deleteById(restaurant.getName());
+
+			return "SUCCESS";
+
 		});
 	}
 }

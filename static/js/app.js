@@ -12,6 +12,7 @@ const ShoppingCart = { template: '<shopping-cart></shopping-cart>' }
 
 const router = new VueRouter({
 	mode: 'hash',
+
 	  routes: [
 		{ path: '/', name: 'home', component: Index},
 	    { path: '/customer', component: Customer},
@@ -25,6 +26,7 @@ const router = new VueRouter({
 		{ path: '/restaurantArticles', component: RestaurantArticles},
 		{ path: '/shoppingCart', component: ShoppingCart}
 	  ]
+	  
 });
 
 var app = new Vue({

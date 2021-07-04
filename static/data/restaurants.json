@@ -4,7 +4,6 @@
     "restaurantType": "Brza hrana",
     "articles": [],
     "status": "Otvoren",
-    "logo": "/images/mcLogo.png",
     "location": {
       "longitude": 28.0,
       "latitude": 30.0,
@@ -12,107 +11,18 @@
         "street": "Zmaj Jovina",
         "number": "2",
         "city": "Novi Sad",
-        "postalCode": "21000"
+        "postalCode": "21000",
+        "country": "Serbia"
       }
     },
-    "deleted": 0
-  },
-  "asd": {
-    "name": "McDonalds",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
     "logo": "/images/mcLogo.png",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000"
-      }
-    },
-    "deleted": 0
-  },
-  "das": {
-    "name": "McDonalds",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "logo": "/images/mcLogo.png",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000"
-      }
-    },
-    "deleted": 0
-  },
-  "daa": {
-    "name": "McDonalds",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "logo": "/images/mcLogo.png",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000"
-      }
-    },
-    "deleted": 0
-  },
-  "qer": {
-    "name": "McDonalds",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "logo": "/images/mcLogo.png",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000"
-      }
-    },
-    "deleted": 0
-  },
-  "qrt": {
-    "name": "McDonalds",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "logo": "/images/mcLogo.png",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000"
-      }
-    },
     "deleted": 0
   },
   "qq": {
-    "name": "McDonalds",
+    "name": "qq",
     "restaurantType": "Brza hrana",
     "articles": [],
     "status": "Otvoren",
-    "logo": "/images/mcLogo.png",
     "location": {
       "longitude": 28.0,
       "latitude": 30.0,
@@ -120,17 +30,94 @@
         "street": "Zmaj Jovina",
         "number": "2",
         "city": "Novi Sad",
-        "postalCode": "21000"
+        "postalCode": "21000",
+        "country": "Serbia"
       }
     },
+    "logo": "/images/mcLogo.png",
+    "deleted": 0
+  },
+  "qrt": {
+    "name": "qrt",
+    "restaurantType": "Brza hrana",
+    "articles": [],
+    "status": "Otvoren",
+    "location": {
+      "longitude": 28.0,
+      "latitude": 30.0,
+      "address": {
+        "street": "Zmaj Jovina",
+        "number": "2",
+        "city": "Novi Sad",
+        "postalCode": "21000",
+        "country": "Serbia"
+      }
+    },
+    "logo": "/images/mcLogo.png",
+    "deleted": 0
+  },
+  "asd": {
+    "name": "asd",
+    "restaurantType": "Brza hrana",
+    "articles": [],
+    "status": "Otvoren",
+    "location": {
+      "longitude": 28.0,
+      "latitude": 30.0,
+      "address": {
+        "street": "Zmaj Jovina",
+        "number": "2",
+        "city": "Novi Sad",
+        "postalCode": "21000",
+        "country": "Serbia"
+      }
+    },
+    "logo": "/images/mcLogo.png",
+    "deleted": 0
+  },
+  "daa": {
+    "name": "daa",
+    "restaurantType": "Brza hrana",
+    "articles": [],
+    "status": "Otvoren",
+    "location": {
+      "longitude": 28.0,
+      "latitude": 30.0,
+      "address": {
+        "street": "Zmaj Jovina",
+        "number": "2",
+        "city": "Novi Sad",
+        "postalCode": "21000",
+        "country": "Serbia"
+      }
+    },
+    "logo": "/images/mcLogo.png",
+    "deleted": 0
+  },
+  "das": {
+    "name": "das",
+    "restaurantType": "Brza hrana",
+    "articles": [],
+    "status": "Otvoren",
+    "location": {
+      "longitude": 28.0,
+      "latitude": 30.0,
+      "address": {
+        "street": "Zmaj Jovina",
+        "number": "2",
+        "city": "Novi Sad",
+        "postalCode": "21000",
+        "country": "Serbia"
+      }
+    },
+    "logo": "/images/mcLogo.png",
     "deleted": 0
   },
   "zxcv": {
-    "name": "McDonalds",
+    "name": "zxcv",
     "restaurantType": "Brza hrana",
     "articles": [],
     "status": "Otvoren",
-    "logo": "/images/mcLogo.png",
     "location": {
       "longitude": 28.0,
       "latitude": 30.0,
@@ -138,10 +125,30 @@
         "street": "Zmaj Jovina",
         "number": "2",
         "city": "Novi Sad",
-        "postalCode": "21000"
+        "postalCode": "21000",
+        "country": "Serbia"
       }
     },
+    "logo": "/images/mcLogo.png",
+    "deleted": 0
+  },
+  "qer": {
+    "name": "qer",
+    "restaurantType": "Brza hrana",
+    "articles": [],
+    "status": "Otvoren",
+    "location": {
+      "longitude": 28.0,
+      "latitude": 30.0,
+      "address": {
+        "street": "Zmaj Jovina",
+        "number": "2",
+        "city": "Novi Sad",
+        "postalCode": "21000",
+        "country": "Serbia"
+      }
+    },
+    "logo": "/images/mcLogo.png",
     "deleted": 0
   }
-  
 }

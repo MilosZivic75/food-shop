@@ -87,4 +87,15 @@ public class UserService {
 		
 		return null;
 	}
+	
+	public void deleteUser(String username) {
+		if (customers.containsKey(username))
+			customerRepository.deleteById(username);
+		else if (managers.containsKey(username))
+			managerRepository.deleteById(username);
+		else if (deliverers.containsKey(username))
+			delivererRepository.deleteById(username);
+		else
+			administratorRepository.deleteById(username);
+	}
 }
