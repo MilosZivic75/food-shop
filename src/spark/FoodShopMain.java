@@ -146,6 +146,25 @@ public class FoodShopMain {
 			return "SUCCESS";
 		});
 		
+		post("/openedRestaurant", (req, res) -> {
+			res.type("application/json");
+			Restaurant restaurant = g.fromJson(req.body(), Restaurant.class);
+			Session session = req.session();
+			session.attribute("openedRestaurant", restaurant);	
+			return "SUCCESS";
+		});
+		
+		get("/getOpenedRestaurant", (req, res) -> {
+			res.type("application/json");
+			
+			Session session = req.session();
+			Restaurant restaurant = (Restaurant) session.attribute("openedRestaurant");
+			if (restaurant == null)
+				return "ERROR";
+			
+			return g.toJson(restaurant);
+		});
+			
 		post("/deleteUser", (req, res) -> {
 			res.type("application/json");
 			User user = g.fromJson(req.body(), User.class);
@@ -160,6 +179,7 @@ public class FoodShopMain {
 			restaurantController.deleteById(restaurant.getName());
 
 			return "SUCCESS";
+
 		});
 	}
 }

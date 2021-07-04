@@ -48,3 +48,7 @@
     border-radius: 5px;
     width: 200px;      
 }  
+
+.buttonPlusMinus {
+    border-radius: 50%;
+}
