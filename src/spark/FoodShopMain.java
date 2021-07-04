@@ -163,7 +163,8 @@ public class FoodShopMain {
 				return "ERROR";
 			
 			return g.toJson(restaurant);
-
+		});
+			
 		post("/deleteUser", (req, res) -> {
 			res.type("application/json");
 			User user = g.fromJson(req.body(), User.class);
