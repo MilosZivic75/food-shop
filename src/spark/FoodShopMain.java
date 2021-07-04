@@ -15,6 +15,7 @@ import beans.Administrator;
 import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
+import beans.Restaurant;
 import beans.User;
 import controllers.*;
 import repositories.*;
@@ -143,6 +144,25 @@ public class FoodShopMain {
 				return "ERROR";
 			}
 			return "SUCCESS";
+		});
+		
+		post("/openedRestaurant", (req, res) -> {
+			res.type("application/json");
+			Restaurant restaurant = g.fromJson(req.body(), Restaurant.class);
+			Session session = req.session();
+			session.attribute("openedRestaurant", restaurant);	
+			return "SUCCESS";
+		});
+		
+		get("/getOpenedRestaurant", (req, res) -> {
+			res.type("application/json");
+			
+			Session session = req.session();
+			Restaurant restaurant = (Restaurant) session.attribute("openedRestaurant");
+			if (restaurant == null)
+				return "ERROR";
+			
+			return g.toJson(restaurant);
 		});
 	}
 }
