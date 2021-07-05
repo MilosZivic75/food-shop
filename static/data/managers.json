@@ -1,14 +1,34 @@
 {
   "zika": {
-    "restaurant": {
-      "deleted": 0
-    },
+    "restaurantId": "McDonalds",
     "username": "zika",
     "password": "zika",
     "name": "Zivan",
     "lastName": "Radosavljevic",
     "sex": "Muški",
     "birthDate": "1955-03-25",
+    "userRole": "Menadžer",
+    "deleted": 0
+  },
+  "djoka": {
+    "restaurantId": "",
+    "username": "djoka",
+    "password": "djoka",
+    "name": "Djordje",
+    "lastName": "Djordjevic",
+    "sex": "Muški",
+    "birthDate": "2021-07-08",
+    "userRole": "Menadžer",
+    "deleted": 0
+  },
+  "drago": {
+    "restaurantId": "Caribic",
+    "username": "drago",
+    "password": "d",
+    "name": "Dragan",
+    "lastName": "Dragic",
+    "sex": "Muški",
+    "birthDate": "2021-07-10",
     "userRole": "Menadžer",
     "deleted": 0
   }

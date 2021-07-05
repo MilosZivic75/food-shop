@@ -52,61 +52,60 @@ Vue.component("usersAdministrator", {
             </div>
         </div>
         
-        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
-		aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="addUserModalLabel">Dodaj novog korisnika</h5>
-					<button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body align-items-center">
-					<form id="addUserForm">
-						<div class="form-floating m-4 ">
-							<input type="name" class="form-control" v-model="newUser.name" id="addUserName" placeholder="Name">
-							<label for="addUserName">Ime</label>
-						</div>
-						<div class="form-floating m-4">
-							<input type="lastname" class="form-control" v-model="newUser.lastName" id="addUserLastName" placeholder="LastName">
-							<label for="addUserLastName">Prezime</label>
-						</div>
-						<div class="form-floating m-4">
-							<input type="date" class="form-control" v-model="newUser.birthDate" id="addUserBirthDate" placeholDer="BirthDate">
-							<label for="addUserBirthDate">Datum rođenja</label>
-						</div>
-						<div class="form-floating m-4">
-							<select class="form-control" v-model="newUser.sex" id="addUserSex" placeholder="Sex">
-								<option value="Muški">Muški</option>
-								<option value="Ženski">Ženski</option>
-							</select>
-							<label for="addUserSex">Pol</label>
-						</div>
-						<div class="form-floating m-4 ">
-							<input type="username" class="form-control" v-model="newUser.username" id="addUserUsername" placeholder="Username">
-							<label for="addUserUsername">Korisničko ime</label>
-						</div>
-						<div class="form-floating m-4">
-							<input type="password" class="form-control" v-model="newUser.password" id="addUserPasswordReg" placeholder="Password">
-							<label for="addUserPasswordReg">Lozinka</label>
-						</div>
-                        <div class="form-floating m-4">
-							<select class="form-control" v-model="newUser.userRole" id="addUserRole" placeholder="UserRole">
-								<option value="Menadžer">Menadžer</option>
-								<option value="Dostavljač">Dostavljač</option>
-							</select>
-							<label for="addUserRole">Tip korisnika</label>
-						</div>
+        <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="addUserModalLabel">Dodaj novog korisnika</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body align-items-center">
+                        <form id="addUserForm">
+                            <div class="form-floating m-4 ">
+                                <input type="name" class="form-control" v-model="newUser.name" id="addUserName" placeholder="Name">
+                                <label for="addUserName">Ime</label>
+                            </div>
+                            <div class="form-floating m-4">
+                                <input type="lastname" class="form-control" v-model="newUser.lastName" id="addUserLastName" placeholder="LastName">
+                                <label for="addUserLastName">Prezime</label>
+                            </div>
+                            <div class="form-floating m-4">
+                                <input type="date" class="form-control" v-model="newUser.birthDate" id="addUserBirthDate" placeholDer="BirthDate">
+                                <label for="addUserBirthDate">Datum rođenja</label>
+                            </div>
+                            <div class="form-floating m-4">
+                                <select class="form-control" v-model="newUser.sex" id="addUserSex" placeholder="Sex">
+                                    <option value="Muški">Muški</option>
+                                    <option value="Ženski">Ženski</option>
+                                </select>
+                                <label for="addUserSex">Pol</label>
+                            </div>
+                            <div class="form-floating m-4 ">
+                                <input type="username" class="form-control" v-model="newUser.username" id="addUserUsername" placeholder="Username">
+                                <label for="addUserUsername">Korisničko ime</label>
+                            </div>
+                            <div class="form-floating m-4">
+                                <input type="password" class="form-control" v-model="newUser.password" id="addUserPasswordReg" placeholder="Password">
+                                <label for="addUserPasswordReg">Lozinka</label>
+                            </div>
+                            <div class="form-floating m-4">
+                                <select class="form-control" v-model="newUser.userRole" id="addUserRole" placeholder="UserRole">
+                                    <option value="Menadžer">Menadžer</option>
+                                    <option value="Dostavljač">Dostavljač</option>
+                                </select>
+                                <label for="addUserRole">Tip korisnika</label>
+                            </div>
 
-						<button class="m-4 btn btn-lg btn-primary" v-on:click="addUser" type="submit" style="width: 90%;">
-							Dodaj</button>
-						<div id="errorAddUser" class="alert alert-danger m-4" role="alert" style="display: none;"></div>
-						<div id="successAddUser" class="alert alert-success m-4" role="alert" style="display: none;"></div>
-						<p class="mt-5 mb-3 text-muted">&copy; 2021</p>
-					</form>
-				</div>
-			</div>
-		</div>
-	</div>
+                            <button class="m-4 btn btn-lg btn-primary" v-on:click="addUser" type="submit" style="width: 90%;">
+                                Dodaj</button>
+                            <div id="errorAddUser" class="alert alert-danger m-4" role="alert" style="display: none;"></div>
+                            <div id="successAddUser" class="alert alert-success m-4" role="alert" style="display: none;"></div>
+                            <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     `
     ,
@@ -150,7 +149,7 @@ Vue.component("usersAdministrator", {
             event.preventDefault();
 
             $('#errorAddUser').hide();
-            if (this.user.newUser === null || this.newUser.lastName === null || this.newUser.birthDate === null
+            if (this.newUser.name === null || this.newUser.lastName === null || this.newUser.birthDate === null
                 || this.newUser.sex === null || this.newUser.username === null || this.newUser.password === null ||
                 this.newUser.userRole === null) {
                 $('#errorAddUser').text('Molimo popunite sva polja.');
