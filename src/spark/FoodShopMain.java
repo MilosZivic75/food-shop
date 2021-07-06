@@ -5,10 +5,14 @@ import static spark.Spark.port;
 import static spark.Spark.post;
 import static spark.Spark.staticFiles;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,7 +26,6 @@ import beans.Restaurant;
 import beans.User;
 import controllers.*;
 import enumerations.ArticleTypes;
-import repositories.*;
 import services.*;
 
 public class FoodShopMain {
@@ -35,17 +38,17 @@ public class FoodShopMain {
 	private static AdministratorController administratorController = new AdministratorController(new AdministratorService(new AdministratorRepository()));
 	private static RestaurantController restaurantController = new RestaurantController(new RestaurantService(new RestaurantRepository()));
 	private static CartController cartController = new CartController();
-	private static RestaurantRepository restaurantRepository = new RestaurantRepository();
 	
+
 	public static void main(String[] args) throws Exception {
 		port(8080);
-		
+
 		staticFiles.externalLocation(new File("./static").getCanonicalPath());
-		
+
 		get("/", (req, res) -> {
 			return "SUCCESS";
 		});
-		
+
 		post("/login", (req, res) -> {
 			res.type("application/json");
 			User user = g.fromJson(req.body(), User.class);
@@ -73,44 +76,45 @@ public class FoodShopMain {
 				return "SUCCESS/administrator";
 			}
 		});
-		
+
 		post("/registration", (req, res) -> {
 			res.type("application/json");
 			User user = g.fromJson(req.body(), User.class);
-			User registratedUser = userController.registerUser(user.getName(), user.getLastName(), user.getBirthDate(), user.getSex(), user.getUsername(), user.getPassword());
+			User registratedUser = userController.registerUser(user.getName(), user.getLastName(), user.getBirthDate(),
+					user.getSex(), user.getUsername(), user.getPassword());
 			if (registratedUser == null) {
 				return "ERROR";
 			}
 			return "SUCCESS";
 		});
-		
+
 		get("/loggedUser", (req, res) -> {
 			res.type("application/json");	
 			Session session = req.session();
 			User user = (User) session.attribute("user");
 			if (user == null)
 				return "ERROR";
-			
+
 			if (user.getUserRole().equals("Kupac")) {
-				return g.toJson((Customer)user);
+				return g.toJson((Customer) user);
 			} else if (user.getUserRole().equals("Dostavljač")) {
-				return g.toJson((Deliverer)user);
+				return g.toJson((Deliverer) user);
 			} else if (user.getUserRole().equals("Menadžer")) {
-				return g.toJson((Manager)user);
+				return g.toJson((Manager) user);
 			} else {
-				return g.toJson((Administrator)user);
+				return g.toJson((Administrator) user);
 			}
 
 		});
-		
+
 		post("/logout", (req, res) -> {
 			req.session().invalidate();
 			return "SUCCESS";
 		});
-		
+
 		post("/updateUser", (req, res) -> {
 			User user = g.fromJson(req.body(), User.class);
-			
+
 			if (user.getUserRole().equals("Kupac")) {
 				customerController.updateUserData(user);
 				return "SUCCESS";
@@ -125,12 +129,12 @@ public class FoodShopMain {
 				return "SUCCESS";
 			}
 		});
-		
+
 		get("/getRestaurants", (req, res) -> {
 			res.type("application/json");
 			return g.toJson(restaurantController.readAllEntities());
 		});
-			
+
 		get("/getUsers", (req, res) -> {
 			res.type("application/json");
 			ArrayList<User> users = new ArrayList<User>();
@@ -138,47 +142,48 @@ public class FoodShopMain {
 			users.addAll(managerController.readAllEntities());
 			users.addAll(delivererController.readAllEntities());
 			users.addAll(customerController.readAllEntities());
-				
+
 			return g.toJson(users);
 		});
-		
+
 		post("/addUser", (req, res) -> {
 			res.type("application/json");
 			User user = g.fromJson(req.body(), User.class);
-			User addedUser = userController.addUser(user.getName(), user.getLastName(), user.getBirthDate(), user.getSex(), user.getUsername(), user.getPassword(), user.getUserRole());
+			User addedUser = userController.addUser(user.getName(), user.getLastName(), user.getBirthDate(),
+					user.getSex(), user.getUsername(), user.getPassword(), user.getUserRole());
 			if (addedUser == null) {
 				return "ERROR";
 			}
 			return "SUCCESS";
 		});
-		
+
 		post("/openedRestaurant", (req, res) -> {
 			res.type("application/json");
 			Restaurant restaurant = g.fromJson(req.body(), Restaurant.class);
 			Session session = req.session();
-			session.attribute("openedRestaurant", restaurant);	
+			session.attribute("openedRestaurant", restaurant);
 			return "SUCCESS";
 		});
-		
+
 		get("/getOpenedRestaurant", (req, res) -> {
 			res.type("application/json");
-			
+
 			Session session = req.session();
 			Restaurant restaurant = (Restaurant) session.attribute("openedRestaurant");
 			if (restaurant == null)
 				return "ERROR";
-			
+
 			return g.toJson(restaurant);
 		});
-			
+
 		post("/deleteUser", (req, res) -> {
 			res.type("application/json");
 			User user = g.fromJson(req.body(), User.class);
 			userController.deleteUser(user.getUsername());
-			
+
 			return "SUCCESS";
 		});
-		
+
 		post("/deleteRestaurant", (req, res) -> {
 			res.type("application/json");
 			Restaurant restaurant = g.fromJson(req.body(), Restaurant.class);
@@ -191,7 +196,7 @@ public class FoodShopMain {
 		get("/getArticles", (req, res) -> {
 			res.type("application/json");
 			List<Article> articles = new ArrayList<Article>();
-			Map<String, Restaurant> restaurants = restaurantRepository.readAll();
+			Map<String, Restaurant> restaurants = restaurantController.readAll();
 			for(String name: cartController.getUserCart().getArticles().keySet()) {
 				String articleID = name.split(" ")[0];
 				String restaurantID = name.split(" ")[1];		
@@ -261,6 +266,52 @@ public class FoodShopMain {
 			int quantity = Integer.parseInt(request[7].split(":")[1]);
 			Article article = new Article(name, price, type, restID, amount, description, image);
 			cartController.removeFromCart(article, quantity);
+
+			return "SUCCESS";
+		});
+
+		post("/uploadLogo", (req, res) -> {
+			res.type("application/json");
+
+			byte[] data = req.bodyAsBytes();
+			ByteArrayInputStream bis = new ByteArrayInputStream(data);
+			BufferedImage bImage = ImageIO.read(bis);
+			
+			int restaurantsNumber = 1;
+			while (new File("static/images/restaurantLogo" + restaurantsNumber + ".png").exists()) {
+				restaurantsNumber++;
+			}
+			String path = "static/images/restaurantLogo" + restaurantsNumber + ".png";
+			
+			ImageIO.write(bImage, "png", new File(path));
+			
+			return path.substring(6);
+		});
+		
+		post("/addRestaurant", (req, res) -> {
+			res.type("application/json");
+			Restaurant restaurant = g.fromJson(req.body(), Restaurant.class);
+			restaurant.setArticles(new ArrayList<Article>());
+			if (restaurantController.create(restaurant)) {
+				return "SUCCESS";
+			}
+			
+			return "ERROR";
+		});
+		
+		get("/getFreeManagers", (req, res) -> {
+			res.type("application/json");
+			ArrayList<Manager> managers = (ArrayList<Manager>) managerController.readAllEntities();
+			managers.removeIf(manager -> !manager.getRestaurantId().equals(""));
+			return g.toJson(managers);
+		});
+		
+		post("/addRestaurantToManager", (req, res) -> {
+			res.type("application/json");
+			Manager manager = g.fromJson(req.body(), Manager.class);
+			Manager managerToUpdate = managerController.read(manager.getUsername());
+			managerToUpdate.setRestaurantId(manager.getRestaurantId());
+			managerController.update(managerToUpdate);
 			
 			return "SUCCESS";
 		});

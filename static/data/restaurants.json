@@ -61,140 +61,26 @@
         "country": "Serbia"
       }
     },
-    "logo": "images/mcLogo.png",
+    "logo": "/images/restaurantLogo1.png",
     "deleted": 0
   },
-  "qq": {
-    "name": "qq",
-    "restaurantType": "Brza hrana",
+  "Caribic": {
+    "name": "Caribic",
+    "restaurantType": "Picerija",
     "articles": [],
     "status": "Otvoren",
     "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
+      "longitude": 20.019025900000003,
+      "latitude": 45.6370375,
       "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
+        "street": "Modene",
+        "number": "4",
         "city": "Novi Sad",
         "postalCode": "21000",
-        "country": "Serbia"
+        "country": "Srbija"
       }
     },
-    "logo": "/images/mcLogo.png",
-    "deleted": 0
-  },
-  "qrt": {
-    "name": "qrt",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000",
-        "country": "Serbia"
-      }
-    },
-    "logo": "/images/mcLogo.png",
-    "deleted": 0
-  },
-  "asd": {
-    "name": "asd",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000",
-        "country": "Serbia"
-      }
-    },
-    "logo": "/images/mcLogo.png",
-    "deleted": 0
-  },
-  "daa": {
-    "name": "daa",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000",
-        "country": "Serbia"
-      }
-    },
-    "logo": "/images/mcLogo.png",
-    "deleted": 0
-  },
-  "das": {
-    "name": "das",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000",
-        "country": "Serbia"
-      }
-    },
-    "logo": "/images/mcLogo.png",
-    "deleted": 0
-  },
-  "zxcv": {
-    "name": "zxcv",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000",
-        "country": "Serbia"
-      }
-    },
-    "logo": "/images/mcLogo.png",
-    "deleted": 0
-  },
-  "qer": {
-    "name": "qer",
-    "restaurantType": "Brza hrana",
-    "articles": [],
-    "status": "Otvoren",
-    "location": {
-      "longitude": 28.0,
-      "latitude": 30.0,
-      "address": {
-        "street": "Zmaj Jovina",
-        "number": "2",
-        "city": "Novi Sad",
-        "postalCode": "21000",
-        "country": "Serbia"
-      }
-    },
-    "logo": "/images/mcLogo.png",
+    "logo": "/images/restaurantLogo2.png",
     "deleted": 0
   }
 }

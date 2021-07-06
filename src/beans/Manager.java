@@ -3,7 +3,7 @@ package beans;
 import java.util.Date;
 
 public class Manager extends User {
-	private Restaurant restaurant;
+	private String restaurantId;
 
 	public Manager() {
 		super();
@@ -12,20 +12,20 @@ public class Manager extends User {
 	public Manager(String username, String password, String name, String lastName, String sex, Date birthDate,
 			String userRole) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
-		restaurant = new Restaurant();
+		restaurantId = "";
 	}
 
 	public Manager(String username, String password, String name, String lastName, String sex, Date birthDate,
-			String userRole, Restaurant restaurant) {
+			String userRole, String restaurantId) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
-		this.restaurant = restaurant;
+		this.restaurantId = restaurantId;
 	}
 
-	public Restaurant getRestaurant() {
-		return restaurant;
+	public String getRestaurantId() {
+		return restaurantId;
 	}
 
-	public void setRestaurant(Restaurant restaurant) {
-		this.restaurant = restaurant;
+	public void setRestaurantId(String restaurantId) {
+		this.restaurantId = restaurantId;
 	}
 }
