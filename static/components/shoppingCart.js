@@ -18,8 +18,8 @@ Vue.component("shopping-cart", {
         <div class="row" style="margin-left: 200px; margin-top: 40px;">
             <label for="" style="font-size: 30px;"> Narudžbina: </label>
         </div>
-        <div class="row" style="margin-left: 200px; margin-top: 10px; font-size: 25px; text-align: center;">
-            <div class="col-7">
+        <div class="row" style="margin-left: 200px; margin-top: 10px; font-size: 22px; text-align: center;">
+            <div class="col-8">
                 <table>
                     <tr>
                         <th> Slika </th>
@@ -55,7 +55,7 @@ Vue.component("shopping-cart", {
                 <div id="successReg" class="alert alert-success m-4" role="alert" style="display: none;"></div>
             </div> 
             <div class="col-4">
-                <button class="btn btn-warning" style="margin-left: 200px; margin-top: 30px; font-size: 25px;"> <b>Kreiraj porudžbinu </b></button>
+                <button class="btn btn-warning" style="margin-left: 200px; margin-top: 30px; font-size: 25px;" v-on:click="createOrder"> <b>Kreiraj porudžbinu </b></button>
                 <div id="errorReg" class="alert alert-danger m-4" role="alert" style="display: none;"></div>
                 <div id="successReg" class="alert alert-success m-4" role="alert" style="display: none;"></div>
             </div> 
@@ -93,7 +93,7 @@ Vue.component("shopping-cart", {
         minusPressed: function(addedArticle, index) {
            
             if(document.getElementById(addedArticle.name).value == "1") {
-                alert("Kolčina ne može biti manja od 1!");
+                alert("Količina ne može biti manja od 1!");
             } else {
                 this.quantity[index] = this.quantity[index] - 1;
                 document.getElementById(addedArticle.name).value = this.quantity[index]
@@ -158,6 +158,23 @@ Vue.component("shopping-cart", {
                 .then(function (response) {
                     document.getElementsByTagName('tr')[index + 1].remove();  
                     alert("Artikal izbačen iz korpe!");
+                });
+        },
+
+        createOrder: function() {
+            axios.post('/addOrder', {
+                articles: this.articles,
+                quantity: this.quantity,
+                price: this.price,
+                username: this.username
+            })
+                .then(function (response) {
+                    if(response.data === 'SUCCESS'){
+                        alert("Porudžbina uspešno kreirana!");
+                        router.push("/customer");
+                    } else{
+                        alert("Neuspešno kreiranje porudžbine! Vaša korpa je prazna!");
+                    }
                 });
         }
     }

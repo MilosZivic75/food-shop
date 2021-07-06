@@ -18,8 +18,8 @@ Vue.component("restaurantArticles", {
             <div class="row" style="margin-left: 200px; margin-top: 40px;">
                 <label for="" style="font-size: 30px;"> Ponuda: </label>
             </div>
-            <div class="row" style="margin-left: 200px; margin-top: 10px; font-size: 25px; text-align: center;">
-                <div class="col-7">
+            <div class="row" style="margin-left: 200px; margin-top: 10px; font-size: 22px; text-align: center;">
+                <div class="col-8">
                     <table>
                         <tr>
                             <th> Slika </th>
@@ -40,7 +40,7 @@ Vue.component("restaurantArticles", {
                         </tr>
                     </table>
                 </div>
-                <div class="col-5">
+                <div class="col-4">
                     <div class="container" style="margin-right: 100px; margin-top: 100px;" >
                         <img src="images/shopping-cart.png" alt="" height="70" width="70">
                         <button class="btn btn-warning" v-on:click="shoppingCart" style=" font-size: 25px; margin-right: 100px; "> <b> Vaša korpa </b></button>
@@ -102,7 +102,7 @@ Vue.component("restaurantArticles", {
 
         minusPressed: function(name) {
             if(document.getElementById(name).value == "1") {
-                alert("Kolčina ne može biti manja od 1!");
+                alert("Količina ne može biti manja od 1!");
             } else {
                 document.getElementById(name).value = parseInt(document.getElementById(name).value) - 1;
             }

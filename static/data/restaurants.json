@@ -31,7 +31,7 @@
     		"image": "/images/McDonaldsArticles/Pomfrit.jpg"
     	},
     	{
-    		"name": "Chicken nuggets",
+    		"name": "Chicken-nuggets",
     		"price": 400,
     		"articleType": "FOOD",
     		"restaurantID": "McDonalds",
