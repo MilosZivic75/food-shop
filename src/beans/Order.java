@@ -11,7 +11,7 @@ public class Order {
 	private String restaurantID;
 	private Date date;
 	private double price;
-	private String customeUsername;
+	private String customerUsername;
 	private OrderStatus orderStatus;
 	
 	public Order() {
@@ -19,14 +19,14 @@ public class Order {
 	}
 
 	public Order(String id, ArrayList<Article> articles, String restaurantID, Date date, double price,
-			String customeUsername, OrderStatus orderStatus) {
+			String customerUsername, OrderStatus orderStatus) {
 		super();
 		this.id = id;
 		this.articles = articles;
 		this.restaurantID = restaurantID;
 		this.date = date;
 		this.price = price;
-		this.customeUsername = customeUsername;
+		this.customerUsername = customerUsername;
 		this.orderStatus = orderStatus;
 	}
 
@@ -71,11 +71,11 @@ public class Order {
 	}
 
 	public String getCustomer() {
-		return customeUsername;
+		return customerUsername;
 	}
 
-	public void setCustomer(String customeUsername) {
-		this.customeUsername = customeUsername;
+	public void setCustomer(String customerUsername) {
+		this.customerUsername = customerUsername;
 	}
 
 	public OrderStatus getOrderStatus() {

@@ -1,7 +1,5 @@
 package beans;
 
-import java.awt.Image;
-
 import enumerations.ArticleTypes;
 
 public class Article {
@@ -11,14 +9,14 @@ public class Article {
 	private String restaurantID;
 	private double amount;
 	private String description;
-	private Image image;
+	private String image;
 	
 	public Article() {
 		super();
 	}
 
 	public Article(String name, double price, ArticleTypes articleType, String restaurantID, double amount,
-			String description, Image image) {
+			String description, String image) {
 		super();
 		this.name = name;
 		this.price = price;
@@ -77,11 +75,11 @@ public class Article {
 		this.description = description;
 	}
 
-	public Image getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(Image image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 }

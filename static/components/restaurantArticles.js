@@ -1,7 +1,10 @@
 Vue.component("restaurantArticles", {
     data: function () {
         return {
-            restaurant: null
+            restaurant: {name: null, restaurantType: null, location: null, status: null, logo: ''},
+            user: null,
+            articles: [],
+            quantity: []
         }
     },
     template: ` 
@@ -21,18 +24,19 @@ Vue.component("restaurantArticles", {
                         <tr>
                             <th> Slika </th>
                             <th> Naziv </th>
+                            <th> Cena </th>
                             <th> Količina </th>
                         </tr>
-                        <tr>
-                            <td> <img src="images/hamburgerMcDonalds.png" alt="" height="100" width="100"> </td>
-                            <td> <label for="" style="margin-left: 40px;"> hamburger</label> </td>
+                        <tr v-for="article in restaurant.articles">
+                            <td> <img :src="article.image" alt="" height="100" width="100"> </td>
+                            <td> <label for="" style="margin-left: 40px;"> {{article.name}}</label> </td>
+                            <td> <label for="" style="margin-left: 40px;"> {{article.price}}</label> </td>
                             <td>
-                                <button class="buttonPlusMinus" style="margin-left: 40px; width: 35px; ">-
-        
-                                </button><span class="cc-controls-quantity-input" style="margin-left: 15px;">1</span>
-                                <button class="buttonPlusMinus" style="width: 35px; margin-left: 10px;">+</button>
+                                <button class="buttonPlusMinus" style="margin-left: 40px; width: 35px;" v-on:click="minusPressed(article.name)">-</button>
+                                <input type="text" :id="article.name" disabled :value="quantityValue(article.name)" style="width: 35px;">
+                                <button class="buttonPlusMinus" style="width: 35px; margin-left: 10px;" v-on:click="plusPressed(article.name)">+</button>
                             </td>
-                            <td> <button class="btn btn-warning" style="margin-left: 40px;">Dodaj u korpu</button></td>
+                            <td> <button class="btn btn-warning" style="margin-left: 40px;" v-on:click="addToCart(article)">Dodaj u korpu</button></td>
                         </tr>
                     </table>
                 </div>
@@ -52,11 +56,69 @@ Vue.component("restaurantArticles", {
             .then(response => {
                 this.restaurant = response.data;
             });
+        axios
+            .get('/loggedUser')
+            .then(response => {
+                if (response.data === 'ERROR') {
+                    router.push('/');
+                    return;
+                }
+                this.user = response.data;
+            });
+        axios
+            .get('/getArticles')
+            .then(response => {
+                this.articles = response.data;
+            });
+        axios
+            .get('/getQuantity')
+            .then(response => {
+                this.quantity = response.data;
+            });
     },
     methods: {
         shoppingCart: function() {
             event.preventDefault();
             router.push('/shoppingCart');
+        },
+
+        addToCart: function (addedArticle) {
+            axios.post('/addToCart', {
+                name: addedArticle.name,
+                price: addedArticle.price,
+                articleType: addedArticle.articleType,
+                restaurantID: addedArticle.restaurantID,
+                amount: addedArticle.amount,
+                description: addedArticle.description,
+                image: addedArticle.image,
+                quantity: parseInt(document.getElementById(addedArticle.name).value),
+                username: this.user.username
+            })
+                .then(function (response) {
+                    alert("Artikal dodat u korpu!");
+                });
+            
+        },
+
+        minusPressed: function(name) {
+            if(document.getElementById(name).value == "1") {
+                alert("Kolčina ne može biti manja od 1!");
+            } else {
+                document.getElementById(name).value = parseInt(document.getElementById(name).value) - 1;
+            }
+        },
+
+        plusPressed: function(name) {
+            document.getElementById(name).value = parseInt(document.getElementById(name).value) + 1;
+        },
+
+        quantityValue: function(articleName){
+            for(let i=0; i<this.articles.length; i++){
+                if(this.articles[i].name == articleName){
+                    return this.quantity[i].toString();
+                }
+            }
+            return "1";
         }
     }
 });

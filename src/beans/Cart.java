@@ -3,7 +3,7 @@ package beans;
 import java.util.HashMap;
 
 public class Cart {
-	private HashMap<Article, Integer> articles;
+	private HashMap<String, Integer> articles;
 	private String customerUsername;
 	private double price;
 	
@@ -11,18 +11,18 @@ public class Cart {
 		super();
 	}
 
-	public Cart(HashMap<Article, Integer> articles, String customerUsername, double price) {
+	public Cart(HashMap<String, Integer> articles, String customerUsername, double price) {
 		super();
 		this.articles = articles;
 		this.customerUsername = customerUsername;
 		this.price = price;
 	}
 
-	public HashMap<Article, Integer> getArticles() {
+	public HashMap<String, Integer> getArticles() {
 		return articles;
 	}
 
-	public void setArticles(HashMap<Article, Integer> articles) {
+	public void setArticles(HashMap<String, Integer> articles) {
 		this.articles = articles;
 	}
 

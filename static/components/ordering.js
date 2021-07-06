@@ -30,7 +30,6 @@ Vue.component("order", {
             .get('/getRestaurants')
             .then(response => {
                 this.restaurants = response.data;
-                console.log(this.restaurants);
             });
     },
     methods: {

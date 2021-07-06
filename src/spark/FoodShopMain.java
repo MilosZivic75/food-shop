@@ -7,17 +7,21 @@ import static spark.Spark.staticFiles;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import beans.Administrator;
+import beans.Article;
 import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
 import beans.Restaurant;
 import beans.User;
 import controllers.*;
+import enumerations.ArticleTypes;
 import repositories.*;
 import services.*;
 
@@ -30,6 +34,8 @@ public class FoodShopMain {
 	private static ManagerController managerController = new ManagerController(new ManagerService(new ManagerRepository()));
 	private static AdministratorController administratorController = new AdministratorController(new AdministratorService(new AdministratorRepository()));
 	private static RestaurantController restaurantController = new RestaurantController(new RestaurantService(new RestaurantRepository()));
+	private static CartController cartController = new CartController();
+	private static RestaurantRepository restaurantRepository = new RestaurantRepository();
 	
 	public static void main(String[] args) throws Exception {
 		port(8080);
@@ -50,6 +56,7 @@ public class FoodShopMain {
 			Session session = req.session();
 			if (loggedUser.getUserRole().equals("Kupac")) {
 				Customer customer = customerController.read(loggedUser.getUsername());
+				cartController.refreshCart();
 				session.attribute("user", customer);
 				return "SUCCESS/customer";
 			} else if (loggedUser.getUserRole().equals("Dostavljač")) {
@@ -78,8 +85,7 @@ public class FoodShopMain {
 		});
 		
 		get("/loggedUser", (req, res) -> {
-			res.type("application/json");
-			
+			res.type("application/json");	
 			Session session = req.session();
 			User user = (User) session.attribute("user");
 			if (user == null)
@@ -180,6 +186,83 @@ public class FoodShopMain {
 
 			return "SUCCESS";
 
+		});
+		
+		get("/getArticles", (req, res) -> {
+			res.type("application/json");
+			List<Article> articles = new ArrayList<Article>();
+			Map<String, Restaurant> restaurants = restaurantRepository.readAll();
+			for(String name: cartController.getUserCart().getArticles().keySet()) {
+				String articleID = name.split(" ")[0];
+				String restaurantID = name.split(" ")[1];		
+				Restaurant restaurant = restaurants.get(restaurantID);
+				for(Article article: restaurant.getArticles()) {
+					if(article.getName().contains(articleID))
+						articles.add(article);
+				}
+			}
+			
+			return g.toJson(articles);
+		});
+		
+		get("/getQuantity", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(cartController.getUserCart().getArticles().values());
+		});
+		
+		get("/getPrice", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(cartController.getUserCart().getPrice());
+		});
+		
+		post("/addToCart", (req, res) -> {
+			res.type("application/json");
+			String[] request = req.body().split(",");
+			String name = request[0].split(":")[1];
+			name = name.substring(1, name.length()-1);
+			double price = Double.parseDouble(request[1].split(":")[1]);
+			ArticleTypes type;
+			if(request[2].split(":")[1].equals("FOOD"))
+				type = ArticleTypes.FOOD;
+			else
+				type = ArticleTypes.DRINK;
+			String restID = request[3].split(":")[1];
+			restID = restID.substring(1, restID.length()-1);
+			double amount = Double.parseDouble(request[4].split(":")[1]);
+			String description = request[5].split(":")[1];
+			String image = request[6].split(":")[1];
+			image = image.substring(1, image.length()-1);
+			int quantity = Integer.parseInt(request[7].split(":")[1]);
+			String username = request[8].split(":")[1].split("}")[0];
+			username = username.substring(1, username.length()-1);
+			Article article = new Article(name, price, type, restID, amount, description, image);
+			cartController.addArticle(article, username, quantity);
+			
+			return "SUCCESS";
+		});
+		
+		post("/removeFromCart", (req, res) -> {
+			res.type("application/json");
+			String[] request = req.body().split(",");
+			String name = request[0].split(":")[1];
+			name = name.substring(1, name.length()-1);
+			double price = Double.parseDouble(request[1].split(":")[1]);
+			ArticleTypes type;
+			if(request[2].split(":")[1].equals("FOOD"))
+				type = ArticleTypes.FOOD;
+			else
+				type = ArticleTypes.DRINK;
+			String restID = request[3].split(":")[1];
+			restID = restID.substring(1, restID.length()-1);
+			double amount = Double.parseDouble(request[4].split(":")[1]);
+			String description = request[5].split(":")[1];
+			String image = request[6].split(":")[1];
+			image = image.substring(1, image.length()-1);
+			int quantity = Integer.parseInt(request[7].split(":")[1]);
+			Article article = new Article(name, price, type, restID, amount, description, image);
+			cartController.removeFromCart(article, quantity);
+			
+			return "SUCCESS";
 		});
 	}
 }

@@ -2,7 +2,53 @@
   "McDonalds": {
     "name": "McDonalds",
     "restaurantType": "Brza hrana",
-    "articles": [],
+    "articles": [
+    	{
+    		"name": "Hamburger",
+    		"price": 150,
+    		"articleType": "FOOD",
+    		"restaurantID": "McDonalds",
+    		"amount": 100,
+    		"description": "hamburger",
+    		"image": "/images/McDonaldsArticles/hamburger.png"
+    	},
+    	{
+    		"name": "Cheeseburger",
+    		"price": 180,
+    		"articleType": "FOOD",
+    		"restaurantID": "McDonalds",
+    		"amount": 120,
+    		"description": "cizzzz",
+    		"image": "/images/McDonaldsArticles/cheeseburger.png"
+    	},
+    	{
+    		"name": "Pomfrit",
+    		"price": 160,
+    		"articleType": "FOOD",
+    		"restaurantID": "McDonalds",
+    		"amount": 120,
+    		"description": "pomfrit mali",
+    		"image": "/images/McDonaldsArticles/Pomfrit.jpg"
+    	},
+    	{
+    		"name": "Chicken nuggets",
+    		"price": 400,
+    		"articleType": "FOOD",
+    		"restaurantID": "McDonalds",
+    		"amount": 100,
+    		"description": "10 nuggetsa",
+    		"image": "images/McDonaldsArticles/chicken-mcnuggets.png"
+    	},
+    	{
+    		"name": "Sladoled",
+    		"price": 150,
+    		"articleType": "FOOD",
+    		"restaurantID": "McDonalds",
+    		"amount": 100,
+    		"description": "sladoled u casi",
+    		"image": "/images/McDonaldsArticles/ice-cream.png"
+    	}
+    ],
     "status": "Otvoren",
     "location": {
       "longitude": 28.0,
@@ -15,7 +61,7 @@
         "country": "Serbia"
       }
     },
-    "logo": "/images/mcLogo.png",
+    "logo": "images/mcLogo.png",
     "deleted": 0
   },
   "qq": {
