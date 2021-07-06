@@ -26,6 +26,7 @@ import beans.Restaurant;
 import beans.User;
 import controllers.*;
 import enumerations.ArticleTypes;
+import repositories.*;
 import services.*;
 
 public class FoodShopMain {
