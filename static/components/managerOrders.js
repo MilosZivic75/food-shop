@@ -1,4 +1,4 @@
-Vue.component("manager", {
+Vue.component("managerOrders", {
     data: function () {
         return {
             user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },

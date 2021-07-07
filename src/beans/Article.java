@@ -10,6 +10,7 @@ public class Article {
 	private double amount;
 	private String description;
 	private String image;
+	private int deleted;
 	
 	public Article() {
 		super();
@@ -25,6 +26,7 @@ public class Article {
 		this.amount = amount;
 		this.description = description;
 		this.image = image;
+		this.deleted = 0;
 	}
 
 	public String getName() {
@@ -81,5 +83,13 @@ public class Article {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+
+	public int getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
 	}
 }

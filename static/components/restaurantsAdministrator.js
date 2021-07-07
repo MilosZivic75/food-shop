@@ -99,7 +99,10 @@ Vue.component("restaurantsAdministrator", {
                                 <a class="btn btn-primary" v-on:click="initModal"><i class="fa fa-map-marker mr-2"></i>Izaberite
 								lokaciju</a>
                             </div>
-                            <input class="form-control  m-4" accept="image/*" @change="onFileChanged" id="formFileLg" type="file" style="width: 90%;"/>
+                            <div>
+                                <input class="form-control  mx-4" accept="image/*" @change="onFileChanged" id="formFileLg" type="file" style="width: 90%;"/>
+                                <label class="mx-4" for="formFileLg">Izaberite logo</label>
+                            </div>
                             <div class="form-floating m-4">
                                 <select class="form-control" v-model="selectedManager" @change="openAddManagerModal" id="floatingManager" placeholder="Manager">
                                     <option v-for="manager in managers" v-bind:value="manager.username">{{manager.name}} {{manager.lastName}}</option>
@@ -229,7 +232,7 @@ Vue.component("restaurantsAdministrator", {
         addRestaurant: function () {
             event.preventDefault();
 
-            $('#errorAddUser').hide();
+            $('#errorAddRes').hide();
             if (this.newRestaurant.name === null || this.newRestaurant.status === null || this.newRestaurant.restaurantType === null
                 || this.image === null || $('#floatingLocation').val() === null || this.selectedManager === null) {
                 $('#errorAddRes').text('Molimo popunite sva polja.');
@@ -261,7 +264,7 @@ Vue.component("restaurantsAdministrator", {
                                 $('.modal-backdrop').hide();
                             }
                             else {
-                                $('#errorAddRes').text('Korisnik sa datim korisničkim imenom već postoji.');
+                                $('#errorAddRes').text('Restoram sa datim imenom već postoji.');
                                 $('#errorAddRes').show().delay(3000).fadeOut();
                                 $('#addRestaurantModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
                             }

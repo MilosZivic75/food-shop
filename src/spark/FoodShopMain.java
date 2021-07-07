@@ -316,5 +316,87 @@ public class FoodShopMain {
 			
 			return "SUCCESS";
 		});
+		
+		get("/getRestaurantFromManager", (req, res) -> {
+			res.type("application/json");
+			
+			Manager manager = managerController.read(req.queryParams("username"));
+			Restaurant restaurant = restaurantController.read(manager.getRestaurantId());
+			restaurant.getArticles().removeIf(article -> article.getDeleted() == 1);
+			
+			return g.toJson(restaurant);
+		});
+		
+		post("/addArticle", (req, res) -> {
+			res.type("application/json");
+			Article article = g.fromJson(req.body(), Article.class);
+			Manager manager = managerController.read(((User)req.session().attribute("user")).getUsername());
+			Restaurant restaurant = restaurantController.read(manager.getRestaurantId());
+			
+			for (Article a : restaurant.getArticles()) {
+				if (a.getName().equals(article.getName()))
+					return "ERROR";
+			}
+			restaurant.getArticles().add(article);
+			restaurantController.update(restaurant);
+			return "SUCCESS";
+		});
+		
+		post("/updateArticle", (req, res) -> {
+			res.type("application/json");
+			Article article = g.fromJson(req.body(), Article.class);
+			Manager manager = managerController.read(((User)req.session().attribute("user")).getUsername());
+			Restaurant restaurant = restaurantController.read(manager.getRestaurantId());
+			
+			for (Article a : restaurant.getArticles()) {
+				if (a.getName().equals(article.getName())) {
+					a.setArticleType(article.getArticleType());
+					a.setPrice(article.getPrice());
+					a.setAmount(article.getAmount());
+					a.setDescription(article.getDescription());
+					if (!article.getImage().equals("") && article.getImage() != null)
+						a.setImage(article.getImage());
+					restaurantController.update(restaurant);
+					return "SUCCESS";
+				}
+			}
+
+			return "ERROR";
+		});
+		
+		post("/uploadArticleImage", (req, res) -> {
+			res.type("application/json");
+
+			byte[] data = req.bodyAsBytes();
+			ByteArrayInputStream bis = new ByteArrayInputStream(data);
+			BufferedImage bImage = ImageIO.read(bis);
+			
+			int articlesNumber = 1;
+			while (new File("static/images/article" + articlesNumber + ".png").exists()) {
+				articlesNumber++;
+			}
+			String path = "static/images/article" + articlesNumber + ".png";
+			
+			ImageIO.write(bImage, "png", new File(path));
+			
+			return path.substring(6);
+		});
+		
+		post("/deleteArticle", (req, res) -> {
+			res.type("application/json");
+			
+			Article article = g.fromJson(req.body(), Article.class);
+			Manager manager = managerController.read(((User)req.session().attribute("user")).getUsername());
+			Restaurant restaurant = restaurantController.read(manager.getRestaurantId());
+			
+			for (Article a : restaurant.getArticles()) {
+				if (a.getName().equals(article.getName())) {
+					a.setDeleted(1);
+					restaurantController.update(restaurant);
+					return "SUCCESS";
+				}
+			}
+			return "ERROR";
+		});
 	}
 }

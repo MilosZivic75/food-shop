@@ -3,51 +3,56 @@
     "name": "McDonalds",
     "restaurantType": "Brza hrana",
     "articles": [
-    	{
-    		"name": "Hamburger",
-    		"price": 150,
-    		"articleType": "FOOD",
-    		"restaurantID": "McDonalds",
-    		"amount": 100,
-    		"description": "hamburger",
-    		"image": "/images/McDonaldsArticles/hamburger.png"
-    	},
-    	{
-    		"name": "Cheeseburger",
-    		"price": 180,
-    		"articleType": "FOOD",
-    		"restaurantID": "McDonalds",
-    		"amount": 120,
-    		"description": "cizzzz",
-    		"image": "/images/McDonaldsArticles/cheeseburger.png"
-    	},
-    	{
-    		"name": "Pomfrit",
-    		"price": 160,
-    		"articleType": "FOOD",
-    		"restaurantID": "McDonalds",
-    		"amount": 120,
-    		"description": "pomfrit mali",
-    		"image": "/images/McDonaldsArticles/Pomfrit.jpg"
-    	},
-    	{
-    		"name": "Chicken nuggets",
-    		"price": 400,
-    		"articleType": "FOOD",
-    		"restaurantID": "McDonalds",
-    		"amount": 100,
-    		"description": "10 nuggetsa",
-    		"image": "images/McDonaldsArticles/chicken-mcnuggets.png"
-    	},
-    	{
-    		"name": "Sladoled",
-    		"price": 150,
-    		"articleType": "FOOD",
-    		"restaurantID": "McDonalds",
-    		"amount": 100,
-    		"description": "sladoled u casi",
-    		"image": "/images/McDonaldsArticles/ice-cream.png"
-    	}
+      {
+        "name": "Hamburger",
+        "price": 150.0,
+        "articleType": "FOOD",
+        "restaurantID": "McDonalds",
+        "amount": 100.0,
+        "description": "hamburger",
+        "image": "/images/McDonaldsArticles/hamburger.png",
+        "deleted": 0
+      },
+      {
+        "name": "Cheeseburger",
+        "price": 180.0,
+        "articleType": "FOOD",
+        "restaurantID": "McDonalds",
+        "amount": 120.0,
+        "description": "cizzzz",
+        "image": "/images/McDonaldsArticles/cheeseburger.png",
+        "deleted": 0
+      },
+      {
+        "name": "Pomfrit",
+        "price": 160.0,
+        "articleType": "FOOD",
+        "restaurantID": "McDonalds",
+        "amount": 120.0,
+        "description": "pomfrit mali",
+        "image": "/images/McDonaldsArticles/Pomfrit.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Chicken nuggets",
+        "price": 400.0,
+        "articleType": "FOOD",
+        "restaurantID": "McDonalds",
+        "amount": 100.0,
+        "description": "10 nuggetsa",
+        "image": "images/McDonaldsArticles/chicken-mcnuggets.png",
+        "deleted": 0
+      },
+      {
+        "name": "Sladoled",
+        "price": 150.0,
+        "articleType": "FOOD",
+        "restaurantID": "McDonalds",
+        "amount": 100.0,
+        "description": "sladoled u casi",
+        "image": "/images/McDonaldsArticles/ice-cream.png",
+        "deleted": 0
+      }
     ],
     "status": "Otvoren",
     "location": {
