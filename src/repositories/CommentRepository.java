@@ -1,14 +1,13 @@
 package repositories;
 
 import java.lang.reflect.Type;
-import java.time.LocalDateTime;
 import java.util.HashMap;
 
 import com.google.gson.reflect.TypeToken;
 
 import beans.Comment;
 
-public class CommentRepository extends Repository<LocalDateTime, Comment>{
+public class CommentRepository extends Repository<String, Comment>{
 
 	@Override
 	protected String getPath() {
@@ -21,8 +20,8 @@ public class CommentRepository extends Repository<LocalDateTime, Comment>{
 	}
 
 	@Override
-	protected LocalDateTime getKey(Comment entity) {
-		return entity.getTimeOfOccurrence();
+	protected String getKey(Comment entity) {
+		return entity.getTimeOfOccurrence().toString();
 	}
 
 	@Override

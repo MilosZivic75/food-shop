@@ -28,6 +28,7 @@ Vue.component("usersAdministrator", {
                         <a class="dropdown-item" v-on:click="showProfile">Profil</a>
                         <a class="dropdown-item" v-on:click="showUsers">Korisnici</a>
                         <a class="dropdown-item" v-on:click="showRestaurants">Restorani</a>
+                        <a class="dropdown-item" v-on:click="showComments">Komentari</a>
                         <a class="dropdown-item" v-on:click="logout">Odjavite se</a>
                     </div>
                 </div>
@@ -41,7 +42,7 @@ Vue.component("usersAdministrator", {
 			<div class="col-2" v-for="user in users" style="margin-left:30px"> 
 				<p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
 				Ime: {{user.name}}<br>Prezime: {{user.lastName}}<br> Korisničko ime: {{user.username}}<br> Tip korisnika: {{user.userRole}}
-                <br> <button class="btn btn-danger btn-sm col-7" v-if="user.userRole === 'Menadžer' || user.userRole === 'Dostavljač'" 
+                <br> <button class="btn btn-danger btn-sm col-7" v-if="user.userRole === 'Menadžer' || user.userRole === 'Dostavljač' || user.userRole === 'Kupac'" 
                         v-on:click="deleteUser(user.username)">Obriši</button></p>
 			</div>
 		</div>
@@ -138,6 +139,10 @@ Vue.component("usersAdministrator", {
         showRestaurants: function () {
             event.preventDefault();
             router.push('/restaurantsAdministrator');
+        },
+        showComments: function () {
+            event.preventDefault();
+            router.push('/commentsAdministrator');
         },
         logout: function () {
             event.preventDefault();
