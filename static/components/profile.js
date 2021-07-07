@@ -55,7 +55,7 @@ Vue.component("profile", {
 					<label for="profilePassword">Lozinka</label>
 				</div>
 
-				<button class="m-4 col-6 btn btn-lg btn-primary" v-on:click="save" type="submit">Sačuvaj</button>
+				<button class="m-4 col-6 btn btn-lg btn-warning" v-on:click="save" type="submit">Sačuvaj</button>
 				<div id="errorProfile" class="alert alert-danger col-6 m-4" role="alert" style="display: none;"></div>
 				<div id="successProfile" class="alert alert-success col-6 m-4" role="alert" style="display: none;"></div>
 			</form>
