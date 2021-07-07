@@ -3,7 +3,7 @@ Vue.component("shopping-cart", {
         return {
             articles: [],
             quantity: [],
-            username: null,
+            user: null,
             price: null
         }
     },
@@ -81,12 +81,20 @@ Vue.component("shopping-cart", {
                     router.push('/');
                     return;
                 }
-                this.username = response.data.username;
+                this.user = response.data;
             });
         axios
             .get('/getPrice')
             .then(response => {
-                this.price = response.data;
+                if(this.user.customerType === 'GOLD'){
+                    this.price = response.data * 92/100;
+                } else if(this.user.customerType === 'SILVER'){
+                    this.price = response.data * 95/100;
+                } else if(this.user.customerType === 'BRONSE'){
+                    this.price = response.data * 97/100;
+                } else {
+                    this.price = response.data;
+                }
             });
     },
     methods: {
@@ -107,7 +115,7 @@ Vue.component("shopping-cart", {
                     description: addedArticle.description,
                     image: addedArticle.image,
                     quantity: parseInt(document.getElementById(addedArticle.name).value),
-                    username: this.username
+                    username: this.user.username
                 })
                     .then(function (response) {
                         
@@ -129,7 +137,7 @@ Vue.component("shopping-cart", {
                 description: addedArticle.description,
                 image: addedArticle.image,
                 quantity: parseInt(document.getElementById(addedArticle.name).value),
-                username: this.username
+                username: this.user.username
             })
                 .then(function (response) {
                     
@@ -153,7 +161,7 @@ Vue.component("shopping-cart", {
                 description: selectedArticle.description,
                 image: selectedArticle.image,
                 quantity: parseInt(document.getElementById(selectedArticle.name).value),
-                username: this.username
+                username: this.user.username
             })
                 .then(function (response) {
                     document.getElementsByTagName('tr')[index + 1].remove();  
@@ -166,7 +174,7 @@ Vue.component("shopping-cart", {
                 articles: this.articles,
                 quantity: this.quantity,
                 price: this.price,
-                username: this.username
+                username: this.user.username
             })
                 .then(function (response) {
                     if(response.data === 'SUCCESS'){

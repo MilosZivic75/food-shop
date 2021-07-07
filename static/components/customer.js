@@ -43,7 +43,7 @@ Vue.component("customer", {
                             </b>
                             <ul class="dropdown-menu" aria-labelledby="dropdownVisibilidad">
                                 <li><a class="dropdown-item" v-on:click="showProfile" style="font-size: 20px;" type="submit" > Profil </a></li>
-                                <li><a class="dropdown-item" href="" style="font-size: 20px;" type="submit" > Narudžbine </a></li>
+                                <li><a class="dropdown-item" v-on:click="myOrders" href="" style="font-size: 20px;" type="submit" > Narudžbine </a></li>
                                 <li><a class="dropdown-item" v-on:click="logout" style="font-size: 20px;" type="submit" > Odjavite se </a></li>
                             </ul>
                         </div>
@@ -80,6 +80,10 @@ Vue.component("customer", {
         makeOrder: function () {
             event.preventDefault();
             router.push('/order');
+        },
+        myOrders: function() {
+            event.preventDefault();
+            router.push('/myOrders');
         }
     }
 });

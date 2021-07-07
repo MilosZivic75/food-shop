@@ -29,6 +29,7 @@ import beans.Restaurant;
 import beans.User;
 import controllers.*;
 import enumerations.ArticleTypes;
+import enumerations.CustomerTypes;
 import enumerations.OrderStatus;
 import repositories.*;
 import services.*;
@@ -44,7 +45,8 @@ public class FoodShopMain {
 	private static RestaurantController restaurantController = new RestaurantController(new RestaurantService(new RestaurantRepository()));
 	private static CartController cartController = new CartController();
 	private static OrderController orderController = new OrderController(new OrderService(new OrderRepository()));
-
+	private static String loggedUserUsername = "";
+	
 	public static void main(String[] args) throws Exception {
 		port(8080);
 
@@ -58,6 +60,7 @@ public class FoodShopMain {
 			res.type("application/json");
 			User user = g.fromJson(req.body(), User.class);
 			User loggedUser = userController.userExists(user.getUsername(), user.getPassword());
+			loggedUserUsername = user.getUsername();
 			if (loggedUser == null) {
 				return "ERROR";
 			}
@@ -371,6 +374,18 @@ public class FoodShopMain {
 			Order order = new Order(idOrder, articles, quantity, restID, LocalDateTime.now(),
 					price, username, OrderStatus.PROCESSING);
 			
+			Customer customer = customerController.read(username);
+			customerController.updateCollectedPoints(customer, customer.getCollectedPoints() + price*133/1000);
+			Customer updatedCustomer = customerController.read(username);
+			
+			if(updatedCustomer.getCollectedPoints() > 2000 && updatedCustomer.getCollectedPoints() <= 4000)
+				customerController.updateType(updatedCustomer, CustomerTypes.BRONSE);
+			else if(updatedCustomer.getCollectedPoints() > 4000 && updatedCustomer.getCollectedPoints() <= 6000)
+				customerController.updateType(updatedCustomer, CustomerTypes.SILVER);
+			else if(updatedCustomer.getCollectedPoints() > 6000)
+				customerController.updateType(updatedCustomer, CustomerTypes.GOLD);	
+			
+			
 			while(!orderController.create(order)) {
 				idOrder = "";
 				for(int i=0; i<10; i++) {
@@ -378,6 +393,40 @@ public class FoodShopMain {
 				}
 				order.setId(idOrder);
 			}
+			
+			return "SUCCESS";
+		});
+		
+		get("/getOrders", (req, res) -> {
+			res.type("application/json");
+			List<Order> orders = orderController.readAllEntities();
+			List<Order> userOrders = new ArrayList<Order>();
+			for(Order order: orders) {
+				if(order.getCustomer().equals(loggedUserUsername))
+					userOrders.add(order);
+			}
+			
+			return g.toJson(userOrders);
+		});
+		
+		post("/cancelOrder", (req, res) -> {
+			String id = req.body().split("}")[0].split(":")[1].split(",")[0];
+			id = id.substring(1, id.length()-1);
+			String username = req.body().split("}")[0].split(":")[2].split(",")[0];
+			username = username.substring(1, username.length()-1);
+			double price = Double.parseDouble(req.body().split("}")[0].split(":")[3]);
+			orderController.deleteById(id);
+			
+			Customer customer = customerController.read(username);
+			customerController.updateCollectedPoints(customer, customer.getCollectedPoints() - price*133*4/1000);
+			Customer updatedCustomer = customerController.read(username);
+			
+			if(updatedCustomer.getCollectedPoints() > 2000 && updatedCustomer.getCollectedPoints() <= 4000)
+				customerController.updateType(updatedCustomer, CustomerTypes.BRONSE);
+			else if(updatedCustomer.getCollectedPoints() > 4000 && updatedCustomer.getCollectedPoints() <= 6000)
+				customerController.updateType(updatedCustomer, CustomerTypes.SILVER);
+			else if(updatedCustomer.getCollectedPoints() <= 2000)
+				customerController.updateType(updatedCustomer, CustomerTypes.REGULAR);
 			
 			return "SUCCESS";
 		});

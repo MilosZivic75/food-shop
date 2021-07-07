@@ -9,6 +9,7 @@ const UsersAdministrator = { template: '<usersAdministrator></usersAdministrator
 const RestaurantsAdministrator = { template: '<restaurantsAdministrator></restaurantsAdministrator>' }
 const RestaurantArticles = { template: '<restaurantArticles></restaurantArticles>' }
 const ShoppingCart = { template: '<shopping-cart></shopping-cart>' }
+const UserOrders = { template: '<user-orders></user-orders>' }
 
 const router = new VueRouter({
 	mode: 'hash',
@@ -24,7 +25,8 @@ const router = new VueRouter({
 		{ path: '/usersAdministrator', component: UsersAdministrator},
 		{ path: '/restaurantsAdministrator', component: RestaurantsAdministrator},
 		{ path: '/restaurantArticles', component: RestaurantArticles},
-		{ path: '/shoppingCart', component: ShoppingCart}
+		{ path: '/shoppingCart', component: ShoppingCart},
+		{ path: '/myOrders', component: UserOrders}
 	  ]
 	  
 });

@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 
 import beans.Customer;
 import beans.User;
+import enumerations.CustomerTypes;
 
 public class CustomerRepository extends Repository<String, Customer> {
 	
@@ -53,5 +54,22 @@ public class CustomerRepository extends Repository<String, Customer> {
 
 		return true;
 	}
-
+	
+	public void updateCollectedPoints(User user, double points) {
+		Map<String, Customer> entities = readFile();
+		
+		Customer customer = entities.get(user.getUsername());
+		customer.setCollectedPoints(points);
+		entities.put(customer.getUsername(), customer);
+		writeFile(entities);
+	}
+	
+	public void updateType(User user, CustomerTypes type) {
+		Map<String, Customer> entities = readFile();
+		
+		Customer customer = entities.get(user.getUsername());
+		customer.setCustomerType(type);
+		entities.put(customer.getUsername(), customer);
+		writeFile(entities);
+	}
 }
