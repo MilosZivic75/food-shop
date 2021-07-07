@@ -1,0 +1,22 @@
+{
+  "2021-07-07T17:56:06.778691700": {
+    "timeOfOccurrence": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 7
+      },
+      "time": {
+        "hour": 17,
+        "minute": 56,
+        "second": 6,
+        "nano": 778691700
+      }
+    },
+    "customerUsername": "the",
+    "restaurantID": "McDonalds",
+    "text": "Odlican restoran!",
+    "grade": 5,
+    "approved": true
+  }
+}

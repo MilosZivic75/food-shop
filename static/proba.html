@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="js/jquery.min.js"></script>
+    <link href="css/background.css" rel="stylesheet">
+    <link href="css/ordering.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+</head>
+
+<body>
+    
+    <div class="row" >
+        <div class="col-12">
+        <img src="images/orders.png" alt="" width="90%" height="400" style="margin-left: 90px;">
+        </div>
+    </div>
+    <div class="row" style="margin-left: 200px; margin-top: 50px;">
+        <label for="" style="font-size: 30px;"> Vaše porudžbine: </label>
+    </div>
+    <div class="row" style="margin-left: 200px; margin-top: 10px; font-size: 22px; text-align: center;">
+        <div class="col-10">
+            <table>
+                <tr>
+                    <th> Porudžbina </th>
+                    <th> Restoran </th>
+                    <th> Iznos </th>
+                    <th> Status </th>
+                </tr>
+                <tr v-for="(order, index) in orders">
+                    <td> <label for="" style="margin-left: 20px;"> {{order.id}} </label> </td>
+                    <td> <label for="" style="margin-left: 30px; margin-right: 20px;"> {{order.restaurantID}} </label> </td>
+                    <td> <label for="" style="margin-left: 30px;"> {{order.price}} </label> </td>
+                    <td> <label for="" style="margin-left: 40px;"> {{orderValue(order.orderStatus)}} </label> </td>
+                    <td> 
+                        <button class="btn btn-danger" style="margin-left: 40px;" v-if="inProcessing(order.orderStatus) === true" v-on:click="cancelOrder(order.id, index, order.price)"> Otkaži </button>
+                        <button class="btn btn-primary" style="margin-left: 40px;" v-else-if="isOrderDelivered(order.orderStatus) === true" v-on:click="addComment(order.restaurantID)"> Oceni restoran </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <p style=" margin-left: 200px; margin-bottom: 500px; font-size: 25px; margin-top: 50px; color: red;"> Napomena: Ukoliko otkažete porudžbinu koja je u stanju obrade, gubite poene na svom nalogu! </p>
+</body>
+
+</html>

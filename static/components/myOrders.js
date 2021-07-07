@@ -29,12 +29,15 @@ Vue.component("user-orders", {
                         <td> <label for="" style="margin-left: 30px; margin-right: 20px;"> {{order.restaurantID}} </label> </td>
                         <td> <label for="" style="margin-left: 30px;"> {{order.price}} </label> </td>
                         <td> <label for="" style="margin-left: 40px;"> {{orderValue(order.orderStatus)}} </label> </td>
-                        <td> <button class="btn btn-warning" style="margin-left: 40px;" v-if="inProcessing(order.orderStatus) === true" v-on:click="cancelOrder(order.id, index, order.price)"> Otkaži </button></td>
+                        <td> 
+                            <button class="btn btn-danger" style="margin-left: 40px;" v-if="inProcessing(order.orderStatus) === true" v-on:click="cancelOrder(order.id, index, order.price)"> Otkaži </button>
+                            <button class="btn btn-primary" style="margin-left: 40px;" v-else-if="isOrderDelivered(order.orderStatus) === true" v-on:click="addComment(order.restaurantID)"> Oceni restoran </button>
+                        </td>
                     </tr>
                 </table>
             </div>
         </div>
-        <p style=" margin-left: 200px; font-size: 25px; margin-top: 50px; color: red;"> Napomena: Ukoliko otkažete porudžbinu koja je u stanju obrade, gubite poene na svom nalogu! </p>
+        <p style=" margin-left: 200px; margin-bottom: 250px; font-size: 25px; margin-top: 50px; color: red;"> Napomena: Ukoliko otkažete porudžbinu koja je u stanju obrade, gubite poene na svom nalogu! </p>
     </div>
     `
     ,
@@ -88,6 +91,23 @@ Vue.component("user-orders", {
                 .then(function (response) {
                     document.getElementsByTagName('tr')[index + 1].remove();  
                     alert("Porudžbina otkazana!");
+                });
+        },
+
+        isOrderDelivered: function(orderStatus) {
+            if(orderStatus === 'DELIVERED'){
+                return true;
+            }
+
+            return false;
+        },
+
+        addComment: function(restaurantID) {
+            axios.post('/addComment', {
+                id: restaurantID
+            })
+                .then(function (response) {
+                    router.push('/rateRestaurant');
                 });
         }
     }
