@@ -21,6 +21,7 @@ import com.google.gson.GsonBuilder;
 
 import beans.Administrator;
 import beans.Article;
+import beans.Comment;
 import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
@@ -45,7 +46,9 @@ public class FoodShopMain {
 	private static RestaurantController restaurantController = new RestaurantController(new RestaurantService(new RestaurantRepository()));
 	private static CartController cartController = new CartController();
 	private static OrderController orderController = new OrderController(new OrderService(new OrderRepository()));
+	private static CommentController commentController = new CommentController(new CommentService(new CommentRepository()));
 	private static String loggedUserUsername = "";
+	private static String restaurantID = "";
 	
 	public static void main(String[] args) throws Exception {
 		port(8080);
@@ -552,6 +555,42 @@ public class FoodShopMain {
 			orderController.update(order);
 			
 			return "SUCCESS";
+		post("/addComment", (req, res) -> {
+			restaurantID = req.body().split("}")[0].split(":")[1];
+			restaurantID = restaurantID.substring(1, restaurantID.length()-1);
+			
+			return "SUCCESS";
+		});
+		
+		get("/ratingRestaurant", (req, res) -> {
+			Map<String, Restaurant> restaurants = restaurantController.readAll();
+			Restaurant restaurant = restaurants.get(restaurantID);
+			return g.toJson(restaurant);
+		});
+		
+		post("/addRate", (req, res) -> {
+			Comment comment = g.fromJson(req.body(), Comment.class);
+			comment.setApproved(false);
+			comment.setTimeOfOccurrence(LocalDateTime.now());
+			commentController.create(comment);
+			
+			return "SUCCESS";
+		});
+		
+		get("/getRestaurantComments", (req, res) -> {
+			res.type("application/json");
+			Session session = req.session();
+			Restaurant restaurant = (Restaurant) session.attribute("openedRestaurant");
+			
+			List<Comment> comments = commentController.readAllEntities();
+			List<Comment> restaurantComments = new ArrayList<Comment>();
+			
+			for(Comment comment: comments) {
+				if(comment.getRestaurant().equals(restaurant.getName()) && comment.getApproved() == true)
+					restaurantComments.add(comment);
+			}
+			
+			return g.toJson(restaurantComments);
 		});
 	}
 }
