@@ -9,8 +9,8 @@ import enumerations.CustomerTypes;
 public class Customer extends User {
 	private ArrayList<Order> allOrders;
 	private Cart cart;
-	private int collectedPoints;
-	private CustomerType customerType;
+	private double collectedPoints;
+	private CustomerTypes customerType;
 	
 	public Customer() {
 		super();
@@ -21,11 +21,11 @@ public class Customer extends User {
 		allOrders = new ArrayList<Order>();
 		cart = new Cart(new HashMap<String, Integer>(), this.getUsername(), 0);
 		collectedPoints = 0;
-		customerType = new CustomerType(CustomerTypes.REGULAR, 0, 0);
+		customerType = CustomerTypes.REGULAR;
 	}
 	
 	public Customer(String username, String password, String name, String lastName, String sex, Date birthDate,
-			String userRole, ArrayList<Order> allOrders, Cart cart, int collectedPoints, CustomerType customerType) {
+			String userRole, ArrayList<Order> allOrders, Cart cart, double collectedPoints, CustomerTypes customerType) {
 		super(username, password, name, lastName, sex, birthDate, userRole);
 		this.allOrders = allOrders;
 		this.cart = cart;
@@ -45,16 +45,16 @@ public class Customer extends User {
 	public void setCart(Cart cart) {
 		this.cart = cart;
 	}
-	public int getCollectedPoints() {
+	public double getCollectedPoints() {
 		return collectedPoints;
 	}
-	public void setCollectedPoints(int collectedPoints) {
+	public void setCollectedPoints(double collectedPoints) {
 		this.collectedPoints = collectedPoints;
 	}
-	public CustomerType getCustomerType() {
+	public CustomerTypes getCustomerType() {
 		return customerType;
 	}
-	public void setCustomerType(CustomerType customerType) {
+	public void setCustomerType(CustomerTypes customerType) {
 		this.customerType = customerType;
 	}
 }

@@ -1,26 +1,4 @@
 {
-  "pera": {
-    "allOrders": [],
-    "cart": {
-      "articles": {},
-      "customerUsername": "pera",
-      "price": 0.0
-    },
-    "collectedPoints": 0,
-    "customerType": {
-      "customerType": "REGULAR",
-      "discount": 0.0,
-      "points": 0
-    },
-    "username": "pera",
-    "password": "pera",
-    "name": "Petar",
-    "lastName": "Petrovic",
-    "sex": "Muški",
-    "birthDate": "2021-06-11",
-    "userRole": "Kupac",
-    "deleted": 0
-  },
   "the": {
     "allOrders": [],
     "cart": {
@@ -28,62 +6,32 @@
       "customerUsername": "the",
       "price": 0.0
     },
-    "collectedPoints": 0,
-    "customerType": {
-      "customerType": "REGULAR",
-      "discount": 0.0,
-      "points": 0
-    },
+    "collectedPoints": 6217.7605,
+    "customerType": "GOLD",
     "username": "the",
     "password": "great",
-    "name": "Vlada",
-    "lastName": "Zile",
-    "sex": "Ženski",
-    "birthDate": "2021-06-04",
-    "userRole": "Kupac",
-    "deleted": 0
-  },
-  "mare": {
-    "allOrders": [],
-    "cart": {
-      "articles": {},
-      "customerUsername": "mare",
-      "price": 0.0
-    },
-    "collectedPoints": 0,
-    "customerType": {
-      "customerType": "REGULAR",
-      "discount": 0.0,
-      "points": 0
-    },
-    "username": "mare",
-    "password": "mare",
-    "name": "Marko",
-    "lastName": "Markovic",
-    "sex": "Muški",
-    "birthDate": "2021-06-01",
-    "userRole": "Kupac",
-    "deleted": 0
-  },
-  "vesna": {
-    "allOrders": [],
-    "cart": {
-      "articles": {},
-      "customerUsername": "vesna",
-      "price": 0.0
-    },
-    "collectedPoints": 0,
-    "customerType": {
-      "customerType": "REGULAR",
-      "discount": 0.0,
-      "points": 0
-    },
-    "username": "vesna",
-    "password": "hrana",
     "name": "Vesna",
     "lastName": "Kundacina",
+    "sex": "Ženski",
+    "birthDate": "2021-07-04",
+    "userRole": "Kupac",
+    "deleted": 0
+  },
+  "pera": {
+    "allOrders": [],
+    "cart": {
+      "articles": {},
+      "customerUsername": "pera",
+      "price": 0.0
+    },
+    "collectedPoints": 0.0,
+    "customerType": "REGULAR",
+    "username": "pera",
+    "password": "pera",
+    "name": "Petar",
+    "lastName": "Petrovic",
     "sex": "Muški",
-    "birthDate": "2001-12-31",
+    "birthDate": "2021-05-12",
     "userRole": "Kupac",
     "deleted": 0
   }

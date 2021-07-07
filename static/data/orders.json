@@ -1,0 +1,212 @@
+{
+  "8139939424": {
+    "id": "8139939424",
+    "articles": [
+      {
+        "name": "Hamburger",
+        "price": 150.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 100.0,
+        "description": "hamburger",
+        "image": "/images/McDonaldsArticles/hamburger.png"
+      },
+      {
+        "name": "Cheeseburger",
+        "price": 180.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 120.0,
+        "description": "cizzzz",
+        "image": "/images/McDonaldsArticles/cheeseburger.png"
+      }
+    ],
+    "quantity": [
+      1,
+      2
+    ],
+    "restaurantID": "McDonalds",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 7
+      },
+      "time": {
+        "hour": 2,
+        "minute": 57,
+        "second": 31,
+        "nano": 885315000
+      }
+    },
+    "price": 484.5,
+    "customerUsername": "the",
+    "orderStatus": "PROCESSING"
+  },
+  "5757912632": {
+    "id": "5757912632",
+    "articles": [
+      {
+        "name": "Hamburger",
+        "price": 150.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 100.0,
+        "description": "hamburger",
+        "image": "/images/McDonaldsArticles/hamburger.png"
+      },
+      {
+        "name": "Cheeseburger",
+        "price": 180.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 120.0,
+        "description": "cizzzz",
+        "image": "/images/McDonaldsArticles/cheeseburger.png"
+      }
+    ],
+    "quantity": [
+      1,
+      1
+    ],
+    "restaurantID": "McDonalds",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 7
+      },
+      "time": {
+        "hour": 2,
+        "minute": 19,
+        "second": 12,
+        "nano": 440322300
+      }
+    },
+    "price": 330.0,
+    "customerUsername": "the",
+    "orderStatus": "PROCESSING"
+  },
+  "5735552267": {
+    "id": "5735552267",
+    "articles": [
+      {
+        "name": "Cheeseburger",
+        "price": 180.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 120.0,
+        "description": "cizzzz",
+        "image": "/images/McDonaldsArticles/cheeseburger.png"
+      },
+      {
+        "name": "Sladoled",
+        "price": 150.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 100.0,
+        "description": "sladoled u casi",
+        "image": "/images/McDonaldsArticles/ice-cream.png"
+      }
+    ],
+    "quantity": [
+      3,
+      3
+    ],
+    "restaurantID": "McDonalds",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 7
+      },
+      "time": {
+        "hour": 3,
+        "minute": 0,
+        "second": 1,
+        "nano": 214544500
+      }
+    },
+    "price": 940.5,
+    "customerUsername": "the",
+    "orderStatus": "PROCESSING"
+  },
+  "5152525340": {
+    "id": "5152525340",
+    "articles": [
+      {
+        "name": "Chicken-nuggets",
+        "price": 400.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 100.0,
+        "description": "10 nuggetsa",
+        "image": "images/McDonaldsArticles/chicken-mcnuggets.png"
+      }
+    ],
+    "quantity": [
+      5
+    ],
+    "restaurantID": "McDonalds",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 7
+      },
+      "time": {
+        "hour": 3,
+        "minute": 0,
+        "second": 21,
+        "nano": 21289500
+      }
+    },
+    "price": 1900.0,
+    "customerUsername": "the",
+    "orderStatus": "PROCESSING"
+  },
+  "2198985049": {
+    "id": "2198985049",
+    "articles": [
+      {
+        "name": "Pomfrit",
+        "price": 160.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 120.0,
+        "description": "pomfrit mali",
+        "image": "/images/McDonaldsArticles/Pomfrit.jpg"
+      },
+      {
+        "name": "Chicken-nuggets",
+        "price": 400.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 100.0,
+        "description": "10 nuggetsa",
+        "image": "images/McDonaldsArticles/chicken-mcnuggets.png"
+      }
+    ],
+    "quantity": [
+      3,
+      2
+    ],
+    "restaurantID": "McDonalds",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 7
+      },
+      "time": {
+        "hour": 2,
+        "minute": 58,
+        "second": 19,
+        "nano": 492087900
+      }
+    },
+    "price": 1216.0,
+    "customerUsername": "the",
+    "orderStatus": "PROCESSING"
+  }
+}
