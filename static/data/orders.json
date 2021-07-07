@@ -9,7 +9,8 @@
         "restaurantID": "McDonalds",
         "amount": 100.0,
         "description": "hamburger",
-        "image": "/images/McDonaldsArticles/hamburger.png"
+        "image": "/images/McDonaldsArticles/hamburger.png",
+        "deleted": 0
       },
       {
         "name": "Cheeseburger",
@@ -18,7 +19,8 @@
         "restaurantID": "McDonalds",
         "amount": 120.0,
         "description": "cizzzz",
-        "image": "/images/McDonaldsArticles/cheeseburger.png"
+        "image": "/images/McDonaldsArticles/cheeseburger.png",
+        "deleted": 0
       }
     ],
     "quantity": [
@@ -53,7 +55,8 @@
         "restaurantID": "McDonalds",
         "amount": 100.0,
         "description": "hamburger",
-        "image": "/images/McDonaldsArticles/hamburger.png"
+        "image": "/images/McDonaldsArticles/hamburger.png",
+        "deleted": 0
       },
       {
         "name": "Cheeseburger",
@@ -62,7 +65,8 @@
         "restaurantID": "McDonalds",
         "amount": 120.0,
         "description": "cizzzz",
-        "image": "/images/McDonaldsArticles/cheeseburger.png"
+        "image": "/images/McDonaldsArticles/cheeseburger.png",
+        "deleted": 0
       }
     ],
     "quantity": [
@@ -85,7 +89,7 @@
     },
     "price": 330.0,
     "customerUsername": "the",
-    "orderStatus": "PROCESSING"
+    "orderStatus": "CANCELED"
   },
   "5735552267": {
     "id": "5735552267",
@@ -97,7 +101,8 @@
         "restaurantID": "McDonalds",
         "amount": 120.0,
         "description": "cizzzz",
-        "image": "/images/McDonaldsArticles/cheeseburger.png"
+        "image": "/images/McDonaldsArticles/cheeseburger.png",
+        "deleted": 0
       },
       {
         "name": "Sladoled",
@@ -106,7 +111,8 @@
         "restaurantID": "McDonalds",
         "amount": 100.0,
         "description": "sladoled u casi",
-        "image": "/images/McDonaldsArticles/ice-cream.png"
+        "image": "/images/McDonaldsArticles/ice-cream.png",
+        "deleted": 0
       }
     ],
     "quantity": [
@@ -129,7 +135,7 @@
     },
     "price": 940.5,
     "customerUsername": "the",
-    "orderStatus": "PROCESSING"
+    "orderStatus": "CANCELED"
   },
   "5152525340": {
     "id": "5152525340",
@@ -141,7 +147,8 @@
         "restaurantID": "McDonalds",
         "amount": 100.0,
         "description": "10 nuggetsa",
-        "image": "images/McDonaldsArticles/chicken-mcnuggets.png"
+        "image": "images/McDonaldsArticles/chicken-mcnuggets.png",
+        "deleted": 0
       }
     ],
     "quantity": [
@@ -163,7 +170,7 @@
     },
     "price": 1900.0,
     "customerUsername": "the",
-    "orderStatus": "PROCESSING"
+    "orderStatus": "CANCELED"
   },
   "2198985049": {
     "id": "2198985049",
@@ -175,7 +182,8 @@
         "restaurantID": "McDonalds",
         "amount": 120.0,
         "description": "pomfrit mali",
-        "image": "/images/McDonaldsArticles/Pomfrit.jpg"
+        "image": "/images/McDonaldsArticles/Pomfrit.jpg",
+        "deleted": 0
       },
       {
         "name": "Chicken-nuggets",
@@ -184,7 +192,8 @@
         "restaurantID": "McDonalds",
         "amount": 100.0,
         "description": "10 nuggetsa",
-        "image": "images/McDonaldsArticles/chicken-mcnuggets.png"
+        "image": "images/McDonaldsArticles/chicken-mcnuggets.png",
+        "deleted": 0
       }
     ],
     "quantity": [

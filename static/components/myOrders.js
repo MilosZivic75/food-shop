@@ -28,9 +28,9 @@ Vue.component("user-orders", {
                         <td> <label for="" style="margin-left: 20px;"> {{order.id}} </label> </td>
                         <td> <label for="" style="margin-left: 30px; margin-right: 20px;"> {{order.restaurantID}} </label> </td>
                         <td> <label for="" style="margin-left: 30px;"> {{order.price}} </label> </td>
-                        <td> <label for="" style="margin-left: 40px;"> {{orderValue(order.orderStatus)}} </label> </td>
+                        <td> <label for="" :id="order.id" style="margin-left: 40px;"> {{orderValue(order.orderStatus)}} </label> </td>
                         <td> 
-                            <button class="btn btn-danger" style="margin-left: 40px;" v-if="inProcessing(order.orderStatus) === true" v-on:click="cancelOrder(order.id, index, order.price)"> Otkaži </button>
+                            <button class="btn btn-danger" :id="index" style="margin-left: 40px;" v-if="inProcessing(order.orderStatus) === true" v-on:click="cancelOrder(order.id, index, order.price)"> Otkaži </button>
                             <button class="btn btn-primary" style="margin-left: 40px;" v-else-if="isOrderDelivered(order.orderStatus) === true" v-on:click="addComment(order.restaurantID)"> Oceni restoran </button>
                         </td>
                     </tr>
@@ -83,13 +83,14 @@ Vue.component("user-orders", {
         }, 
 
         cancelOrder: function(orderId, index, orderPrice) {
+            document.getElementById(orderId).innerHTML = "OTKAZANA";
+            document.getElementById(index).remove();
             axios.post('/cancelOrder', {
                 id: orderId,
                 username: this.user.username,
                 price: orderPrice
             })
                 .then(function (response) {
-                    document.getElementsByTagName('tr')[index + 1].remove();  
                     alert("Porudžbina otkazana!");
                 });
         },
@@ -98,7 +99,6 @@ Vue.component("user-orders", {
             if(orderStatus === 'DELIVERED'){
                 return true;
             }
-
             return false;
         },
 

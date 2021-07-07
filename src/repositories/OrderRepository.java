@@ -2,10 +2,12 @@ package repositories;
 
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.google.gson.reflect.TypeToken;
 
 import beans.Order;
+import enumerations.OrderStatus;
 
 public class OrderRepository extends Repository<String, Order>{
 
@@ -34,6 +36,14 @@ public class OrderRepository extends Repository<String, Order>{
 	protected Order setDeleted(Order entity) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public void updateStatus(Order order) {
+		Map<String, Order> entities = readFile();
+		
+		order.setOrderStatus(OrderStatus.CANCELED);
+		entities.put(order.getId(), order);
+		writeFile(entities);
 	}
 
 }

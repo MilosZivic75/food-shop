@@ -500,7 +500,7 @@ public class FoodShopMain {
 			String username = req.body().split("}")[0].split(":")[2].split(",")[0];
 			username = username.substring(1, username.length() - 1);
 			double price = Double.parseDouble(req.body().split("}")[0].split(":")[3]);
-			orderController.deleteById(id);
+			orderController.updateStatus(orderController.readAll().get(id));		
 
 			Customer customer = customerController.read(username);
 			customerController.updateCollectedPoints(customer, customer.getCollectedPoints() - price * 133 * 4 / 1000);
