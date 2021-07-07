@@ -35,9 +35,32 @@ Vue.component("profile", {
 		</div>
 	</div>
 	<label for="profile" style="font-size: 55px; margin-left: 670px; "> <b>Profil</b> </label>
-	<div class="row" style="margin-left: 370px; margin-top: 50px;">
+	<div class="row" style="margin-left: 520px; margin-top: 50px;">
 		<div class="col-md-9">
-			<form id="user-profile-form" class="has-validation-callback">
+			<form id="registrationForm">
+				<div class="form-floating m-4 col-6">
+					<input type="username" class="form-control" v-model="user.username" id="profileUsername" placeholder="Username" readonly>
+					<label for="profileUsername">Korisničko ime</label>
+				</div>
+				<div class="form-floating m-4 col-6">
+					<input type="name" class="form-control" v-model="user.name" id="profileName" placeholder="Name">
+					<label for="profileName">Ime</label>
+				</div>
+				<div class="form-floating m-4 col-6">
+					<input type="lastname" class="form-control" v-model="user.lastName" id="profileastName" placeholder="LastName">
+					<label for="floatingLastName">Prezime</label>
+				</div>
+				<div class="form-floating m-4 col-6">
+					<input type="password" class="form-control" v-model="user.password" id="profilePassword" placeholder="Password">
+					<label for="profilePassword">Lozinka</label>
+				</div>
+
+				<button class="m-4 col-6 btn btn-lg btn-primary" v-on:click="save" type="submit">Sačuvaj</button>
+				<div id="errorProfile" class="alert alert-danger col-6 m-4" role="alert" style="display: none;"></div>
+				<div id="successProfile" class="alert alert-success col-6 m-4" role="alert" style="display: none;"></div>
+			</form>
+
+			<!--<form id="user-profile-form" class="has-validation-callback">
 				<div class="row">
 					<div class="col-md-6">
 						<div class="form-group has-success">
@@ -84,9 +107,10 @@ Vue.component("profile", {
 							<b>Sačuvajte izmene </b></button>
 					</div>
 				</div>
-			</form>
+			</form>-->
 		</div>
 	</div>
+
 	<div class="row">
 		<div>
 			<img src="../images/stock-food-photos-bundle-bypeople-deals.png" style="margin-top: 20px;"
@@ -120,9 +144,26 @@ Vue.component("profile", {
 		},
 		save: function () {
 			event.preventDefault();
+
+			$('#error').hide();
+			if (this.user.username === null || this.user.password === null || this.user.name === null || this.user.lastName === null) {
+				$('#errorProfile').text('Molimo popunite sva polja.');
+				$('#errorProfile').show().delay(3000).fadeOut();
+				$('html, body').animate({ scrollTop: document.body.scrollHeight }, "fast");
+				return;
+			}
+			if (this.user.username.trim() === '' || this.user.password.trim() === '' || this.user.name.trim() === '' || this.user.lastName.trim() === '') {
+				$('#errorProfile').text('Molimo popunite sva polja.');
+				$('#errorProfile').show().delay(3000).fadeOut();
+				$('html, body').animate({ scrollTop: document.body.scrollHeight }, "fast");
+				return;
+			}
 			axios
 				.post('/updateUser', this.user)
 				.then(function (response) {
+					$('#successProfile').text('Uspešno ste promenili podatke.');
+					$('#successProfile').show().delay(3000).fadeOut();
+					$('html, body').animate({ scrollTop: document.body.scrollHeight }, "fast");
 					console.log(response);
 				})
 		}
