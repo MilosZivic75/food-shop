@@ -328,6 +328,8 @@ public class FoodShopMain {
 			
 			Manager manager = managerController.read(req.queryParams("username"));
 			Restaurant restaurant = restaurantController.read(manager.getRestaurantId());
+			if (restaurant == null)
+				return "ERROR";
 			restaurant.getArticles().removeIf(article -> article.getDeleted() == 1);
 			
 			return g.toJson(restaurant);
@@ -509,6 +511,45 @@ public class FoodShopMain {
 				customerController.updateType(updatedCustomer, CustomerTypes.SILVER);
 			else if(updatedCustomer.getCollectedPoints() <= 2000)
 				customerController.updateType(updatedCustomer, CustomerTypes.REGULAR);
+			
+			return "SUCCESS";
+		});
+		
+		get("/getOrdersByRestaurant", (req, res) -> {
+			res.type("application/json");
+			
+			User user = (User)req.session().attribute("user");
+			if (user == null)
+				return null;
+			Manager manager = managerController.read(user.getUsername());
+			ArrayList<Order> orders = (ArrayList<Order>) orderController.readAllEntities();
+			orders.removeIf(order -> !order.getRestaurant().equals(manager.getRestaurantId()));
+			
+			return g.toJson(orders);
+		});
+		
+		get("/getCustomersByRestaurant", (req, res) -> {
+			res.type("application/json");
+			
+			User user = (User)req.session().attribute("user");
+			if (user == null)
+				return null;
+			Manager manager = managerController.read(user.getUsername());
+			ArrayList<Order> orders = (ArrayList<Order>) orderController.readAllEntities();
+			orders.removeIf(order -> !order.getRestaurant().equals(manager.getRestaurantId()));
+
+			ArrayList<Customer> customers = new ArrayList<Customer>();
+			for (Order order : orders) {
+				customers.add(customerController.read(order.getCustomer()));
+			}
+			return g.toJson(customers);
+		});
+		
+		post("/updateOrder", (req, res) -> {
+			res.type("application/json");
+			
+			Order order = g.fromJson(req.body(), Order.class);
+			orderController.update(order);
 			
 			return "SUCCESS";
 		});

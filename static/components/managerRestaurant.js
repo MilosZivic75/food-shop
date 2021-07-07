@@ -151,8 +151,10 @@ Vue.component("managerRestaurant", {
                             }
                         })
                         .then(response => {
-                            this.restaurant = response.data;
-                            console.log(this.restaurant);
+                            if (response.data === 'ERROR')
+                                this.restaurant = null;
+                            else
+                                this.restaurant = response.data;
                         });
                 });
         },
