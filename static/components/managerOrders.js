@@ -30,6 +30,7 @@ Vue.component("managerOrders", {
                         <a class="dropdown-item" v-on:click="showProfile">Profil</a>
                         <a class="dropdown-item" v-on:click="showRestaurant">Moj restoran</a>
                         <a class="dropdown-item" v-on:click="showOrders">Porudžbine</a>
+                        <a class="dropdown-item" v-on:click="showComments">Komentari</a>
                         <a class="dropdown-item" v-on:click="logout">Odjavite se</a>
                     </div>
                 </div>
@@ -61,9 +62,9 @@ Vue.component("managerOrders", {
                 </table>
             </div>
         </div>
-        <div class="row" v-else style="margin-left: 250px; margin-top: 40px;">
-                <label style="font-size: 25px;"> Nema porudžbina u vašem restoranu trenutno. </label>
-            </div>
+        <div class="row" v-else style="margin-left: 250px; margin-top: 40px; margin-bottom: 140px;">
+            <label style="font-size: 25px;"> Nema porudžbina u vašem restoranu trenutno. </label>
+        </div>
         <div class="row">
             <div>
                 <img src="../images/administrator-main.jpg" style="margin-top: 20px; position:relative; bottom:0" class="header-image"
@@ -142,6 +143,10 @@ Vue.component("managerOrders", {
         showOrders: function () {
             event.preventDefault();
             router.push('/managerOrders');
+        },
+        showComments: function() {
+            event.preventDefault();
+            router.push('/managerComments');
         },
         logout: function () {
             event.preventDefault();

@@ -39,20 +39,14 @@ public class FoodShopMain {
 
 	private static Gson g = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 	private static UserController userController = new UserController();
-	private static CustomerController customerController = new CustomerController(
-			new CustomerService(new CustomerRepository()));
-	private static DelivererController delivererController = new DelivererController(
-			new DelivererService(new DelivererRepository()));
-	private static ManagerController managerController = new ManagerController(
-			new ManagerService(new ManagerRepository()));
-	private static AdministratorController administratorController = new AdministratorController(
-			new AdministratorService(new AdministratorRepository()));
-	private static RestaurantController restaurantController = new RestaurantController(
-			new RestaurantService(new RestaurantRepository()));
+	private static CustomerController customerController = new CustomerController(new CustomerService(new CustomerRepository()));
+	private static DelivererController delivererController = new DelivererController(new DelivererService(new DelivererRepository()));
+	private static ManagerController managerController = new ManagerController(new ManagerService(new ManagerRepository()));
+	private static AdministratorController administratorController = new AdministratorController(new AdministratorService(new AdministratorRepository()));
+	private static RestaurantController restaurantController = new RestaurantController(new RestaurantService(new RestaurantRepository()));
 	private static CartController cartController = new CartController();
 	private static OrderController orderController = new OrderController(new OrderService(new OrderRepository()));
-	private static CommentController commentController = new CommentController(
-			new CommentService(new CommentRepository()));
+	private static CommentController commentController = new CommentController(new CommentService(new CommentRepository()));
 	private static String loggedUserUsername = "";
 	private static String restaurantID = "";
 
@@ -599,5 +593,31 @@ public class FoodShopMain {
 			return g.toJson(restaurantComments);
 		});
 
+		get("/getAllComments", (req, res) -> {
+			res.type("application/json");
+
+			return g.toJson(commentController.readAllEntities());
+		});
+
+		get("/getCommentsByRestaurant", (req, res) -> {
+			res.type("application/json");
+			User user = (User) req.session().attribute("user");
+			if (user == null)
+				return null;
+			Manager manager = managerController.read(user.getUsername());
+
+			ArrayList<Comment> comments = (ArrayList<Comment>) commentController.readAllEntities();
+			comments.removeIf(comment -> !comment.getRestaurant().equals(manager.getRestaurantId()));
+
+			return g.toJson(comments);
+		});
+
+		post("/updateComment", (req, res) -> {
+			res.type("application/json");
+			Comment comment = g.fromJson(req.body(), Comment.class);
+
+			commentController.update(comment);
+			return "SUCCESS";
+		});
 	}
 }

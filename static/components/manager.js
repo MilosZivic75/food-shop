@@ -27,6 +27,7 @@ Vue.component("manager", {
 					<a class="dropdown-item" v-on:click="showProfile">Profil</a>
                     <a class="dropdown-item" v-on:click="showRestaurant">Moj restoran</a>
                     <a class="dropdown-item" v-on:click="showOrders">Porudžbine</a>
+                    <a class="dropdown-item" v-on:click="showComments">Komentari</a>
 					<a class="dropdown-item" v-on:click="logout">Odjavite se</a>
 				</div>
 			</div>
@@ -64,6 +65,10 @@ Vue.component("manager", {
         showOrders: function() {
             event.preventDefault();
             router.push('/managerOrders');
+        },
+        showComments: function() {
+            event.preventDefault();
+            router.push('/managerComments');
         },
         logout: function () {
             event.preventDefault();

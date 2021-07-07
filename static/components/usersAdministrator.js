@@ -28,6 +28,7 @@ Vue.component("usersAdministrator", {
                         <a class="dropdown-item" v-on:click="showProfile">Profil</a>
                         <a class="dropdown-item" v-on:click="showUsers">Korisnici</a>
                         <a class="dropdown-item" v-on:click="showRestaurants">Restorani</a>
+                        <a class="dropdown-item" v-on:click="showComments">Komentari</a>
                         <a class="dropdown-item" v-on:click="logout">Odjavite se</a>
                     </div>
                 </div>
@@ -138,6 +139,10 @@ Vue.component("usersAdministrator", {
         showRestaurants: function () {
             event.preventDefault();
             router.push('/restaurantsAdministrator');
+        },
+        showComments: function () {
+            event.preventDefault();
+            router.push('/commentsAdministrator');
         },
         logout: function () {
             event.preventDefault();

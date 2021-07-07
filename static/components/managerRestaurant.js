@@ -29,6 +29,7 @@ Vue.component("managerRestaurant", {
                         <a class="dropdown-item" v-on:click="showProfile">Profil</a>
                         <a class="dropdown-item" v-on:click="showRestaurant">Moj restoran</a>
                         <a class="dropdown-item" v-on:click="showOrders">Porudžbine</a>
+                        <a class="dropdown-item" v-on:click="showComments">Komentari</a>
                         <a class="dropdown-item" v-on:click="logout">Odjavite se</a>
                     </div>
                 </div>
@@ -170,6 +171,10 @@ Vue.component("managerRestaurant", {
             event.preventDefault();
             router.push('/managerOrders');
         },
+        showComments: function() {
+            event.preventDefault();
+            router.push('/managerComments');
+        },
         logout: function () {
             event.preventDefault();
             router.push('/');
@@ -286,11 +291,6 @@ Vue.component("managerRestaurant", {
                         });
                 }
             }
-            /*axios
-                .post('addOrUpdateArticle', this.article)
-                .then(response => {
-                    this.initSetup();
-                });*/
         },
         onFileChanged: function (event) {
             this.image = event.target.files[0];

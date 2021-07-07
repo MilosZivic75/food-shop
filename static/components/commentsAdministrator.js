@@ -1,7 +1,8 @@
-Vue.component("administrator", {
+Vue.component("commentsAdministrator", {
     data: function () {
         return {
-            user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null }
+            user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
+            comments: []
         }
     },
     template: ` 
@@ -32,9 +33,16 @@ Vue.component("administrator", {
                 </div>
             </div>
         </div>
+        <div class="row" style="margin-top: 150px; margin-left: 30px;"> 
+			<div class="col-11" v-for="comment in comments" style="margin-left:30px"> 
+				<p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
+				Korisnik: {{comment.customerUsername}}<br>Restoran: {{comment.restaurantID}}<br> Datum: {{getDate(comment.timeOfOccurrence)}}
+                    <br> Tekst: {{comment.text}}<br> Ocena: {{comment.grade}}<br> Odobren: {{getApproved(comment.grade)}}
+			</div>
+		</div>
         <div class="row">
             <div>
-                <img src="../images/administrator-main.jpg" style="margin-top: 20px; position:absolute; bottom:0" class="header-image"
+                <img src="../images/administrator-main.jpg" style="margin-top: 20px; position:relative; bottom:0" class="header-image"
                     height="300px" width="100%" alt="header image">
             </div>
         </div>
@@ -50,6 +58,11 @@ Vue.component("administrator", {
                     return;
                 } 
                 this.user = response.data;
+            });
+        axios
+            .get('getAllComments')
+            .then(response => {
+                this.comments = response.data;
             });
     },
     methods: {
@@ -74,6 +87,19 @@ Vue.component("administrator", {
             router.push('/');
             axios
                 .post('/logout');
+        },
+        getDate: function (date) {
+            let day = (date.date.day < 10) ? '0' + date.date.day : date.date.day;
+            let month = (date.date.month < 10) ? '0' + date.date.month : date.date.month;
+            let hour = (date.time.hour < 10) ? '0' + date.time.hour : date.time.hour;
+            let minute = (date.time.minute < 10) ? '0' + date.time.minute : date.time.minute;
+            return day + '.' + month + '.' + date.date.year + '.' + ' ' + hour + ':' + minute;
+        },
+        getApproved: function (approved) {
+            if(approved)
+                return 'Jeste';
+            else
+                return 'Nije';
         }
     }
 });

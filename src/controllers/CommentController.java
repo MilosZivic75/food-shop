@@ -1,13 +1,11 @@
 package controllers;
 
-import java.time.LocalDateTime;
-
 import beans.Comment;
 import services.IService;
 
-public class CommentController extends Controller<LocalDateTime, Comment>{
+public class CommentController extends Controller<String, Comment>{
 	
-	public CommentController(IService<LocalDateTime, Comment> service) {
+	public CommentController(IService<String, Comment> service) {
 		super(service);
 	}
 	
