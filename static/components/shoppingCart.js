@@ -105,7 +105,16 @@ Vue.component("shopping-cart", {
             } else {
                 this.quantity[index] = this.quantity[index] - 1;
                 document.getElementById(addedArticle.name).value = this.quantity[index]
-                this.price = this.price - addedArticle.price;
+                if(this.user.customerType === 'GOLD'){
+                    this.price = this.price - addedArticle.price * 92/100;
+                } else if(this.user.customerType === 'SILVER'){
+                    this.price = this.price - addedArticle.price * 95/100;
+                } else if(this.user.customerType === 'BRONSE'){
+                    this.price = this.price - addedArticle.price * 97/100;
+                } else {
+                    this.price = this.price - addedArticle.price;
+                }
+                
                 axios.post('/addToCart', {
                     name: addedArticle.name,
                     price: addedArticle.price,
@@ -127,7 +136,16 @@ Vue.component("shopping-cart", {
             
             this.quantity[index] = this.quantity[index] + 1;
             document.getElementById(addedArticle.name).value = this.quantity[index]
-            this.price = this.price + addedArticle.price;
+            if(this.user.customerType === 'GOLD'){
+                this.price = this.price + addedArticle.price * 92/100;
+            } else if(this.user.customerType === 'SILVER'){
+                this.price = this.price + addedArticle.price * 95/100;
+            } else if(this.user.customerType === 'BRONSE'){
+                this.price = this.price + addedArticle.price * 97/100;
+            } else {
+                this.price = this.price + addedArticle.price;
+            }
+            
             axios.post('/addToCart', {
                 name: addedArticle.name,
                 price: addedArticle.price,
@@ -150,8 +168,16 @@ Vue.component("shopping-cart", {
         },
 
         removeFromCart: function(selectedArticle, index) {
-            this.price = this.price - selectedArticle.price * this.quantity[index];
-
+            if(this.user.customerType === 'GOLD'){
+                this.price = (this.price - selectedArticle.price * this.quantity[index]) * 92/100;
+            } else if(this.user.customerType === 'SILVER'){
+                this.price = (this.price - selectedArticle.price * this.quantity[index]) * 95/100;
+            } else if(this.user.customerType === 'BRONSE'){
+                this.price = (this.price - selectedArticle.price * this.quantity[index]) * 97/100;
+            } else {
+                this.price = this.price - selectedArticle.price * this.quantity[index];
+            }
+            
             axios.post('/removeFromCart', {
                 name: selectedArticle.name,
                 price: selectedArticle.price,

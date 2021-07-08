@@ -26,6 +26,7 @@ import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
 import beans.Order;
+import beans.OrderRequest;
 import beans.Restaurant;
 import beans.User;
 import controllers.*;
@@ -47,8 +48,10 @@ public class FoodShopMain {
 	private static CartController cartController = new CartController();
 	private static OrderController orderController = new OrderController(new OrderService(new OrderRepository()));
 	private static CommentController commentController = new CommentController(new CommentService(new CommentRepository()));
+	private static RequestController requestController = new RequestController(new RequestService(new RequestRepository()));
 	private static String loggedUserUsername = "";
 	private static String restaurantID = "";
+	private static Order specificOrder = new Order();
 
 	public static void main(String[] args) throws Exception {
 		port(8080);
@@ -617,6 +620,51 @@ public class FoodShopMain {
 			Comment comment = g.fromJson(req.body(), Comment.class);
 
 			commentController.update(comment);
+			return "SUCCESS";
+		});
+		
+		get("/waitingDeliveryOrders", (req, res) -> {
+			res.type("application/json");
+			List<Order> orders = orderController.readAllEntities();
+			List<Order> waitingDelivererOrders = new ArrayList<Order>();
+			
+			for(Order order: orders) {
+				if(order.getOrderStatus().equals(OrderStatus.WAITING_FOR_DELIVERY)) 
+					waitingDelivererOrders.add(order);
+			}
+			
+			return g.toJson(waitingDelivererOrders);
+		});
+		
+		post("/showOrder", (req, res) -> {
+			specificOrder = g.fromJson(req.body(), Order.class);
+			return "SUCCESS";
+		});
+		
+		get("/getSpecificOrder", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(specificOrder);
+		});
+		
+		get("/getArticlesFromSpecificOrder", (req, res) -> {
+			res.type("application/json");
+			List<Article> articles = orderController.readAll().get(specificOrder.getId()).getArticles();
+			return g.toJson(articles);
+		});
+		
+		get("/getQuantityFromSpecificOrder", (req, res) -> {
+			res.type("application/json");
+			
+			List<Integer> quantity = orderController.readAll().get(specificOrder.getId()).getQuantity();
+			return g.toJson(quantity);
+		});
+		
+		post("/addRequest", (req, res) -> {
+			res.type("application/json");
+			OrderRequest orderRequest = g.fromJson(req.body(), OrderRequest.class);
+			orderRequest.setRequestID(orderRequest.getDelivererID() + " " + orderRequest.getOrderID());
+			requestController.create(orderRequest);
+			
 			return "SUCCESS";
 		});
 	}

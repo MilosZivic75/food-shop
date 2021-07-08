@@ -23,38 +23,47 @@
 </head>
 
 <body>
-    
-    <div class="row" >
-        <div class="col-12">
-        <img src="images/orders.png" alt="" width="90%" height="400" style="margin-left: 90px;">
+    <div class="bg" style="background-color: sandybrown;">
+        <div class="row">
+            <div class="col-4" >
+                <div class="container" >
+                    <img src="images/food-order-icon-26.jpg"  alt="" height="150" width="150">
+                </div>
+            </div>
+        </div>
+    <div class="row" style="margin-left: 180px; ">
+        <div class="col-8">
+            <label for="" style="font-size: 40px; margin-left: 20px; margin-top: 100px;"> Narudzbina:  </label>
+            <label for="" style="font-size: 40px; margin-left: 20px; margin-top: 100px;"> 11111111  </label>
         </div>
     </div>
-    <div class="row" style="margin-left: 200px; margin-top: 50px;">
-        <label for="" style="font-size: 30px;"> Vaše porudžbine: </label>
+    <div class="row" style="margin-left: 180px; margin-top: 35px;">
+        <div class="col-8">
+            <label for="" style="font-size: 40px; margin-left: 20px;"> Restoran:  </label>
+            <label for="" style="font-size: 40px; margin-left: 20px;"> McDonalds  </label>
+        </div>
     </div>
-    <div class="row" style="margin-left: 200px; margin-top: 10px; font-size: 22px; text-align: center;">
-        <div class="col-10">
-            <table>
+    <div class="row" style="margin-left: 180px; margin-top: 35px;">
+        <div class="col-8">
+            <label for="" style="font-size: 40px; margin-left: 20px;"> Iznos:  </label>
+            <label for="" style="font-size: 40px; margin-left: 20px;"> 900  </label>
+        </div>
+    </div>
+    <div class="row" style="margin-left: 180px; margin-top: 35px;">
+        <div class="col-8">
+            <table style="font-size: 40px; margin-left: 20px;">
                 <tr>
-                    <th> Porudžbina </th>
-                    <th> Restoran </th>
-                    <th> Iznos </th>
-                    <th> Status </th>
+                    <th> Artikli </th>
+                    <th> <label for="" style="margin-left: 100px;"> Kolicina </label> </th>
                 </tr>
-                <tr v-for="(order, index) in orders">
-                    <td> <label for="" style="margin-left: 20px;"> {{order.id}} </label> </td>
-                    <td> <label for="" style="margin-left: 30px; margin-right: 20px;"> {{order.restaurantID}} </label> </td>
-                    <td> <label for="" style="margin-left: 30px;"> {{order.price}} </label> </td>
-                    <td> <label for="" style="margin-left: 40px;"> {{orderValue(order.orderStatus)}} </label> </td>
-                    <td> 
-                        <button class="btn btn-danger" style="margin-left: 40px;" v-if="inProcessing(order.orderStatus) === true" v-on:click="cancelOrder(order.id, index, order.price)"> Otkaži </button>
-                        <button class="btn btn-primary" style="margin-left: 40px;" v-else-if="isOrderDelivered(order.orderStatus) === true" v-on:click="addComment(order.restaurantID)"> Oceni restoran </button>
-                    </td>
+                <tr v-for="article in restaurant.articles">
+                    <td> <label for="" > Hamburger</label> </td>
+                    <td> <label for="" style="margin-left: 100px;"> 2 </label> </td>
                 </tr>
             </table>
         </div>
     </div>
-    <p style=" margin-left: 200px; margin-bottom: 500px; font-size: 25px; margin-top: 50px; color: red;"> Napomena: Ukoliko otkažete porudžbinu koja je u stanju obrade, gubite poene na svom nalogu! </p>
+</div>
 </body>
 
 </html>
