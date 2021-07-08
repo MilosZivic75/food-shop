@@ -42,7 +42,11 @@ Vue.component("usersAdministrator", {
 			<div class="col-2" v-for="user in users" style="margin-left:30px"> 
 				<p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
 				Ime: {{user.name}}<br>Prezime: {{user.lastName}}<br> Korisničko ime: {{user.username}}<br> Tip korisnika: {{user.userRole}}
-                <br> <button class="btn btn-danger btn-sm col-7" v-if="user.userRole === 'Menadžer' || user.userRole === 'Dostavljač' || user.userRole === 'Kupac'" 
+                <br> <button class="btn btn-success btn-sm col-5" v-if="(user.userRole === 'Menadžer' || user.userRole === 'Dostavljač' || user.userRole === 'Kupac') && user.blocked === 1" 
+                        v-on:click="unblockUser(user.username)">Odlokiraj</button>
+                    <button class="btn btn-warning btn-sm col-5" v-if="(user.userRole === 'Menadžer' || user.userRole === 'Dostavljač' || user.userRole === 'Kupac') && user.blocked === 0" 
+                        v-on:click="blockUser(user.username)">Blokiraj</button>
+                    <button class="btn btn-danger btn-sm col-5" v-if="user.userRole === 'Menadžer' || user.userRole === 'Dostavljač' || user.userRole === 'Kupac'" 
                         v-on:click="deleteUser(user.username)">Obriši</button></p>
 			</div>
 		</div>
@@ -201,6 +205,22 @@ Vue.component("usersAdministrator", {
             event.preventDefault();
             
             axios.post('/deleteUser', {
+                username: username,
+            })
+                .then(response => (this.initSetup()));
+        },
+        blockUser: function (username) {
+            event.preventDefault();
+            
+            axios.post('/blockUser', {
+                username: username,
+            })
+                .then(response => (this.initSetup()));
+        },
+        unblockUser: function (username) {
+            event.preventDefault();
+            
+            axios.post('/unblockUser', {
                 username: username,
             })
                 .then(response => (this.initSetup()));

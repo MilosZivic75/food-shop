@@ -8,7 +8,8 @@
     "sex": "Muški",
     "birthDate": "1955-03-25",
     "userRole": "Menadžer",
-    "deleted": 0
+    "deleted": 0,
+    "blocked": 0
   },
   "djoka": {
     "restaurantId": "",
@@ -19,7 +20,8 @@
     "sex": "Muški",
     "birthDate": "2021-07-08",
     "userRole": "Menadžer",
-    "deleted": 0
+    "deleted": 0,
+    "blocked": 0
   },
   "drago": {
     "restaurantId": "Caribic",
@@ -30,6 +32,7 @@
     "sex": "Muški",
     "birthDate": "2021-07-10",
     "userRole": "Menadžer",
-    "deleted": 0
+    "deleted": 0,
+    "blocked": 0
   }
 }

@@ -27,5 +27,12 @@ public class UserController {
 	public void deleteUser(String username) {
 		userService.deleteUser(username);
 	}
+
+	public void blockUser(String username) {
+		userService.blockUser(username);
+	}
 	
+	public void unblockUser(String username) {
+		userService.unblockUser(username);
+	}
 }

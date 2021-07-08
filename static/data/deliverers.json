@@ -8,6 +8,7 @@
     "sex": "Muški",
     "birthDate": "1988-08-12",
     "userRole": "Dostavljač",
-    "deleted": 0
+    "deleted": 0,
+    "blocked": 0
   }
 }

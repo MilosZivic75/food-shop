@@ -174,6 +174,11 @@ Vue.component("index", {
 						$('#error').show().delay(3000).fadeOut();
 						console.log(response);
 					}
+					else if (response.data === 'BLOCKED') {
+						$('#error').text('Vaš nalog je blokiran, za više informacija obratite se administratoru.');
+						$('#error').show().delay(3000).fadeOut();
+						console.log(response);
+					}
 				});
 		},
 		registrateUser: function () {

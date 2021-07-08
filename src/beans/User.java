@@ -11,6 +11,7 @@ public class User {
 	private Date birthDate;
 	private String userRole;
 	private int deleted;
+	private int blocked;
 	
 	public User() {
 		super();
@@ -27,6 +28,7 @@ public class User {
 		this.birthDate = birthDate;
 		this.userRole = userRole;
 		this.deleted = 0;
+		this.blocked = 0;
 	}
 
 	public String getUsername() {
@@ -91,5 +93,13 @@ public class User {
 
 	public void setDeleted(int deleted) {
 		this.deleted = deleted;
+	}
+
+	public int getBlocked() {
+		return blocked;
+	}
+
+	public void setBlocked(int blocked) {
+		this.blocked = blocked;
 	}
 }

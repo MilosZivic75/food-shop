@@ -70,6 +70,8 @@ public class FoodShopMain {
 			if (loggedUser == null) {
 				return "ERROR";
 			}
+			if (loggedUser.getBlocked() == 1)
+				return "BLOCKED";
 			Session session = req.session();
 			if (loggedUser.getUserRole().equals("Kupac")) {
 				Customer customer = customerController.read(loggedUser.getUsername());
@@ -665,6 +667,22 @@ public class FoodShopMain {
 			orderRequest.setRequestID(orderRequest.getDelivererID() + " " + orderRequest.getOrderID());
 			requestController.create(orderRequest);
 			
+			return "SUCCESS";
+		});
+		
+		post("/blockUser", (req, res) -> {
+			res.type("application/json");
+			User user = g.fromJson(req.body(), User.class);
+			userController.blockUser(user.getUsername());
+
+			return "SUCCESS";
+		});
+		
+		post("/unblockUser", (req, res) -> {
+			res.type("application/json");
+			User user = g.fromJson(req.body(), User.class);
+			userController.unblockUser(user.getUsername());
+
 			return "SUCCESS";
 		});
 	}
