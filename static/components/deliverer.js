@@ -25,7 +25,7 @@ Vue.component("deliverer", {
                     </div>
                 </div>
                 <div>
-                    <button type="button" style="margin-left: 180px; margin-top: 30px; font-size: 25px;" class="btn btn-danger"> <b> Narudžbine </b></button>
+                    <button type="button" style="margin-left: 180px; margin-top: 30px; font-size: 25px;" class="btn btn-danger" v-on:click="showOrders"> <b> Narudžbine </b></button>
                 </div>
 		</div>
 
@@ -72,6 +72,10 @@ Vue.component("deliverer", {
             router.push('/');
             axios
                 .post('/logout');
+        },
+        showOrders: function() {
+            event.preventDefault();
+            router.push('/delivererOrders');
         }
     }
 });

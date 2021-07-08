@@ -137,6 +137,41 @@
     "customerUsername": "the",
     "orderStatus": "CANCELED"
   },
+  "4461844836": {
+    "id": "4461844836",
+    "articles": [
+      {
+        "name": "Hamburger",
+        "price": 150.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 100.0,
+        "description": "hamburger",
+        "image": "/images/McDonaldsArticles/hamburger.png",
+        "deleted": 0
+      }
+    ],
+    "quantity": [
+      1
+    ],
+    "restaurantID": "McDonalds",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 8
+      },
+      "time": {
+        "hour": 0,
+        "minute": 49,
+        "second": 42,
+        "nano": 301275600
+      }
+    },
+    "price": 145.5,
+    "customerUsername": "the",
+    "orderStatus": "CANCELED"
+  },
   "5152525340": {
     "id": "5152525340",
     "articles": [
@@ -216,6 +251,6 @@
     },
     "price": 1216.0,
     "customerUsername": "the",
-    "orderStatus": "PROCESSING"
+    "orderStatus": "WAITING_FOR_DELIVERY"
   }
 }
