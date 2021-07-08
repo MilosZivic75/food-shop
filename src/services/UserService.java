@@ -1,9 +1,7 @@
 package services;
 
 import java.util.Date;
-import java.util.Map;
 
-import beans.Administrator;
 import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
@@ -14,25 +12,12 @@ import repositories.DelivererRepository;
 import repositories.ManagerRepository;
 
 public class UserService {
-	/*
-	 * private Map<String, Customer> customers; private Map<String, Administrator>
-	 * administrators; private Map<String, Manager> managers; private Map<String,
-	 * Deliverer> deliverers;
-	 */
-
 	private CustomerRepository customerRepository = new CustomerRepository();
 	private AdministratorRepository administratorRepository = new AdministratorRepository();
 	private ManagerRepository managerRepository = new ManagerRepository();
 	private DelivererRepository delivererRepository = new DelivererRepository();
 
-	public UserService() {
-		/*
-		 * customers = customerRepository.readAll(); administrators =
-		 * administratorRepository.readAll(); managers = managerRepository.readAll();
-		 * deliverers = delivererRepository.readAll();
-		 */
-
-	}
+	public UserService() { }
 
 	public User userExists(String username, String password) {
 		if (!customerRepository.readAll().containsKey(username)
