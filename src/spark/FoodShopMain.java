@@ -49,6 +49,7 @@ public class FoodShopMain {
 	private static OrderController orderController = new OrderController(new OrderService(new OrderRepository()));
 	private static CommentController commentController = new CommentController(new CommentService(new CommentRepository()));
 	private static RequestController requestController = new RequestController(new RequestService(new RequestRepository()));
+	private static SearchController searchController = new SearchController();
 	private static String loggedUserUsername = "";
 	private static String restaurantID = "";
 	private static Order specificOrder = new Order();
@@ -578,7 +579,8 @@ public class FoodShopMain {
 			//comment.setApproved(false);
 			comment.setTimeOfOccurrence(LocalDateTime.now());
 			commentController.create(comment);
-
+			restaurantController.updateAverage(comment.getRestaurant(), commentController.readAllEntities());
+			
 			return "SUCCESS";
 		});
 
@@ -708,6 +710,39 @@ public class FoodShopMain {
 			delivererController.updateDelivererOrders(orderRequest.getOrderID(), orderRequest.getDelivererID());
 			
 			return "SUCCESS";
+		});
+		
+		post("/findRestaurants", (req, res) -> {
+			res.type("application/json");
+			String name = req.body().split(",")[0].split(":")[1];
+			name = name.substring(1, name.length()-1);
+			String location = req.body().split(",")[1].split(":")[1];
+			location = location.substring(1, location.length()-1);
+			String type = req.body().split(",")[2].split(":")[1];
+			type = type.substring(1, type.length()-1);
+			String grade = req.body().split(",")[3].split(":")[1].split("}")[0];
+			grade = grade.substring(1, grade.length()-1);	
+			
+			if(!name.equals("Naziv restorana") && !name.equals("")) {
+				searchController.findByName(name, location, type, grade, restaurantController.readAllEntities());
+				return "SUCCESS";
+			} else if(!location.equals("Lokacija restorana") && !location.equals("")){
+				searchController.findByLocation(location, type, grade, restaurantController.readAllEntities());
+				return "SUCCESS";
+			} else if(!type.equals("Tip restorana")){
+				searchController.findByType(type, grade, restaurantController.readAllEntities());
+				return "SUCCESS";
+			} else if(!grade.equals("Izaberi ocenu")){
+				searchController.findByGrades(grade, restaurantController.readAllEntities());
+				return "SUCCESS";
+			}
+			
+			return "NO PARAMETERS";
+		});
+		
+		get("/getRestaurantsAfterSearch", (req, res) -> {
+			res.type("application/json");
+			return g.toJson(searchController.getRestaurants());
 		});
 	}
 }
