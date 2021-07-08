@@ -72,9 +72,9 @@ Vue.component("user-orders", {
             } else if(orderStatus === 'IN_PREPARATION'){
                 return "U PRIPREMI";
             } else if(orderStatus === 'WAITING_FOR_DELIVERY'){
-                return "U PRIPREMI";
-            } else if(orderStatus === 'IN_TRANSPORT'){
                 return "ČEKA DOSTAVLJAČA";
+            } else if(orderStatus === 'IN_TRANSPORT'){
+                return "U TRANSPORTU";
             } else if(orderStatus === 'DELIVERED'){
                 return "DOSTAVLJENA";
             } else if(orderStatus === 'CANCELED'){

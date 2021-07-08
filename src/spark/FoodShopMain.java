@@ -26,6 +26,7 @@ import beans.Customer;
 import beans.Deliverer;
 import beans.Manager;
 import beans.Order;
+import beans.OrderRequest;
 import beans.Restaurant;
 import beans.User;
 import controllers.*;
@@ -47,6 +48,7 @@ public class FoodShopMain {
 	private static CartController cartController = new CartController();
 	private static OrderController orderController = new OrderController(new OrderService(new OrderRepository()));
 	private static CommentController commentController = new CommentController(new CommentService(new CommentRepository()));
+	private static RequestController requestController = new RequestController(new RequestService(new RequestRepository()));
 	private static String loggedUserUsername = "";
 	private static String restaurantID = "";
 	private static Order specificOrder = new Order();
@@ -655,6 +657,15 @@ public class FoodShopMain {
 			
 			List<Integer> quantity = orderController.readAll().get(specificOrder.getId()).getQuantity();
 			return g.toJson(quantity);
+		});
+		
+		post("/addRequest", (req, res) -> {
+			res.type("application/json");
+			OrderRequest orderRequest = g.fromJson(req.body(), OrderRequest.class);
+			orderRequest.setRequestID(orderRequest.getDelivererID() + " " + orderRequest.getOrderID());
+			requestController.create(orderRequest);
+			
+			return "SUCCESS";
 		});
 	}
 }
