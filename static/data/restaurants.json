@@ -69,6 +69,44 @@
     "logo": "/images/restaurantLogo1.png",
     "deleted": 0
   },
+  "Gyros Master": {
+    "name": "Gyros Master",
+    "restaurantType": "Brza hrana",
+    "articles": [],
+    "status": "Otvoren",
+    "location": {
+      "longitude": 20.019025900000003,
+      "latitude": 45.6370375,
+      "address": {
+        "street": "Dimitrija Tucovića",
+        "number": "3",
+        "city": "Novi Sad",
+        "postalCode": "21101",
+        "country": "Srbija"
+      }
+    },
+    "logo": "/images/restaurantLogo3.png",
+    "deleted": 0
+  },
+  "Foody!": {
+    "name": "Foody!",
+    "restaurantType": "Grill",
+    "articles": [],
+    "status": "Zatvoren",
+    "location": {
+      "longitude": 20.019025900000003,
+      "latitude": 45.6370375,
+      "address": {
+        "street": "Bulevar oslobođenja",
+        "number": "119",
+        "city": "Novi Sad",
+        "postalCode": "21000",
+        "country": "Srbija"
+      }
+    },
+    "logo": "/images/restaurantLogo7.png",
+    "deleted": 0
+  },
   "Caribic": {
     "name": "Caribic",
     "restaurantType": "Picerija",
@@ -86,6 +124,63 @@
       }
     },
     "logo": "/images/restaurantLogo2.png",
+    "deleted": 0
+  },
+  "Tortilla Casa": {
+    "name": "Tortilla Casa",
+    "restaurantType": "Brza hrana",
+    "articles": [],
+    "status": "Zatvoren",
+    "location": {
+      "longitude": 20.019025900000003,
+      "latitude": 45.6370375,
+      "address": {
+        "street": "Bulevar oslobođenja",
+        "number": "91",
+        "city": "Novi Sad",
+        "postalCode": "400111",
+        "country": "Srbija"
+      }
+    },
+    "logo": "/images/restaurantLogo5.png",
+    "deleted": 0
+  },
+  "KFC": {
+    "name": "KFC",
+    "restaurantType": "Sendviči",
+    "articles": [],
+    "status": "Zatvoren",
+    "location": {
+      "longitude": 20.019025900000003,
+      "latitude": 45.6370375,
+      "address": {
+        "street": "Bulevar oslobođenja",
+        "number": "119",
+        "city": "Novi Sad",
+        "postalCode": "21000",
+        "country": "Srbija"
+      }
+    },
+    "logo": "/images/restaurantLogo6.png",
+    "deleted": 0
+  },
+  "Papričica": {
+    "name": "Papričica",
+    "restaurantType": "Grill",
+    "articles": [],
+    "status": "Otvoren",
+    "location": {
+      "longitude": 20.019025900000003,
+      "latitude": 45.6370375,
+      "address": {
+        "street": "Bulevar oslobođenja",
+        "number": "115h",
+        "city": "Novi Sad",
+        "postalCode": "21000",
+        "country": "Srbija"
+      }
+    },
+    "logo": "/images/restaurantLogo4.png",
     "deleted": 0
   }
 }

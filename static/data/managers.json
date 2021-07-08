@@ -1,4 +1,52 @@
 {
+  "joca": {
+    "restaurantId": "Tortilla Casa",
+    "username": "joca",
+    "password": "joca",
+    "name": "Jovana",
+    "lastName": "Jovic",
+    "sex": "Ženski",
+    "birthDate": "2021-07-01",
+    "userRole": "Menadžer",
+    "deleted": 0,
+    "blocked": 0
+  },
+  "mare": {
+    "restaurantId": "Papričica",
+    "username": "mare",
+    "password": "mare",
+    "name": "Marko",
+    "lastName": "Maric",
+    "sex": "Muški",
+    "birthDate": "2021-07-02",
+    "userRole": "Menadžer",
+    "deleted": 0,
+    "blocked": 0
+  },
+  "jeca": {
+    "restaurantId": "KFC",
+    "username": "jeca",
+    "password": "jeca",
+    "name": "Jelena",
+    "lastName": "Jankovic",
+    "sex": "Ženski",
+    "birthDate": "2021-07-03",
+    "userRole": "Menadžer",
+    "deleted": 0,
+    "blocked": 0
+  },
+  "maja": {
+    "restaurantId": "Foody!",
+    "username": "maja",
+    "password": "maja",
+    "name": "Marijana",
+    "lastName": "Milic",
+    "sex": "Ženski",
+    "birthDate": "2021-07-05",
+    "userRole": "Menadžer",
+    "deleted": 0,
+    "blocked": 0
+  },
   "zika": {
     "restaurantId": "McDonalds",
     "username": "zika",
@@ -12,7 +60,7 @@
     "blocked": 0
   },
   "djoka": {
-    "restaurantId": "",
+    "restaurantId": "Gyros Master",
     "username": "djoka",
     "password": "djoka",
     "name": "Djordje",
