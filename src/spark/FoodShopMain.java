@@ -570,7 +570,7 @@ public class FoodShopMain {
 
 		post("/addRate", (req, res) -> {
 			Comment comment = g.fromJson(req.body(), Comment.class);
-			comment.setApproved(false);
+			//comment.setApproved(false);
 			comment.setTimeOfOccurrence(LocalDateTime.now());
 			commentController.create(comment);
 
@@ -586,7 +586,7 @@ public class FoodShopMain {
 			List<Comment> restaurantComments = new ArrayList<Comment>();
 
 			for (Comment comment : comments) {
-				if (comment.getRestaurant().equals(restaurant.getName()) && comment.getApproved() == true)
+				if (comment.getRestaurant().equals(restaurant.getName()) && comment.getApproved() != null && comment.getApproved() != false)
 					restaurantComments.add(comment);
 			}
 

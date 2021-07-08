@@ -38,9 +38,9 @@ Vue.component("managerComments", {
             <div class="col-11" v-for="comment in comments" style="margin-left:30px"> 
                 <p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
                     Korisnik: {{comment.customerUsername}}<br>Restoran: {{comment.restaurantID}}<br> Datum: {{getDate(comment.timeOfOccurrence)}}
-                    <br> Tekst: {{comment.text}}<br> Ocena: {{comment.grade}}<br> Odobren: {{getApproved(comment.approved)}}<br><br>
-                    <button class="btn btn-success btn-sm col-1" v-on:click="approve(comment)">Odobri</button>
-                    <button class="btn btn-danger btn-sm col-1" v-on:click="reject(comment)">Odbij</button>
+                    <br> Tekst: {{comment.text}}<br> Ocena: {{comment.grade}}<br> {{getApproved(comment.approved)}}<br><br>
+                    <button class="btn btn-success btn-sm col-1" v-if="comment.approved === undefined" v-on:click="approve(comment)">Odobri</button>
+                    <button class="btn btn-danger btn-sm col-1" v-if="comment.approved === undefined" v-on:click="reject(comment)">Odbij</button>
                 </p>
             </div>
         </div>
@@ -69,7 +69,10 @@ Vue.component("managerComments", {
         axios
             .get('/getCommentsByRestaurant')
             .then(response => {
-                this.comments = response.data;
+                for (let comment of response.data) {
+                    this.comments.push({timeOfOccurrence: comment.timeOfOccurrence, customerUsername: comment.customerUsername,
+                        restaurantID: comment.restaurantID, text: comment.text, grade: comment.grade, approved: comment.approved});
+                }
             });
     },
     methods: {
@@ -103,10 +106,12 @@ Vue.component("managerComments", {
             return day + '.' + month + '.' + date.date.year + '.' + ' ' + hour + ':' + minute;
         },
         getApproved: function (approved) {
+            if (approved === undefined)
+                return 'Čeka na odobrenje'
             if (approved)
-                return 'Jeste';
+                return 'Odobren';
             else
-                return 'Nije';
+                return 'Odbijen';
         },
         approve: function (comment) {
             event.preventDefault();
