@@ -91,52 +91,6 @@
     "customerUsername": "the",
     "orderStatus": "CANCELED"
   },
-  "5735552267": {
-    "id": "5735552267",
-    "articles": [
-      {
-        "name": "Cheeseburger",
-        "price": 180.0,
-        "articleType": "DRINK",
-        "restaurantID": "McDonalds",
-        "amount": 120.0,
-        "description": "cizzzz",
-        "image": "/images/McDonaldsArticles/cheeseburger.png",
-        "deleted": 0
-      },
-      {
-        "name": "Sladoled",
-        "price": 150.0,
-        "articleType": "DRINK",
-        "restaurantID": "McDonalds",
-        "amount": 100.0,
-        "description": "sladoled u casi",
-        "image": "/images/McDonaldsArticles/ice-cream.png",
-        "deleted": 0
-      }
-    ],
-    "quantity": [
-      3,
-      3
-    ],
-    "restaurantID": "McDonalds",
-    "date": {
-      "date": {
-        "year": 2021,
-        "month": 7,
-        "day": 7
-      },
-      "time": {
-        "hour": 3,
-        "minute": 0,
-        "second": 1,
-        "nano": 214544500
-      }
-    },
-    "price": 940.5,
-    "customerUsername": "the",
-    "orderStatus": "CANCELED"
-  },
   "4461844836": {
     "id": "4461844836",
     "articles": [
@@ -170,7 +124,7 @@
     },
     "price": 145.5,
     "customerUsername": "the",
-    "orderStatus": "CANCELED"
+    "orderStatus": "DELIVERED"
   },
   "5152525340": {
     "id": "5152525340",

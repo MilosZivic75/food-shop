@@ -16,5 +16,8 @@ public class DelivererController extends Controller<String, Deliverer> {
 	public boolean updateUserData(User user) {
 		return delivererService.updateUserData(user);
 	}
-
+	
+	public void updateDelivererOrders(String orderID, String delivererID) {
+		delivererService.updateDelivererOrders(orderID, delivererID);
+	}
 }

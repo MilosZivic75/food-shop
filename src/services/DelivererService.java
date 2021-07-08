@@ -16,4 +16,7 @@ public class DelivererService extends Service<String, Deliverer> {
 		return delivererRepository.updateUserData(user);
 	}
 	
+	public void updateDelivererOrders(String orderID, String delivererID) {
+		delivererRepository.updateDelivererOrders(orderID, delivererID);
+	}
 }

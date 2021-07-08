@@ -7,7 +7,9 @@ import java.util.Map;
 import com.google.gson.reflect.TypeToken;
 
 import beans.Deliverer;
+import beans.Order;
 import beans.User;
+import enumerations.OrderStatus;
 
 public class DelivererRepository extends Repository<String, Deliverer> {
 
@@ -53,5 +55,17 @@ public class DelivererRepository extends Repository<String, Deliverer> {
 
 		return true;
 	}
-
+	
+	public void updateDelivererOrders(String orderID, String delivererID) {
+		Map<String, Deliverer> entities = readFile();
+		Deliverer deliverer = entities.get(delivererID);
+		
+		for(Order order: deliverer.getOrders()) {
+			if(order.getId().equals(orderID))
+				order.setOrderStatus(OrderStatus.DELIVERED);
+		}
+		
+		entities.put(delivererID, deliverer);
+		writeFile(entities);
+	}
 }
