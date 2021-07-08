@@ -46,4 +46,16 @@ public class OrderRepository extends Repository<String, Order>{
 		writeFile(entities);
 	}
 
+	public void updateOrder(String orderID) {
+		Map<String, Order> entities = readFile();
+		
+		for(Order order: entities.values()) {
+			if(order.getId().equals(orderID)) {
+				order.setOrderStatus(OrderStatus.DELIVERED);
+				entities.put(order.getId(), order);
+			}
+		}
+		
+		writeFile(entities);
+	}
 }

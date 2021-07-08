@@ -29,16 +29,17 @@ Vue.component("delivererOrders", {
                         <td> <label for="" :id="order.id" style="margin-left: 40px;"> {{orderValue(order.orderStatus)}} </label> </td>
                         <td> 
                             <button class="btn btn-primary" style="margin-left: 40px;" v-on:click="showOrder(order)"> Prikaži </button>
-                            <button class="btn btn-danger" :id="index" style="margin-left: 40px;" v-on:click="getOrder(order, index)"> Preuzmi </button> 
+                            <button class="btn btn-danger" :id="index" style="margin-left: 40px;" v-if="order.requested === false" v-on:click="getOrder(order, index)"> Preuzmi </button> 
                         </td>
                     </tr>
-                    <tr v-for="(order, index) in user.orders">
+                    <tr v-for="order in user.orders">
                         <td> <label for="" style="margin-left: 20px;"> {{order.id}} </label> </td>
                         <td> <label for="" style="margin-left: 30px; margin-right: 20px;"> {{order.restaurantID}} </label> </td>
                         <td> <label for="" style="margin-left: 30px;"> {{order.price}} </label> </td>
                         <td> <label for="" :id="order.id" style="margin-left: 40px;"> {{orderValue(order.orderStatus)}} </label> </td>
                         <td> 
                             <button class="btn btn-primary" style="margin-left: 40px;" v-on:click="showOrder(order)"> Prikaži </button>
+                            <button class="btn btn-danger" :id="order.date" style="margin-left: 40px;" v-if="isDelivered(order.orderStatus) === false" v-on:click="changeOrderStatus(order)"> Porudžbina dostavljena</button>
                         </td>
                     </tr>
                 </table>
@@ -107,6 +108,27 @@ Vue.component("delivererOrders", {
                 .then(function (response) {
                     
                 });
+        },
+
+        changeOrderStatus: function(order) {
+            document.getElementById(order.date).remove();
+            document.getElementById(order.id).innerHTML = "DOSTAVLJENA";
+
+            axios.post('/changeOrderStatus', {
+                delivererID: this.user.username,
+                orderID: order.id
+            })
+                .then(function (response) {
+                    
+                });
+        },
+
+        isDelivered: function(orderStatus){
+            if(orderStatus === 'DELIVERED'){
+                return true;
+            }
+
+            return false;
         }
 
     }

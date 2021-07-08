@@ -1,12 +1,59 @@
 {
   "drag": {
-    "orders": [],
+    "orders": [
+      {
+        "id": "4461844836",
+        "articles": [
+          {
+            "name": "Hamburger",
+            "price": 150.0,
+            "articleType": "DRINK",
+            "restaurantID": "McDonalds",
+            "amount": 100.0,
+            "description": "hamburger",
+            "image": "/images/McDonaldsArticles/hamburger.png",
+            "deleted": 0
+          }
+        ],
+        "quantity": [
+          1
+        ],
+        "restaurantID": "McDonalds",
+        "date": {
+          "date": {
+            "year": 2021,
+            "month": 7,
+            "day": 8
+          },
+          "time": {
+            "hour": 0,
+            "minute": 49,
+            "second": 42,
+            "nano": 301275600
+          }
+        },
+        "price": 145.5,
+        "customerUsername": "the",
+        "orderStatus": "DELIVERED"
+      }
+    ],
     "username": "drag",
     "password": "drop",
     "name": "Dragan",
     "lastName": "Draganić",
     "sex": "Muški",
     "birthDate": "1988-08-12",
+    "userRole": "Dostavljač",
+    "deleted": 0
+  },
+  "mika": {
+    "orders": [],
+    "username": "mika",
+    "password": "mika",
+    "name": "Mika",
+    "lastName": "Mikić",
+    "sex": "Muški",
+    "birthDate": "1988-08-10",
     "userRole": "Dostavljač",
     "deleted": 0
   }

@@ -627,10 +627,25 @@ public class FoodShopMain {
 			res.type("application/json");
 			List<Order> orders = orderController.readAllEntities();
 			List<Order> waitingDelivererOrders = new ArrayList<Order>();
+			Session session = req.session();
+			Deliverer deliverer = (Deliverer) session.attribute("user");
 			
 			for(Order order: orders) {
-				if(order.getOrderStatus().equals(OrderStatus.WAITING_FOR_DELIVERY)) 
-					waitingDelivererOrders.add(order);
+				if(order.getOrderStatus().equals(OrderStatus.WAITING_FOR_DELIVERY)) {
+					Boolean exists = false;
+					for(OrderRequest orderRequest: requestController.readAllEntities()) {
+						if(orderRequest.getRequestID().equals(deliverer.getUsername() + " " + order.getId()))
+							exists = true;
+					}
+					
+					if(exists) {
+						order.setRequested(true);
+						waitingDelivererOrders.add(order);
+					} else {
+						order.setRequested(false);
+						waitingDelivererOrders.add(order);
+					}
+				}	
 			}
 			
 			return g.toJson(waitingDelivererOrders);
@@ -664,6 +679,15 @@ public class FoodShopMain {
 			OrderRequest orderRequest = g.fromJson(req.body(), OrderRequest.class);
 			orderRequest.setRequestID(orderRequest.getDelivererID() + " " + orderRequest.getOrderID());
 			requestController.create(orderRequest);
+			
+			return "SUCCESS";
+		});
+		
+		post("/changeOrderStatus", (req, res) -> {
+			res.type("application/json");
+			OrderRequest orderRequest = g.fromJson(req.body(), OrderRequest.class);
+			orderController.updateOrder(orderRequest.getOrderID());
+			delivererController.updateDelivererOrders(orderRequest.getOrderID(), orderRequest.getDelivererID());
 			
 			return "SUCCESS";
 		});

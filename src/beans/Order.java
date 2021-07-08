@@ -14,6 +14,7 @@ public class Order {
 	private double price;
 	private String customerUsername;
 	private OrderStatus orderStatus;
+	private Boolean requested;
 	
 	public Order() {
 		super();
@@ -94,5 +95,13 @@ public class Order {
 
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
+	}
+	
+	public Boolean getRequested() {
+		return requested;
+	}
+	
+	public void setRequested(Boolean requested) {
+		this.requested = requested;
 	}
 }

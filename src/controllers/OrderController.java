@@ -16,4 +16,8 @@ public class OrderController extends Controller<String, Order>{
 	public void updateStatus(Order order) {
 		orderService.updateStatus(order);
 	}
+	
+	public void updateOrder(String orderID) {
+		orderService.updateOrder(orderID);
+	}
 }
