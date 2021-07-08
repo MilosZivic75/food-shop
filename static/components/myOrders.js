@@ -17,6 +17,7 @@ Vue.component("user-orders", {
         </div>
         <div class="row" style="margin-left: 200px; margin-top: 10px; font-size: 22px; text-align: center;">
             <div class="col-10">
+                <label for="" style="font-size: 40px; " v-if="orders.length === 0"> Nema porudžbina! </label>
                 <table>
                     <tr>
                         <th> Porudžbina </th>

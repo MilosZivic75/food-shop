@@ -10,6 +10,7 @@ public class Restaurant {
 	private Location location;
 	private String logo;
 	private int deleted;
+	private double averageRating;
 	
 	public Restaurant() {
 		super();
@@ -25,6 +26,7 @@ public class Restaurant {
 		this.location = location;
 		this.logo = logo;
 		this.deleted = 0;
+		this.averageRating = 0;
 	}
 
 	public String getName() {
@@ -83,4 +85,12 @@ public class Restaurant {
 		this.deleted = deleted;
 	}
 
+	public double getAverageRating() {
+		return averageRating;
+	}
+
+	public void setAverageRating(double averageRating) {
+		this.averageRating = averageRating;
+	}
+	
 }

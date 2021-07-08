@@ -15,7 +15,8 @@ Vue.component("delivererOrders", {
         </div>
         <div class="row" style="margin-left: 200px; margin-top: 60px; font-size: 22px; text-align: center;">
             <div class="col-10">
-                <table>
+                <label for="" style="font-size: 40px; " v-if="ordersWhichAreWaitingDeliverers.length === 0 && user.orders.length === 0"> Trenutno nema porudžbina! </label>
+                <table v-else>
                     <tr>
                         <th> Porudžbina </th>
                         <th> Restoran </th>

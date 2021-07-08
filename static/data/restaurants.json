@@ -67,7 +67,8 @@
       }
     },
     "logo": "/images/restaurantLogo1.png",
-    "deleted": 0
+    "deleted": 0,
+    "averageRating": 3.5
   },
   "Gyros Master": {
     "name": "Gyros Master",
@@ -86,7 +87,8 @@
       }
     },
     "logo": "/images/restaurantLogo3.png",
-    "deleted": 0
+    "deleted": 0,
+    "averageRating": 3.0
   },
   "Foody!": {
     "name": "Foody!",
@@ -105,7 +107,8 @@
       }
     },
     "logo": "/images/restaurantLogo7.png",
-    "deleted": 0
+    "deleted": 0,
+    "averageRating": 2.4
   },
   "Caribic": {
     "name": "Caribic",
@@ -124,7 +127,8 @@
       }
     },
     "logo": "/images/restaurantLogo2.png",
-    "deleted": 0
+    "deleted": 0,
+    "averageRating": 4.2
   },
   "Tortilla Casa": {
     "name": "Tortilla Casa",
@@ -143,11 +147,12 @@
       }
     },
     "logo": "/images/restaurantLogo5.png",
-    "deleted": 0
+    "deleted": 0,
+    "averageRating": 3.2
   },
   "KFC": {
     "name": "KFC",
-    "restaurantType": "Sendviči",
+    "restaurantType": "Brza hrana",
     "articles": [],
     "status": "Zatvoren",
     "location": {
@@ -162,7 +167,8 @@
       }
     },
     "logo": "/images/restaurantLogo6.png",
-    "deleted": 0
+    "deleted": 0,
+    "averageRating": 1.2
   },
   "Papričica": {
     "name": "Papričica",
@@ -181,6 +187,7 @@
       }
     },
     "logo": "/images/restaurantLogo4.png",
-    "deleted": 0
+    "deleted": 0,
+    "averageRating": 3.02
   }
 }

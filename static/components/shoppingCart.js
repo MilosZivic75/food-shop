@@ -20,7 +20,8 @@ Vue.component("shopping-cart", {
         </div>
         <div class="row" style="margin-left: 200px; margin-top: 10px; font-size: 22px; text-align: center;">
             <div class="col-8">
-                <table>
+                <label for="" style="font-size: 40px; " v-if="articles.length === 0"> Vaša korpa je prazna! </label>
+                <table v-else>
                     <tr>
                         <th> Slika </th>
                         <th> Naziv </th>
