@@ -193,6 +193,7 @@ Vue.component("usersAdministrator", {
 
                         $('#addUserModal').hide();
                         $('.modal-backdrop').hide();
+                        $('body').removeClass('modal-open');
                     }
                     else {
                         $('#errorAddUser').text('Korisnik sa datim korisničkim imenom već postoji.');

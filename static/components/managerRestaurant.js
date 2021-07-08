@@ -236,6 +236,7 @@ Vue.component("managerRestaurant", {
 
                                     $('#addArticleModal').hide();
                                     $('.modal-backdrop').hide();
+                                    $('body').removeClass('modal-open');
                                 }
                                 else {
                                     $('#errorAddArticle').text('Artikal sa datim imenom već postoji.');
@@ -258,6 +259,7 @@ Vue.component("managerRestaurant", {
 
                                 $('#addArticleModal').hide();
                                 $('.modal-backdrop').hide();
+                                $('body').removeClass('modal-open');
                             }
                             else {
                                 $('#errorAddArticle').text('Artikal sa datim imenom ne postoji.');
@@ -281,6 +283,7 @@ Vue.component("managerRestaurant", {
 
                                         $('#addArticleModal').hide();
                                         $('.modal-backdrop').hide();
+                                        $('body').removeClass('modal-open');
                                     }
                                     else {
                                         $('#errorAddArticle').text('Artikal sa datim imenom ne postoji.');

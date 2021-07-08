@@ -144,6 +144,7 @@ Vue.component("index", {
 						router.push('/administrator');
 						$('#loginModal').hide();
 						$('.modal-backdrop').hide();
+						$('body').removeClass('modal-open');
 					}
 					else if (response.data === 'SUCCESS/manager') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
@@ -152,6 +153,7 @@ Vue.component("index", {
 						router.push('/manager');
 						$('#loginModal').hide();
 						$('.modal-backdrop').hide();
+						$('body').removeClass('modal-open');
 					}
 					else if (response.data === 'SUCCESS/deliverer') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
@@ -160,6 +162,7 @@ Vue.component("index", {
 						router.push('/deliverer');
 						$('#loginModal').hide();
 						$('.modal-backdrop').hide();
+						$('body').removeClass('modal-open');
 					}
 					else if (response.data === 'SUCCESS/customer') {
 						$('#success').text('Korisnik je uspesno prijavljen.');
@@ -168,6 +171,7 @@ Vue.component("index", {
 						router.push('/customer');
 						$('#loginModal').hide();
 						$('.modal-backdrop').hide();
+						$('body').removeClass('modal-open');
 					}
 					else if (response.data === 'ERROR') {
 						$('#error').text('Pogresno korisnicko ime i/ili lozinka.');
@@ -216,6 +220,7 @@ Vue.component("index", {
 						router.push('/customer');
 						$('#registrationModal').hide();
 						$('.modal-backdrop').hide();
+						$('body').removeClass('modal-open');
 					}
 					else {
 						$('#errorReg').text('Korisnik sa datim korisničkim imenom već postoji.');

@@ -267,6 +267,7 @@ Vue.component("restaurantsAdministrator", {
 
                                 $('#addRestaurantModal').hide();
                                 $('.modal-backdrop').hide();
+                                $('body').removeClass('modal-open');
                             }
                             else {
                                 $('#errorAddRes').text('Restoram sa datim imenom već postoji.');
