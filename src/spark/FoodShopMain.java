@@ -77,18 +77,30 @@ public class FoodShopMain {
 			if (loggedUser.getUserRole().equals("Kupac")) {
 				Customer customer = customerController.read(loggedUser.getUsername());
 				session.attribute("user", customer);
+				res.cookie("sessionID", session.id());
+				res.cookie("role", "customer");
+				res.cookie("username", loggedUser.getUsername());
 				return "SUCCESS/customer";
 			} else if (loggedUser.getUserRole().equals("Dostavljač")) {
 				Deliverer deliverer = delivererController.read(loggedUser.getUsername());
 				session.attribute("user", deliverer);
+				res.cookie("sessionID", session.id());
+				res.cookie("role", "deliverer");
+				res.cookie("username", loggedUser.getUsername());
 				return "SUCCESS/deliverer";
 			} else if (loggedUser.getUserRole().equals("Menadžer")) {
 				Manager manager = managerController.read(loggedUser.getUsername());
 				session.attribute("user", manager);
+				res.cookie("sessionID", session.id());
+				res.cookie("role", "manager");
+				res.cookie("username", loggedUser.getUsername());
 				return "SUCCESS/manager";
 			} else {
 				Administrator administrator = administratorController.read(loggedUser.getUsername());
 				session.attribute("user", administrator);
+				res.cookie("sessionID", session.id());
+				res.cookie("role", "administrator");
+				res.cookie("username", loggedUser.getUsername());
 				return "SUCCESS/administrator";
 			}
 		});
@@ -125,6 +137,8 @@ public class FoodShopMain {
 
 		post("/logout", (req, res) -> {
 			req.session().invalidate();
+			res.removeCookie("role");
+			res.removeCookie("username");
 			return "SUCCESS";
 		});
 
@@ -153,6 +167,8 @@ public class FoodShopMain {
 		});
 
 		get("/getUsers", (req, res) -> {
+			if (!req.session().id().equals(req.cookie("sessionID")) || !req.cookie("role").equals("administrator"))
+				return null;
 			res.type("application/json");
 			ArrayList<User> users = new ArrayList<User>();
 			users.addAll(administratorController.readAllEntities());
@@ -804,7 +820,7 @@ public class FoodShopMain {
 			
 			ArrayList<Customer> suspiciousUsers = (ArrayList<Customer>) customerController.readAllEntities();
 			suspiciousUsers.removeIf(customer -> !customer.isSuspicious());
-			
+
 			return g.toJson(suspiciousUsers);
 		});
 	}

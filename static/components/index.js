@@ -153,6 +153,11 @@ Vue.component("index", {
 		axios
 			.get('/getRestaurants')
 			.then(response => ( this.restaurants = response.data ));
+        var match = document.cookie.match(new RegExp('(^| )' + 'role' + '=([^;]+)'));
+        if (match) 
+            var cookie = match[2];
+        if (cookie !== undefined)
+            router.push('/'+cookie);
 	},
 	methods: {
 		loginUser: function () {

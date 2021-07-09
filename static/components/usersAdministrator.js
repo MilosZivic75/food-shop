@@ -162,6 +162,13 @@ Vue.component("usersAdministrator", {
                         router.push('/');
                         return;
                     }
+                    var match = document.cookie.match(new RegExp('(^| )' + 'role' + '=([^;]+)'));
+                    if (match) 
+                        var cookie = match[2];
+                    if (cookie !== 'administrator') {
+                        router.push('/'+cookie);
+                        return;
+                    }
                     this.user = response.data;
                 });
             axios
