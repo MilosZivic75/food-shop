@@ -518,6 +518,20 @@ public class FoodShopMain {
 				customerController.updateType(updatedCustomer, CustomerTypes.SILVER);
 			else if (updatedCustomer.getCollectedPoints() <= 2000)
 				customerController.updateType(updatedCustomer, CustomerTypes.REGULAR);
+			
+			Customer susCustomer = customerController.read(username);
+			int canceledNumber = 0;
+			for (Order order : orderController.readAllEntities()) {
+				if (order.getCustomer().equals(susCustomer.getUsername()) && 
+						order.getOrderStatus() == OrderStatus.CANCELED && 
+						order.getDate().isAfter(LocalDateTime.now().minusDays(30))) {
+					canceledNumber++;
+				}
+			}
+			if (canceledNumber > 5) {
+				susCustomer.setSuspicious(true);
+				customerController.update(susCustomer);
+			}
 
 			return "SUCCESS";
 		});
@@ -764,7 +778,6 @@ public class FoodShopMain {
 			res.type("application/json");
 			
 			OrderRequest orderRequest = g.fromJson(req.body(), OrderRequest.class);
-			//ArrayList<OrderRequest> orderRequests = g.fromJson(req.body(), new TypeToken<ArrayList<OrderRequest>>(){}.getType());
 			if (orderRequest.isApproved()) {
 				for (OrderRequest or : requestController.readAllEntities()) {
 					if (or.getOrderID().equals(orderRequest.getOrderID()) && !or.getDelivererID().equals(orderRequest.getDelivererID())) {
@@ -784,6 +797,15 @@ public class FoodShopMain {
 			delivererController.update(deliverer);
 			
 			return "SUCCESS";
+		});
+		
+		get("/getSuspiciousUsers", (req, res) -> {
+			res.type("application/json");
+			
+			ArrayList<Customer> suspiciousUsers = (ArrayList<Customer>) customerController.readAllEntities();
+			suspiciousUsers.removeIf(customer -> !customer.isSuspicious());
+			
+			return g.toJson(suspiciousUsers);
 		});
 	}
 }
