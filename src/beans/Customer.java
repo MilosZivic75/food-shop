@@ -11,6 +11,7 @@ public class Customer extends User {
 	private Cart cart;
 	private double collectedPoints;
 	private CustomerTypes customerType;
+	private boolean suspicious;
 	
 	public Customer() {
 		super();
@@ -22,6 +23,7 @@ public class Customer extends User {
 		cart = new Cart(new HashMap<String, Integer>(), this.getUsername(), 0);
 		collectedPoints = 0;
 		customerType = CustomerTypes.REGULAR;
+		suspicious = false;
 	}
 	
 	public Customer(String username, String password, String name, String lastName, String sex, Date birthDate,
@@ -56,5 +58,11 @@ public class Customer extends User {
 	}
 	public void setCustomerType(CustomerTypes customerType) {
 		this.customerType = customerType;
+	}
+	public boolean isSuspicious() {
+		return suspicious;
+	}
+	public void setSuspicious(boolean suspicious) {
+		this.suspicious = suspicious;
 	}
 }

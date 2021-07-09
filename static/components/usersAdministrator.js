@@ -3,7 +3,8 @@ Vue.component("usersAdministrator", {
         return {
             user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
             newUser: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null, userRole: null },
-            users: null
+            users: null,
+            suspiciousUsers: []
         }
     },
     template: ` 
@@ -35,8 +36,10 @@ Vue.component("usersAdministrator", {
             </div>
         </div>
         <div class="row justify-content-end" style="margin-top: 50px;">
+            <button type="button" class="btn btn-outline-dark col-2" style="margin-right: 20px" data-toggle="modal" data-target="#suspiciousUsersModal">
+                Sumnjivi korisnici</button>
             <button type="button" class="btn btn-outline-dark col-2" style="margin-right: 200px" data-toggle="modal" data-target="#addUserModal">
-            Dodaj korisnika</button>
+                Dodaj korisnika</button>
         </div>
         <div class="row" style="margin-top: 150px; margin-left: 30px;"> 
 			<div class="col-2" v-for="user in users" style="margin-left:30px"> 
@@ -111,6 +114,39 @@ Vue.component("usersAdministrator", {
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="suspiciousUsersModal" role="dialog" aria-labelledby="suspiciousUsersModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="address-label">Sumnjivi korisnici</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table width="100%">
+                            <tr>
+                                <th>Ime</th>
+                                <th>Prezime</th>
+                                <th>Korisničko ime</th>
+                            </tr>
+                            <tr v-for="suspiciousUser in suspiciousUsers">
+                                <td>{{suspiciousUser.name}}</td>
+                                <td>{{suspiciousUser.lastName}}</td>
+                                <td>{{suspiciousUser.username}}</td>
+                                <td v-if="suspiciousUser.blocked === 0"><button class="btn btn-warning btn-sm col-10" 
+                                    v-on:click="blockUser(suspiciousUser.username)">Blokiraj</button></td>
+                                <td v-if="suspiciousUser.blocked === 1"><button class="btn btn-success btn-sm col-10" 
+                                    v-on:click="unblockUser(suspiciousUser.username)">Odlokiraj</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i
+                                class="fa fa-check"></i>OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     `
     ,
@@ -131,6 +167,9 @@ Vue.component("usersAdministrator", {
             axios
                 .get('/getUsers')
                 .then(response => (this.users = response.data));
+            axios
+                .get('/getSuspiciousUsers')
+                .then(response => (this.suspiciousUsers = response.data));
         },
         showProfile: function () {
             event.preventDefault();
