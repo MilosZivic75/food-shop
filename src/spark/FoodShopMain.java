@@ -744,5 +744,46 @@ public class FoodShopMain {
 			res.type("application/json");
 			return g.toJson(searchController.getRestaurants());
 		});
+		
+		get("/getRequestsByRestaurant", (req, res) -> {
+			res.type("application/json");
+
+			User user = (User) req.session().attribute("user");
+			if (user == null)
+				return null;
+			Manager manager = managerController.read(user.getUsername());
+			
+			
+			ArrayList<OrderRequest> orderRequests = (ArrayList<OrderRequest>) requestController.readAllEntities();
+			orderRequests.removeIf(orderRequest -> !orderController.read(orderRequest.getOrderID()).getRestaurant().equals(manager.getRestaurantId()));
+
+			return g.toJson(orderRequests);
+		});
+		
+		post("/updateRequests", (req, res) -> {
+			res.type("application/json");
+			
+			OrderRequest orderRequest = g.fromJson(req.body(), OrderRequest.class);
+			//ArrayList<OrderRequest> orderRequests = g.fromJson(req.body(), new TypeToken<ArrayList<OrderRequest>>(){}.getType());
+			if (orderRequest.isApproved()) {
+				for (OrderRequest or : requestController.readAllEntities()) {
+					if (or.getOrderID().equals(orderRequest.getOrderID()) && !or.getDelivererID().equals(orderRequest.getDelivererID())) {
+						or.setApproved(false);
+						requestController.update(or);
+					}
+				}
+			}
+			requestController.update(orderRequest);
+			
+			Order order = orderController.read(orderRequest.getOrderID());
+			order.setOrderStatus(OrderStatus.IN_TRANSPORT);
+			orderController.update(order);
+			
+			Deliverer deliverer = delivererController.read(orderRequest.getDelivererID());
+			deliverer.getOrders().add(order);
+			delivererController.update(deliverer);
+			
+			return "SUCCESS";
+		});
 	}
 }

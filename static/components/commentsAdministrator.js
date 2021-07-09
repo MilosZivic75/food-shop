@@ -37,7 +37,7 @@ Vue.component("commentsAdministrator", {
 			<div class="col-11" v-for="comment in comments" style="margin-left:30px"> 
 				<p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
 				Korisnik: {{comment.customerUsername}}<br>Restoran: {{comment.restaurantID}}<br> Datum: {{getDate(comment.timeOfOccurrence)}}
-                    <br> Tekst: {{comment.text}}<br> Ocena: {{comment.grade}}<br> Odobren: {{getApproved(comment.grade)}}
+                    <br> Tekst: {{comment.text}}<br> Ocena: {{comment.grade}}<br> {{getApproved(comment.approved)}}</p>
 			</div>
 		</div>
         <div class="row">
@@ -62,7 +62,10 @@ Vue.component("commentsAdministrator", {
         axios
             .get('getAllComments')
             .then(response => {
-                this.comments = response.data;
+                for (let comment of response.data) {
+                    this.comments.push({timeOfOccurrence: comment.timeOfOccurrence, customerUsername: comment.customerUsername,
+                        restaurantID: comment.restaurantID, text: comment.text, grade: comment.grade, approved: comment.approved});
+                }
             });
     },
     methods: {
@@ -96,10 +99,12 @@ Vue.component("commentsAdministrator", {
             return day + '.' + month + '.' + date.date.year + '.' + ' ' + hour + ':' + minute;
         },
         getApproved: function (approved) {
-            if(approved)
-                return 'Jeste';
+            if (approved === undefined)
+                return 'Čeka na odobrenje'
+            if (approved)
+                return 'Odobren';
             else
-                return 'Nije';
+                return 'Odbijen';
         }
     }
 });

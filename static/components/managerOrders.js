@@ -4,7 +4,8 @@ Vue.component("managerOrders", {
             user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
             orders: [],
             customers: [],
-            uniqueCustomers: []
+            uniqueCustomers: [],
+            requests: []
         }
     },
     template: ` 
@@ -37,6 +38,8 @@ Vue.component("managerOrders", {
             </div>
         </div>
         <div class="row justify-content-end" style="margin-top: 50px;">
+            <button type="button" class="btn btn-outline-dark col-2" style="margin-right: 20px" data-toggle="modal" data-target="#viewRequestsModal">
+                Prikaži zahteve za transport</button>
             <button type="button" class="btn btn-outline-dark col-2" style="margin-right: 200px" data-toggle="modal" data-target="#viewCustomersModal">
                 Prikaži kupce</button>
         </div>
@@ -100,6 +103,35 @@ Vue.component("managerOrders", {
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="viewRequestsModal" role="dialog" aria-labelledby="viewCustomersModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="address-label">Zahtevi za transport</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <table width="100%">
+                            <tr>
+                                <th>ID porudžbine</th>
+                                <th>ID dostavljača</th>
+                            </tr>
+                            <tr v-for="request in requests" v-if="request.approved === undefined">
+                                <td>{{request.orderID}}</td>
+                                <td>{{request.delivererID}}</td>
+                                <td><button class="btn btn-success btn-sm col-10" v-on:click="approve(request)">Odobri</button></td>
+                                <td><button class="btn btn-danger btn-sm col-10" v-on:click="reject(request)">Odbij</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal"><i
+                                class="fa fa-check"></i>OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     `
     ,
@@ -130,6 +162,13 @@ Vue.component("managerOrders", {
                         if (!this.hasCustomer(customer.username))
                             this.uniqueCustomers.push(customer);
                     }
+                });
+            axios
+                .get('getRequestsByRestaurant')
+                .then(response => {
+                    for (let request of response.data)
+                        this.requests.push({requestID: request.requestID, orderID: request.orderID, delivererID: request.delivererID,
+                            approved: request.approved});
                 });
         },
         showProfile: function () {
@@ -202,6 +241,24 @@ Vue.component("managerOrders", {
                 .then(response => {
                     this.initSetup();
                 });
+        },
+        approve: function (request) {
+            event.preventDefault();
+
+            request.approved = true;
+            for (let req of this.requests) {
+                if (req.delivererID !== request.delivererID && req.orderID === request.orderID)
+                    req.approved = false;
+            }
+            axios
+                .post('/updateRequests', request);
+        },
+        reject: function (request) {
+            event.preventDefault();
+
+            request.approved = false;
+            axios
+                .post('/updateRequests', request);
         }
     }
 });

@@ -5,6 +5,7 @@ public class OrderRequest {
 	private String requestID;
 	private String delivererID;
 	private String orderID;
+	private Boolean approved;
 	
 	public OrderRequest() {}
 
@@ -37,6 +38,14 @@ public class OrderRequest {
 
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
+	}
+
+	public Boolean isApproved() {
+		return approved;
+	}
+
+	public void setApproved(Boolean approved) {
+		this.approved = approved;
 	}
 	
 }
