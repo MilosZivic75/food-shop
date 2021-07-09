@@ -76,7 +76,7 @@ Vue.component("managerRestaurant", {
         </div>
         <div class="row">
             <div>
-                <img src="../images/administrator-main.jpg" style="margin-top: 20px; position:relative; bottom:0" class="header-image"
+                <img src="../images/manager-main.jpg" style="margin-top: 20px; position:relative; bottom:0" class="header-image"
                     height="300px" width="100%" alt="header image">
             </div>
         </div>

@@ -35,7 +35,7 @@ Vue.component("manager", {
 	</div>
 	<div class="row">
 		<div>
-			<img src="../images/administrator-main.jpg" style="margin-top: 20px; position:absolute; bottom:0" class="header-image"
+			<img src="../images/manager-main.jpg" style="margin-top: 20px; position:absolute; bottom:0" class="header-image"
 				height="300px" width="100%" alt="header image">
 		</div>
 	</div>
