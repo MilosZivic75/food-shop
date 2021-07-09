@@ -49,7 +49,7 @@ public class SearchService {
 	public void findByLocation(String location, List<Restaurant> restaurants) {	
 		searchedRestaurants = new ArrayList<Restaurant>();
 		for(Restaurant restaurant: restaurants) {
-			if(restaurant.getLocation().getAddress().getStreet().equals(location))
+			if(restaurant.getLocation().getAddress().getStreet().toLowerCase().contains(location.toLowerCase()))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -57,7 +57,7 @@ public class SearchService {
 	public void findByName(String name, List<Restaurant> restaurants) {	
 		searchedRestaurants = new ArrayList<Restaurant>();
 		for(Restaurant restaurant: restaurants) {
-			if(restaurant.getName().equals(name))
+			if(restaurant.getName().toLowerCase().contains(name.toLowerCase()))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -65,7 +65,8 @@ public class SearchService {
 	public void findByLocationAndType(String location, String type, List<Restaurant> restaurants) {
 		searchedRestaurants = new ArrayList<Restaurant>();
 		for(Restaurant restaurant: restaurants) {
-			if(restaurant.getLocation().getAddress().getStreet().equals(location) && restaurant.getRestaurantType().equals(type))
+			if(restaurant.getLocation().getAddress().getStreet().toLowerCase().contains(location.toLowerCase())
+					&& restaurant.getRestaurantType().equals(type))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -77,7 +78,7 @@ public class SearchService {
 		
 		for(Restaurant restaurant: restaurants) {
 			if(restaurant.getAverageRating() >= firstGrade && restaurant.getAverageRating() <= secondGrade 
-					&& restaurant.getLocation().getAddress().getStreet().equals(location))
+					&& restaurant.getLocation().getAddress().getStreet().toLowerCase().contains(location.toLowerCase()))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -89,7 +90,8 @@ public class SearchService {
 		
 		for(Restaurant restaurant: restaurants) {
 			if(restaurant.getAverageRating() >= firstGrade && restaurant.getAverageRating() <= secondGrade 
-					&& restaurant.getLocation().getAddress().getStreet().equals(location) && restaurant.getRestaurantType().equals(type))
+					&& restaurant.getLocation().getAddress().getStreet().toLowerCase().contains(location.toLowerCase())
+					&& restaurant.getRestaurantType().equals(type))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -98,8 +100,8 @@ public class SearchService {
 		searchedRestaurants = new ArrayList<Restaurant>();
 		
 		for(Restaurant restaurant: restaurants) {
-			if(restaurant.getName().equals(name)
-					&& restaurant.getLocation().getAddress().getStreet().equals(location))
+			if(restaurant.getName().toLowerCase().contains(name.toLowerCase())
+					&& restaurant.getLocation().getAddress().getStreet().toLowerCase().contains(location.toLowerCase()))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -108,7 +110,8 @@ public class SearchService {
 		searchedRestaurants = new ArrayList<Restaurant>();
 		
 		for(Restaurant restaurant: restaurants) {
-			if(restaurant.getName().equals(name) && restaurant.getRestaurantType().equals(type))
+			if(restaurant.getName().toLowerCase().contains(name.toLowerCase())
+					&& restaurant.getRestaurantType().equals(type))
 				searchedRestaurants.add(restaurant);
 		}
 	} 
@@ -120,7 +123,7 @@ public class SearchService {
 		
 		for(Restaurant restaurant: restaurants) {
 			if(restaurant.getAverageRating() >= firstGrade && restaurant.getAverageRating() <= secondGrade 
-					&& restaurant.getName().equals(name))
+					&& restaurant.getName().toLowerCase().contains(name.toLowerCase()))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -129,8 +132,8 @@ public class SearchService {
 		searchedRestaurants = new ArrayList<Restaurant>();
 		
 		for(Restaurant restaurant: restaurants) {
-			if(restaurant.getName().equals(name) && restaurant.getRestaurantType().equals(type)
-					&& restaurant.getLocation().getAddress().getStreet().equals(location))
+			if(restaurant.getName().toLowerCase().contains(name.toLowerCase()) && restaurant.getRestaurantType().equals(type)
+					&& restaurant.getLocation().getAddress().getStreet().toLowerCase().contains(location.toLowerCase()))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -142,8 +145,8 @@ public class SearchService {
 		
 		for(Restaurant restaurant: restaurants) {
 			if(restaurant.getAverageRating() >= firstGrade && restaurant.getAverageRating() <= secondGrade 
-					&& restaurant.getName().equals(name)
-					&& restaurant.getLocation().getAddress().getStreet().equals(location))
+					&& restaurant.getName().toLowerCase().contains(name.toLowerCase())
+					&& restaurant.getLocation().getAddress().getStreet().toLowerCase().contains(location.toLowerCase()))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -155,7 +158,8 @@ public class SearchService {
 		
 		for(Restaurant restaurant: restaurants) {
 			if(restaurant.getAverageRating() >= firstGrade && restaurant.getAverageRating() <= secondGrade 
-					&& restaurant.getName().equals(name) && restaurant.getRestaurantType().equals(type))
+					&& restaurant.getName().toLowerCase().contains(name.toLowerCase())
+					&& restaurant.getRestaurantType().equals(type))
 				searchedRestaurants.add(restaurant);
 		}
 	}
@@ -167,8 +171,9 @@ public class SearchService {
 		
 		for(Restaurant restaurant: restaurants) {
 			if(restaurant.getAverageRating() >= firstGrade && restaurant.getAverageRating() <= secondGrade 
-					&& restaurant.getName().equals(name) && restaurant.getRestaurantType().equals(type)
-					&& restaurant.getLocation().getAddress().getStreet().equals(location))
+					&& restaurant.getName().toLowerCase().contains(name.toLowerCase())
+					&& restaurant.getRestaurantType().equals(type)
+					&& restaurant.getLocation().getAddress().getStreet().toLowerCase().contains(location.toLowerCase()))
 				searchedRestaurants.add(restaurant);
 		}
 	}
