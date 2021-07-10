@@ -5,7 +5,15 @@ Vue.component("managerOrders", {
             orders: [],
             customers: [],
             uniqueCustomers: [],
-            requests: []
+            requests: [],
+            ordersForView: [],
+            priceFrom: '',
+            priceTo: '',
+            dateFrom: '',
+            dateTo: '',
+            sortParameter: '',
+            sort: '',
+            status: ''
         }
     },
     template: ` 
@@ -43,6 +51,53 @@ Vue.component("managerOrders", {
             <button type="button" class="btn btn-outline-dark col-2" style="margin-right: 200px" data-toggle="modal" data-target="#viewCustomersModal">
                 Prikaži kupce</button>
         </div>
+        <div class="row" style=" margin-top: 50px; margin-left: 50px;">
+            <div class="container sports-container col-12" >
+                <div class="form-floating" style="display:inline-block">
+                    <input type="number" min="0" oninput="validity.valid||(value=''||value='.');" class="form-control" v-model="priceFrom" id="priceFrom" placeholder="PriceFrom">
+                    <label for="priceFrom">Cena od</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <input type="number" min="0" oninput="validity.valid||(value=''||value='.');" class="form-control" v-model="priceTo" id="priceTo" placeholder="PriceTo">
+                    <label for="priceTo">Cena do</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <input type="date" class="form-control" v-model="dateFrom" id="dateFrom" placeholder="DateFrom">
+                    <label for="dateFrom">Datum od</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <input type="date" class="form-control" v-model="dateTo" id="dateTo" placeholder="DateTo">
+                    <label for="dateTo">Datum do</label>
+                </div>
+                <div class="form-floating" style="display:inline-block;">
+                    <select class="form-control" v-model="sortParameter" id="sortParameter" placeholder="SortParameter">
+                        <option value="price">Cena porudžbine</option>
+                        <option value="date">Datum porudžbine</option>
+                    </select>
+                    <label for="sortParameter">Parametar</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <select class="form-control" v-model="sort" id="sort" placeholder="Sort">
+                        <option value="asc">Rastuće</option>
+                        <option value="dsc">Opadajuće</option>
+                    </select>
+                    <label for="sort">Sortiranje</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <select class="form-control" v-model="status" id="status" placeholder="Status">
+                        <option value="">Svi</option>
+                        <option value="PROCESSING">Obrada</option>
+                        <option value="IN_PREPARATION">U pripremi</option>
+                        <option value="WAITING_FOR_DELIVERY">Čeka dostavljača</option>
+                        <option value="IN_TRANSPORT">U transportu</option>
+                        <option value="DELIVERED">Dostavljena</option>
+                        <option value="CANCELED">Otkazana</option>
+                    </select>
+                    <label for="status">Status</label>
+                </div>
+                <button class="btn btn-outline-dark btn-lg" style="margin-bottom:15px" v-on:click="findOrders"> Traži </button>
+            </div>
+        </div>
         <div v-if="orders.length !== 0" class="row" style="margin-left: 200px; margin-top: 10px; font-size: 22px; text-align: center;">
             <div class="col-10">
                 <table width="90%">
@@ -53,7 +108,7 @@ Vue.component("managerOrders", {
                         <th>Datum</th>
                         <th>Status</th>
                     </tr>
-                    <tr v-for="order in orders">
+                    <tr v-for="order in ordersForView">
                         <td> <label>{{order.id}}</label></td>
                         <td> <label>{{order.customerUsername}}</label></td>
                         <td> <label>{{order.price}}</label></td>
@@ -153,6 +208,7 @@ Vue.component("managerOrders", {
                 .get('getOrdersByRestaurant')
                 .then(response => {
                     this.orders = response.data;
+                    this.ordersForView = response.data;
                 });
             axios
                 .get('getCustomersByRestaurant')
@@ -259,6 +315,31 @@ Vue.component("managerOrders", {
             request.approved = false;
             axios
                 .post('/updateRequests', request);
+        },
+        findOrders: function () {
+            event.preventDefault();
+
+            this.ordersForView = [];
+            for (let o of this.orders) {
+                this.ordersForView.push(o);
+            }
+            if (this.priceFrom !== '' && this.priceTo !== '') {
+                this.ordersForView = this.ordersForView.filter(o => (o.price >= this.priceFrom && o.price <= this.priceTo));
+            }
+            if (this.dateFrom !== '' && this.dateTo !== '') {
+                //this.ordersForView = this.ordersForView.filter(o => ());
+            }
+
+            if (this.sortParameter === 'price' && this.sort === 'asc')
+                this.ordersForView.sort((a, b) => a.price - b.price);
+            else if (this.sortParameter === 'price' && this.sort === 'dsc')
+                this.ordersForView.sort((a, b) => b.price - a.price);
+            /*else if (this.sortParameter === 'date' && this.sort === 'asc')
+                this.usersForView.sort((a, b) => a.lastName.localeCompare(b.lastName));
+            else if (this.sortParameter === 'date' && this.sort === 'dsc')*/
+
+            this.ordersForView = this.ordersForView.filter(o => (o.orderStatus.includes(this.status)));
+            
         }
     }
 });

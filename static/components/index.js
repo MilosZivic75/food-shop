@@ -148,132 +148,137 @@ Vue.component("index", {
         </div>
     </div>	 
 `
-	,
-	mounted() {
-		axios
-			.get('/getRestaurants')
-			.then(response => ( this.restaurants = response.data ));
-        var match = document.cookie.match(new RegExp('(^| )' + 'role' + '=([^;]+)'));
-        if (match) 
-            var cookie = match[2];
-        if (cookie !== undefined)
-            router.push('/'+cookie);
-	},
-	methods: {
-		loginUser: function () {
-			event.preventDefault();
+    ,
+    mounted() {
+        axios
+            .get('/getRestaurants')
+            .then(response => (this.restaurants = response.data));
+        axios
+            .get('/loggedUser')
+            .then(response => {
+                if (response.data !== 'ERROR') {
+                    var match = document.cookie.match(new RegExp('(^| )' + 'role' + '=([^;]+)'));
+                    if (match)
+                        var cookie = match[2];
+                    if (cookie !== undefined)
+                        router.push('/' + cookie);
+                }
+            });
+    },
+    methods: {
+        loginUser: function () {
+            event.preventDefault();
 
-			$('#error').hide();
-			if (this.user.username === null || this.user.password === null) {
-				$('#error').text('Molimo popunite sva polja.');
-				$('#error').show().delay(3000).fadeOut();
-				return;
-			}
-			if (this.user.username.trim() === '' || this.user.password.trim() === '') {
-				$('#error').text('Molimo popunite sva polja.');
-				$('#error').show().delay(3000).fadeOut();
-				return;
-			}
-			axios.post('/login', {
-				username: this.user.username,
-				password: this.user.password
-			})
-				.then(function (response) {
-					if (response.data === 'SUCCESS/administrator') {
-						$('#success').text('Korisnik je uspesno prijavljen.');
-						$('#success').show().delay(3000).fadeOut();
-						console.log(response);
-						router.push('/administrator');
-						$('#loginModal').hide();
-						$('.modal-backdrop').hide();
-						$('body').removeClass('modal-open');
-					}
-					else if (response.data === 'SUCCESS/manager') {
-						$('#success').text('Korisnik je uspesno prijavljen.');
-						$('#success').show().delay(3000).fadeOut();
-						console.log(response);
-						router.push('/manager');
-						$('#loginModal').hide();
-						$('.modal-backdrop').hide();
-						$('body').removeClass('modal-open');
-					}
-					else if (response.data === 'SUCCESS/deliverer') {
-						$('#success').text('Korisnik je uspesno prijavljen.');
-						$('#success').show().delay(3000).fadeOut();
-						console.log(response);
-						router.push('/deliverer');
-						$('#loginModal').hide();
-						$('.modal-backdrop').hide();
-						$('body').removeClass('modal-open');
-					}
-					else if (response.data === 'SUCCESS/customer') {
-						$('#success').text('Korisnik je uspesno prijavljen.');
-						$('#success').show().delay(3000).fadeOut();
-						console.log(response);
-						router.push('/customer');
-						$('#loginModal').hide();
-						$('.modal-backdrop').hide();
-						$('body').removeClass('modal-open');
-					}
-					else if (response.data === 'ERROR') {
-						$('#error').text('Pogresno korisnicko ime i/ili lozinka.');
-						$('#error').show().delay(3000).fadeOut();
-						console.log(response);
-					}
-					else if (response.data === 'BLOCKED') {
-						$('#error').text('Vaš nalog je blokiran, za više informacija obratite se administratoru.');
-						$('#error').show().delay(3000).fadeOut();
-						console.log(response);
-					}
-				});
-		},
-		registrateUser: function () {
-			event.preventDefault();
-			$('#errorReg').hide();
-			if (this.user.name === null || this.user.lastName === null || this.user.birthDate === null
-				|| this.user.sex === null || this.user.username === null || this.user.password === null) {
-				$('#errorReg').text('Molimo popunite sva polja.');
-				$('#errorReg').show().delay(3000).fadeOut();
-				$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
-				return;
-			}
-			if (this.user.name.trim() === '' || this.user.lastName.trim() === '' || this.user.birthDate.trim() === ''
-				|| this.user.sex.trim() === '' || this.user.username.trim() === '' || this.user.password.trim() === '') {
-				$('#errorReg').text('Molimo popunite sva polja.');
-				$('#errorReg').show().delay(3000).fadeOut();
-				$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
-				return;
-			}
+            $('#error').hide();
+            if (this.user.username === null || this.user.password === null) {
+                $('#error').text('Molimo popunite sva polja.');
+                $('#error').show().delay(3000).fadeOut();
+                return;
+            }
+            if (this.user.username.trim() === '' || this.user.password.trim() === '') {
+                $('#error').text('Molimo popunite sva polja.');
+                $('#error').show().delay(3000).fadeOut();
+                return;
+            }
+            axios.post('/login', {
+                username: this.user.username,
+                password: this.user.password
+            })
+                .then(function (response) {
+                    if (response.data === 'SUCCESS/administrator') {
+                        $('#success').text('Korisnik je uspesno prijavljen.');
+                        $('#success').show().delay(3000).fadeOut();
+                        console.log(response);
+                        router.push('/administrator');
+                        $('#loginModal').hide();
+                        $('.modal-backdrop').hide();
+                        $('body').removeClass('modal-open');
+                    }
+                    else if (response.data === 'SUCCESS/manager') {
+                        $('#success').text('Korisnik je uspesno prijavljen.');
+                        $('#success').show().delay(3000).fadeOut();
+                        console.log(response);
+                        router.push('/manager');
+                        $('#loginModal').hide();
+                        $('.modal-backdrop').hide();
+                        $('body').removeClass('modal-open');
+                    }
+                    else if (response.data === 'SUCCESS/deliverer') {
+                        $('#success').text('Korisnik je uspesno prijavljen.');
+                        $('#success').show().delay(3000).fadeOut();
+                        console.log(response);
+                        router.push('/deliverer');
+                        $('#loginModal').hide();
+                        $('.modal-backdrop').hide();
+                        $('body').removeClass('modal-open');
+                    }
+                    else if (response.data === 'SUCCESS/customer') {
+                        $('#success').text('Korisnik je uspesno prijavljen.');
+                        $('#success').show().delay(3000).fadeOut();
+                        console.log(response);
+                        router.push('/customer');
+                        $('#loginModal').hide();
+                        $('.modal-backdrop').hide();
+                        $('body').removeClass('modal-open');
+                    }
+                    else if (response.data === 'ERROR') {
+                        $('#error').text('Pogresno korisnicko ime i/ili lozinka.');
+                        $('#error').show().delay(3000).fadeOut();
+                        console.log(response);
+                    }
+                    else if (response.data === 'BLOCKED') {
+                        $('#error').text('Vaš nalog je blokiran, za više informacija obratite se administratoru.');
+                        $('#error').show().delay(3000).fadeOut();
+                        console.log(response);
+                    }
+                });
+        },
+        registrateUser: function () {
+            event.preventDefault();
+            $('#errorReg').hide();
+            if (this.user.name === null || this.user.lastName === null || this.user.birthDate === null
+                || this.user.sex === null || this.user.username === null || this.user.password === null) {
+                $('#errorReg').text('Molimo popunite sva polja.');
+                $('#errorReg').show().delay(3000).fadeOut();
+                $('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
+                return;
+            }
+            if (this.user.name.trim() === '' || this.user.lastName.trim() === '' || this.user.birthDate.trim() === ''
+                || this.user.sex.trim() === '' || this.user.username.trim() === '' || this.user.password.trim() === '') {
+                $('#errorReg').text('Molimo popunite sva polja.');
+                $('#errorReg').show().delay(3000).fadeOut();
+                $('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
+                return;
+            }
 
-			axios.post('/registration', {
-				name: this.user.name,
-				lastName: this.user.lastName,
-				birthDate: this.user.birthDate,
-				sex: this.user.sex,
-				username: this.user.username,
-				password: this.user.password
-			})
-				.then(function (response) {
-					if (response.data === 'SUCCESS') {
-						$('#successReg').text('Korisnik je uspesno registrovan.');
-						$('#successReg').show().delay(3000).fadeOut();
-						$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
-						console.log(response)
-						router.push('/customer');
-						$('#registrationModal').hide();
-						$('.modal-backdrop').hide();
-						$('body').removeClass('modal-open');
-					}
-					else {
-						$('#errorReg').text('Korisnik sa datim korisničkim imenom već postoji.');
-						$('#errorReg').show().delay(3000).fadeOut();
-						$('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
-						console.log(response)
-					}
-				})
-		},
-
-		findRestaurants: function() {
+            axios.post('/registration', {
+                name: this.user.name,
+                lastName: this.user.lastName,
+                birthDate: this.user.birthDate,
+                sex: this.user.sex,
+                username: this.user.username,
+                password: this.user.password
+            })
+                .then(function (response) {
+                    if (response.data === 'SUCCESS') {
+                        $('#successReg').text('Korisnik je uspesno registrovan.');
+                        $('#successReg').show().delay(3000).fadeOut();
+                        $('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
+                        console.log(response)
+                        router.push('/customer');
+                        $('#registrationModal').hide();
+                        $('.modal-backdrop').hide();
+                        $('body').removeClass('modal-open');
+                    }
+                    else {
+                        $('#errorReg').text('Korisnik sa datim korisničkim imenom već postoji.');
+                        $('#errorReg').show().delay(3000).fadeOut();
+                        $('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
+                        console.log(response)
+                    }
+                })
+        },
+        findRestaurants: function () {
             var regex = /^[a-zA-Z\s]*$/;
 
             if(!(document.getElementById('nameRes').value).match(regex)) {
@@ -285,21 +290,20 @@ Vue.component("index", {
                 alert("Ulica može sadržati i više reči, ali one moraju biti odvojene razmakom!");
                 return;
             }
-
-			axios.post('/findRestaurants', {
+            axios.post('/findRestaurants', {
                 name: document.getElementById('nameRes').value,
                 location: document.getElementById('locationRes').value,
                 type: document.getElementById('typeRes').value,
-				grade: document.getElementById('gradeRes').value
+                grade: document.getElementById('gradeRes').value
             })
                 .then(function (response) {
-                    if(response.data === 'NO PARAMETERS'){
-						$('#findError').show().delay(3000).fadeOut();
-					} else {
-						router.push('/foundedRestaurants');
-					}
+                    if (response.data === 'NO PARAMETERS') {
+                        $('#findError').show().delay(3000).fadeOut();
+                    } else {
+                        router.push('/foundedRestaurants');
+                    }
                 });
-		},
+        },
 
         showDataOfRestaurant: function(restaurant) {
             axios.post('/openedRestaurant', {
@@ -314,6 +318,6 @@ Vue.component("index", {
                 .then(function (response) {
                     router.push('/showRestaurant');
                 });
-        }       
-	}
+        }
+    }
 });
