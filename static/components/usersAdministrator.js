@@ -3,8 +3,16 @@ Vue.component("usersAdministrator", {
         return {
             user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
             newUser: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null, userRole: null },
-            users: null,
-            suspiciousUsers: []
+            users: [],
+            suspiciousUsers: [],
+            usersForView: [],
+            name: '',
+            lastName: '',
+            username: '',
+            sortParameter: '',
+            sort: '',
+            role: '',
+            userType: ''
         }
     },
     template: ` 
@@ -41,8 +49,61 @@ Vue.component("usersAdministrator", {
             <button type="button" class="btn btn-outline-dark col-2" style="margin-right: 200px" data-toggle="modal" data-target="#addUserModal">
                 Dodaj korisnika</button>
         </div>
+        <div class="row" style=" margin-top: 50px; margin-left: 50px;">
+            <div class="container sports-container col-12" >
+                <div class="form-floating" style="display:inline-block">
+                    <input type="text" class="form-control" v-model="name" id="name" placeholder="Name">
+                    <label for="name">Ime</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <input type="text" class="form-control" v-model="lastName" id="lastName" placeholder="LastName">
+                    <label for="lastName">Prezime</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <input type="text" class="form-control" v-model="username" id="username" placeholder="Username">
+                    <label for="username">Korisničko ime</label>
+                </div>
+                <div class="form-floating" style="display:inline-block;">
+                    <select class="form-control" v-model="sortParameter" id="sortParameter" placeholder="SortParameter">
+                        <option value="name">Ime</option>
+                        <option value="lastName">Prezime</option>
+                        <option value="username">Korisničko ime</option>
+                        <option value="collectedPoints">Sakupljeni poeni</option>
+                    </select>
+                    <label for="sortParameter">Parametar</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <select class="form-control" v-model="sort" id="sort" placeholder="Sort">
+                        <option value="asc">Rastuće</option>
+                        <option value="dsc">Opadajuće</option>
+                    </select>
+                    <label for="sort">Sortiranje</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <select class="form-control" v-model="role" id="role" placeholder="Role">
+                        <option value="">Svi</option>
+                        <option value="Kupac">Kupac</option>
+                        <option value="Dostavljač">Dostavljač</option>
+                        <option value="Menadžer">Menadžer</option>
+                        <option value="Administrator">Administrator</option>
+                    </select>
+                    <label for="role">Uloga</label>
+                </div>
+                <div class="form-floating" style="display:inline-block">
+                    <select class="form-control" v-model="userType" id="userType" placeholder="UserType">
+                        <option value="">Svi</option>
+                        <option value="REGULAR">Regularni</option>
+                        <option value="BRONSE">Brozani</option>
+                        <option value="SILVER">Srebrni</option>
+                        <option value="GOLD">Zlatni</option>
+                    </select>
+                    <label for="userType">Tip</label>
+                </div>
+                <button class="btn btn-outline-dark btn-lg" style="margin-bottom:15px" v-on:click="findUsers"> Traži </button>
+            </div>
+        </div>
         <div class="row" style="margin-top: 150px; margin-left: 30px;"> 
-			<div class="col-2" v-for="user in users" style="margin-left:30px"> 
+			<div class="col-2" v-for="user in usersForView" style="margin-left:30px"> 
 				<p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
 				Ime: {{user.name}}<br>Prezime: {{user.lastName}}<br> Korisničko ime: {{user.username}}<br> Tip korisnika: {{user.userRole}}
                 <br> <button class="btn btn-success btn-sm col-5" v-if="(user.userRole === 'Menadžer' || user.userRole === 'Dostavljač' || user.userRole === 'Kupac') && user.blocked === 1" 
@@ -163,17 +224,20 @@ Vue.component("usersAdministrator", {
                         return;
                     }
                     var match = document.cookie.match(new RegExp('(^| )' + 'role' + '=([^;]+)'));
-                    if (match) 
+                    if (match)
                         var cookie = match[2];
                     if (cookie !== 'administrator') {
-                        router.push('/'+cookie);
+                        router.push('/' + cookie);
                         return;
                     }
                     this.user = response.data;
                 });
             axios
                 .get('/getUsers')
-                .then(response => (this.users = response.data));
+                .then(response => {
+                    this.users = response.data;
+                    this.usersForView = response.data;
+                });
             axios
                 .get('/getSuspiciousUsers')
                 .then(response => (this.suspiciousUsers = response.data));
@@ -250,7 +314,7 @@ Vue.component("usersAdministrator", {
         },
         deleteUser: function (username) {
             event.preventDefault();
-            
+
             axios.post('/deleteUser', {
                 username: username,
             })
@@ -258,7 +322,7 @@ Vue.component("usersAdministrator", {
         },
         blockUser: function (username) {
             event.preventDefault();
-            
+
             axios.post('/blockUser', {
                 username: username,
             })
@@ -266,11 +330,51 @@ Vue.component("usersAdministrator", {
         },
         unblockUser: function (username) {
             event.preventDefault();
-            
+
             axios.post('/unblockUser', {
                 username: username,
             })
                 .then(response => (this.initSetup()));
+        },
+        findUsers: function () {
+            event.preventDefault();
+
+            this.usersForView = [];
+            for (let u of this.users) {
+                if (u.name.toLowerCase().includes(this.name.toLowerCase()) && u.lastName.toLowerCase().includes(this.lastName.toLowerCase()) && u.username.toLowerCase().includes(this.username.toLowerCase()))
+                    this.usersForView.push(u);
+            }
+            if (this.sortParameter === 'name' && this.sort === 'asc')
+                this.usersForView.sort((a, b) => a.name.localeCompare(b.name));
+            else if (this.sortParameter === 'name' && this.sort === 'dsc')
+                this.usersForView.sort((a, b) => b.name.localeCompare(a.name));
+            else if (this.sortParameter === 'lastName' && this.sort === 'asc')
+                this.usersForView.sort((a, b) => a.lastName.localeCompare(b.lastName));
+            else if (this.sortParameter === 'lastName' && this.sort === 'dsc')
+                this.usersForView.sort((a, b) => b.lastName.localeCompare(a.lastName));
+            else if (this.sortParameter === 'username' && this.sort === 'asc')
+                this.usersForView.sort((a, b) => a.username.localeCompare(b.username));
+            else if (this.sortParameter === 'username' && this.sort === 'dsc')
+                this.usersForView.sort((a, b) => b.username.localeCompare(a.username));
+            else if (this.sortParameter === 'collectedPoints' && this.sort === 'asc')
+                this.usersForView.sort((a, b) => this.getCollectedPoints(a).localeCompare(this.getCollectedPoints(b)));
+            else if (this.sortParameter === 'collectedPoints' && this.sort === 'dsc')
+                this.usersForView.sort((a, b) => this.getCollectedPoints(b).localeCompare(this.getCollectedPoints(a)));
+            this.usersForView = this.usersForView.filter(u => (u.userRole.includes(this.role)));
+            this.usersForView = this.usersForView.filter(u => (this.getCustomerType(u).includes(this.userType)));
+
+        },
+        getCollectedPoints: function(user) {
+            if (user.collectedPoints === undefined)
+                return '0';
+            else
+                return user.collectedPoints.toString();
+        },
+        getCustomerType: function(user) {
+            if (user.customerType === undefined)
+                return '';
+            else
+                return user.customerType;
         }
     }
 });
