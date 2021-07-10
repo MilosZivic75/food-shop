@@ -235,6 +235,7 @@ Vue.component("foundedRestaurants", {
         },
 
         getChineseRes: function() {
+            alert(this.restaurants.length.toString())
             if(this.filterChinese === false){
                 this.showingRestaurants = []
                 for(var i=0; i<this.restaurants.length; i++){

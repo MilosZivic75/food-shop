@@ -609,7 +609,7 @@ public class FoodShopMain {
 			//comment.setApproved(false);
 			comment.setTimeOfOccurrence(LocalDateTime.now());
 			commentController.create(comment);
-			restaurantController.updateAverage(comment.getRestaurant(), commentController.readAllEntities());
+			//restaurantController.updateAverage(comment.getRestaurant(), commentController.readAllEntities());
 			
 			return "SUCCESS";
 		});
@@ -621,7 +621,6 @@ public class FoodShopMain {
 
 			List<Comment> comments = commentController.readAllEntities();
 			List<Comment> restaurantComments = new ArrayList<Comment>();
-
 			for (Comment comment : comments) {
 				if (comment.getRestaurant().equals(restaurant.getName()) && comment.getApproved() != null && comment.getApproved() != false)
 					restaurantComments.add(comment);
@@ -738,12 +737,14 @@ public class FoodShopMain {
 			OrderRequest orderRequest = g.fromJson(req.body(), OrderRequest.class);
 			orderController.updateOrder(orderRequest.getOrderID());
 			delivererController.updateDelivererOrders(orderRequest.getOrderID(), orderRequest.getDelivererID());
-			
+			Session session = req.session();
+			Deliverer deliverer = delivererController.read(loggedUserUsername);
+			session.attribute("user", deliverer);
+		
 			return "SUCCESS";
 		});
 		
 		post("/findRestaurants", (req, res) -> {
-			res.type("application/json");
 			String name = req.body().split(",")[0].split(":")[1];
 			name = name.substring(1, name.length()-1);
 			String location = req.body().split(",")[1].split(":")[1];
