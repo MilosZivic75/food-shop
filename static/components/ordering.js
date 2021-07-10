@@ -14,7 +14,7 @@ Vue.component("order", {
         <div class="row" style="margin-top: 30px; margin-left: 150px;">
             <div class="col-3" v-for="restaurant in restaurants">
                 <button class="buttonStyle" v-on:click="restaurantMenu(restaurant.name, restaurant.restaurantType, 
-                    restaurant.articles, restaurant.status, restaurant.location, restaurant.logo, restaurant.averageRating)">
+                    restaurant.articles, restaurant.status, restaurant.location, restaurant.logo, restaurant.averageRating)" v-if="restaurant.status === 'Otvoren'">
                     <p style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
                         <img :src="restaurant.logo" style="width: 40px; height: 40px;"><br />
                         Ime: {{restaurant.name}}<br>Tip: {{restaurant.restaurantType}}<br> Stanje: {{restaurant.status}}
