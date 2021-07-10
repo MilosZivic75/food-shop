@@ -45,6 +45,41 @@
     "customerUsername": "the",
     "orderStatus": "DELIVERED"
   },
+  "3879703329": {
+    "id": "3879703329",
+    "articles": [
+      {
+        "name": "Špikovana-pljeskavica",
+        "price": 300.0,
+        "articleType": "DRINK",
+        "restaurantID": "Papričica",
+        "amount": 300.0,
+        "description": "špikovana pljeskavica",
+        "image": "/images/PapricicaArticles/spikovana.jpg",
+        "deleted": 0
+      }
+    ],
+    "quantity": [
+      3
+    ],
+    "restaurantID": "Papričica",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 10
+      },
+      "time": {
+        "hour": 18,
+        "minute": 25,
+        "second": 33,
+        "nano": 717497800
+      }
+    },
+    "price": 873.0,
+    "customerUsername": "the",
+    "orderStatus": "CANCELED"
+  },
   "5757912632": {
     "id": "5757912632",
     "articles": [
@@ -91,6 +126,41 @@
     "customerUsername": "the",
     "orderStatus": "CANCELED"
   },
+  "6542090464": {
+    "id": "6542090464",
+    "articles": [
+      {
+        "name": "Taćosi",
+        "price": 400.0,
+        "articleType": "DRINK",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 300.0,
+        "description": "taćosi",
+        "image": "/images/TortillaCasaArticles/tacos.png",
+        "deleted": 0
+      }
+    ],
+    "quantity": [
+      1
+    ],
+    "restaurantID": "Tortilla-Casa",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 10
+      },
+      "time": {
+        "hour": 18,
+        "minute": 46,
+        "second": 23,
+        "nano": 246233100
+      }
+    },
+    "price": 388.0,
+    "customerUsername": "the",
+    "orderStatus": "PROCESSING"
+  },
   "4461844836": {
     "id": "4461844836",
     "articles": [
@@ -125,6 +195,87 @@
     "price": 145.5,
     "customerUsername": "the",
     "orderStatus": "DELIVERED"
+  },
+  "0246522674": {
+    "id": "0246522674",
+    "articles": [
+      {
+        "name": "Ražnjići",
+        "price": 350.0,
+        "articleType": "DRINK",
+        "restaurantID": "Foody!",
+        "amount": 300.0,
+        "description": "dimljeni ražnjići",
+        "image": "/images/FoodyArticles/raznjici.png",
+        "deleted": 0
+      },
+      {
+        "name": "Pileći-štapići",
+        "price": 350.0,
+        "articleType": "DRINK",
+        "restaurantID": "Foody!",
+        "amount": 300.0,
+        "description": "pileći štapići sa pomfritom",
+        "image": "/images/FoodyArticles/pilecistapici.png",
+        "deleted": 0
+      }
+    ],
+    "quantity": [
+      2,
+      3
+    ],
+    "restaurantID": "Foody!",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 10
+      },
+      "time": {
+        "hour": 18,
+        "minute": 11,
+        "second": 40,
+        "nano": 369083000
+      }
+    },
+    "price": 1697.5,
+    "customerUsername": "the",
+    "orderStatus": "PROCESSING"
+  },
+  "6919990498": {
+    "id": "6919990498",
+    "articles": [
+      {
+        "name": "Classic-box",
+        "price": 350.0,
+        "articleType": "DRINK",
+        "restaurantID": "KFC",
+        "amount": 250.0,
+        "description": "classic box",
+        "image": "/images/KFCArticles/classicbox.png",
+        "deleted": 0
+      }
+    ],
+    "quantity": [
+      1
+    ],
+    "restaurantID": "KFC",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 10
+      },
+      "time": {
+        "hour": 18,
+        "minute": 26,
+        "second": 56,
+        "nano": 997953400
+      }
+    },
+    "price": 339.5,
+    "customerUsername": "the",
+    "orderStatus": "CANCELED"
   },
   "5152525340": {
     "id": "5152525340",
@@ -206,5 +357,108 @@
     "price": 1216.0,
     "customerUsername": "the",
     "orderStatus": "WAITING_FOR_DELIVERY"
+  },
+  "0989839544": {
+    "id": "0989839544",
+    "articles": [
+      {
+        "name": "Icepoint",
+        "price": 300.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 200.0,
+        "description": "sladoled",
+        "image": "/images/CaribicArticles/icepoint.png",
+        "deleted": 0
+      },
+      {
+        "name": "Rosa",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 500.0,
+        "description": "obicna voda",
+        "image": "/images/CaribicArticles/rosa.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pica-kulen",
+        "price": 350.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 250.0,
+        "description": "pica sa kulenom",
+        "image": "/images/CaribicArticles/kulen.png",
+        "deleted": 0
+      }
+    ],
+    "quantity": [
+      1,
+      1,
+      2
+    ],
+    "restaurantID": "Caribic",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 10
+      },
+      "time": {
+        "hour": 18,
+        "minute": 26,
+        "second": 3,
+        "nano": 21146000
+      }
+    },
+    "price": 1067.0,
+    "customerUsername": "the",
+    "orderStatus": "PROCESSING"
+  },
+  "6228771025": {
+    "id": "6228771025",
+    "articles": [
+      {
+        "name": "Wrapper",
+        "price": 450.0,
+        "articleType": "DRINK",
+        "restaurantID": "KFC",
+        "amount": 200.0,
+        "description": "wrapper",
+        "image": "images/KFCArticles/wrapper.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Classic-box",
+        "price": 350.0,
+        "articleType": "DRINK",
+        "restaurantID": "KFC",
+        "amount": 250.0,
+        "description": "classic box",
+        "image": "/images/KFCArticles/classicbox.png",
+        "deleted": 0
+      }
+    ],
+    "quantity": [
+      2,
+      2
+    ],
+    "restaurantID": "KFC",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 10
+      },
+      "time": {
+        "hour": 18,
+        "minute": 11,
+        "second": 15,
+        "nano": 970374300
+      }
+    },
+    "price": 1552.0,
+    "customerUsername": "the",
+    "orderStatus": "CANCELED"
   }
 }

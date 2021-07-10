@@ -2,7 +2,7 @@ Vue.component("index", {
 	data: function () {
 		return {
 			user: { username: null, password: null, name: null, lastName: null, birthDate: null, sex: null },
-			restaurants: null
+			restaurants: []
 		}
 	},
 	template: ` 

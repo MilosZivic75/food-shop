@@ -1,10 +1,10 @@
 Vue.component("user-orders", {
     data: function () {
         return {
-            orders: null,
-            showingOrders: null,
+            orders: [],
+            showingOrders: [],
             user: null,
-            restaurants: null,
+            restaurants: [],
             searchValue: 'Pretraga',
             nameRes: '',
             startPrice: '',
@@ -138,8 +138,7 @@ Vue.component("user-orders", {
                 </div>
                 <div class="row" style="margin-left: 200px; margin-top: 10px; font-size: 22px; text-align: center;">
                     <div class="col-10">
-                        
-                        <table>
+                        <table id="orderTable">
                             <tr>
                                 <th> Porudžbina </th>
                                 <th> Restoran </th>
@@ -169,8 +168,14 @@ Vue.component("user-orders", {
         axios
             .get('/getOrders')
             .then(response => {
-                this.orders = response.data;
-                this.showingOrders = response.data;
+                var allOrders = response.data;
+                for(var i=0; i<allOrders.length; i++){
+                    if(allOrders[i].orderStatus !== 'CANCELED'){
+                        this.orders.push(allOrders[i]);
+                    }
+                }
+                
+                this.showingOrders = this.orders;
             });
         axios
             .get('/loggedUser')
@@ -215,6 +220,8 @@ Vue.component("user-orders", {
         cancelOrder: function(orderId, index, orderPrice) {
             document.getElementById(orderId).innerHTML = "OTKAZANA";
             document.getElementById(index).remove();
+            document.getElementById('orderTable').deleteRow(index+1);
+
             axios.post('/cancelOrder', {
                 id: orderId,
                 username: this.user.username,

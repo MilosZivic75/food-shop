@@ -52,6 +52,66 @@
         "description": "sladoled u casi",
         "image": "/images/McDonaldsArticles/ice-cream.png",
         "deleted": 0
+      },
+      {
+        "name": "Coca-cola",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/McDonaldsArticles/cocacola.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Sprite",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/McDonaldsArticles/sprite.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pepsi",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/McDonaldsArticles/pepsi.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Fanta",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/McDonaldsArticles/fanta.png",
+        "deleted": 0
+      },
+      {
+        "name": "Rosa",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 500.0,
+        "description": "obicna voda",
+        "image": "/images/McDonaldsArticles/rosa.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Knjaz-miloš",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "McDonalds",
+        "amount": 500.0,
+        "description": "gazirana voda",
+        "image": "/images/McDonaldsArticles/knjazmilos.jpg",
+        "deleted": 0
       }
     ],
     "status": "Otvoren",
@@ -70,10 +130,131 @@
     "deleted": 0,
     "averageRating": 3.5
   },
-  "Gyros Master": {
-    "name": "Gyros Master",
+  "Gyros-Master": {
+    "name": "Gyros-Master",
     "restaurantType": "Brza hrana",
-    "articles": [],
+    "articles": [
+    	{
+        "name": "Gyros-mali",
+        "price": 230.0,
+        "articleType": "FOOD",
+        "restaurantID": "Gyros-Master",
+        "amount": 250.0,
+        "description": "giros mali",
+        "image": "/images/GyrosMasterArticles/gyros.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Gyros-veliki",
+        "price": 330.0,
+        "articleType": "FOOD",
+        "restaurantID": "Gyros-Master",
+        "amount": 350.0,
+        "description": "giros veliki",
+        "image": "/images/GyrosMasterArticles/gyros.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Gyros-box",
+        "price": 450.0,
+        "articleType": "FOOD",
+        "restaurantID": "Gyros-Master",
+        "amount": 400.0,
+        "description": "giros box",
+        "image": "/images/GyrosMasterArticles/gyrosbox.png",
+        "deleted": 0
+      },
+      {
+        "name": "gyros-porcija",
+        "price": 600.0,
+        "articleType": "FOOD",
+        "restaurantID": "Gyros-Master",
+        "amount": 500.0,
+        "description": "porcija",
+        "image": "images/GyrosMasterArticles/gyrosporcija.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pomfrit-mali",
+        "price": 120.0,
+        "articleType": "FOOD",
+        "restaurantID": "Gyros-Master",
+        "amount": 100.0,
+        "description": "mali pomfrit",
+        "image": "/images/GyrosMasterArticles/pomfrit.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pomfrit-veliki",
+        "price": 150.0,
+        "articleType": "FOOD",
+        "restaurantID": "Gyros-Master",
+        "amount": 200.0,
+        "description": "veliki pomfrit",
+        "image": "/images/GyrosMasterArticles/pomfrit.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Coca-cola",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Gyros-Master",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/GyrosMasterArticles/cocacola.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Sprite",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Gyros-Master",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/GyrosMasterArticles/sprite.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pepsi",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Gyros-Master",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/GyrosMasterArticles/pepsi.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Fanta",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Gyros-Master",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/GyrosMasterArticles/fanta.png",
+        "deleted": 0
+      },
+      {
+        "name": "Rosa",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Gyros-Master",
+        "amount": 500.0,
+        "description": "obicna voda",
+        "image": "/images/GyrosMasterArticles/rosa.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Knjaz-miloš",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Gyros-Master",
+        "amount": 500.0,
+        "description": "gazirana voda",
+        "image": "/images/GyrosMasterArticles/knjazmilos.jpg",
+        "deleted": 0
+      }
+    ],
     "status": "Otvoren",
     "location": {
       "longitude": 20.019025900000003,
@@ -88,12 +269,133 @@
     },
     "logo": "/images/restaurantLogo3.png",
     "deleted": 0,
-    "averageRating": 3.0
+    "averageRating": 0.0
   },
   "Foody!": {
     "name": "Foody!",
     "restaurantType": "Grill",
-    "articles": [],
+    "articles": [
+    	{
+        "name": "Pileći-batak",
+        "price": 230.0,
+        "articleType": "FOOD",
+        "restaurantID": "Foody!",
+        "amount": 250.0,
+        "description": "dimljeni pileći batak",
+        "image": "/images/FoodyArticles/dimljenipilecibatak.png",
+        "deleted": 0
+      },
+      {
+        "name": "Kobasica",
+        "price": 250.0,
+        "articleType": "FOOD",
+        "restaurantID": "Foody!",
+        "amount": 250.0,
+        "description": "roštilj kobasice",
+        "image": "/images/FoodyArticles/kobasice.png",
+        "deleted": 0
+      },
+      {
+        "name": "Ražnjići",
+        "price": 350.0,
+        "articleType": "FOOD",
+        "restaurantID": "Foody!",
+        "amount": 300.0,
+        "description": "dimljeni ražnjići",
+        "image": "/images/FoodyArticles/raznjici.png",
+        "deleted": 0
+      },
+      {
+        "name": "Sendvič-piletina",
+        "price": 250.0,
+        "articleType": "FOOD",
+        "restaurantID": "Foody!",
+        "amount": 200.0,
+        "description": "sendvič piletina",
+        "image": "images/FoodyArticles/sendvicpiletina.png",
+        "deleted": 0
+      },
+      {
+        "name": "Pileći-štapići",
+        "price": 350.0,
+        "articleType": "FOOD",
+        "restaurantID": "Foody!",
+        "amount": 300.0,
+        "description": "pileći štapići sa pomfritom",
+        "image": "/images/FoodyArticles/pilecistapici.png",
+        "deleted": 0
+      },
+      {
+        "name": "Palačinke",
+        "price": 200.0,
+        "articleType": "FOOD",
+        "restaurantID": "Foody!",
+        "amount": 200.0,
+        "description": "Slatke palačinke",
+        "image": "/images/FoodyArticles/palacinka.png",
+        "deleted": 0
+      },
+      {
+        "name": "Coca-cola",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Foody!",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/FoodyArticles/cocacola.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Sprite",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Foody!",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/FoodyArticles/sprite.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pepsi",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Foody!",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/FoodyArticles/pepsi.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Fanta",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Foody!",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/FoodyArticles/fanta.png",
+        "deleted": 0
+      },
+      {
+        "name": "Rosa",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Foody!",
+        "amount": 500.0,
+        "description": "obicna voda",
+        "image": "/images/FoodyArticles/rosa.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Knjaz-miloš",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Foody!",
+        "amount": 500.0,
+        "description": "gazirana voda",
+        "image": "/images/FoodyArticles/knjazmilos.jpg",
+        "deleted": 0
+      }
+    ],
     "status": "Zatvoren",
     "location": {
       "longitude": 20.019025900000003,
@@ -108,12 +410,143 @@
     },
     "logo": "/images/restaurantLogo7.png",
     "deleted": 0,
-    "averageRating": 2.4
+    "averageRating": 0.0
   },
   "Caribic": {
     "name": "Caribic",
     "restaurantType": "Picerija",
-    "articles": [],
+    "articles": [
+    	{
+        "name": "Capricciosa",
+        "price": 300.0,
+        "articleType": "FOOD",
+        "restaurantID": "Caribic",
+        "amount": 250.0,
+        "description": "pica kaprićoza",
+        "image": "/images/CaribicArticles/kapricoza.png",
+        "deleted": 0
+      },
+      {
+        "name": "Pica-kulen",
+        "price": 350.0,
+        "articleType": "FOOD",
+        "restaurantID": "Caribic",
+        "amount": 250.0,
+        "description": "pica sa kulenom",
+        "image": "/images/CaribicArticles/kulen.png",
+        "deleted": 0
+      },
+      {
+        "name": "Margarita",
+        "price": 250.0,
+        "articleType": "FOOD",
+        "restaurantID": "Caribic",
+        "amount": 300.0,
+        "description": "pica margarita",
+        "image": "/images/CaribicArticles/margarita.png",
+        "deleted": 0
+      },
+      {
+        "name": "Mexicana",
+        "price": 400.0,
+        "articleType": "FOOD",
+        "restaurantID": "Caribic",
+        "amount": 200.0,
+        "description": "pica mexicana",
+        "image": "images/CaribicArticles/mexico.png",
+        "deleted": 0
+      },
+      {
+        "name": "Venezia",
+        "price": 450.0,
+        "articleType": "FOOD",
+        "restaurantID": "Caribic",
+        "amount": 300.0,
+        "description": "pica venecija",
+        "image": "/images/CaribicArticles/venezia.png",
+        "deleted": 0
+      },
+      {
+        "name": "Index-sendvič",
+        "price": 370.0,
+        "articleType": "FOOD",
+        "restaurantID": "Caribic",
+        "amount": 200.0,
+        "description": "Index sendvič",
+        "image": "/images/CaribicArticles/index.png",
+        "deleted": 0
+      },
+      {
+        "name": "Icepoint",
+        "price": 300.0,
+        "articleType": "FOOD",
+        "restaurantID": "Caribic",
+        "amount": 200.0,
+        "description": "sladoled",
+        "image": "/images/CaribicArticles/icepoint.png",
+        "deleted": 0
+      },
+      {
+        "name": "Coca-cola",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/CaribicArticles/cocacola.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Sprite",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/CaribicArticles/sprite.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pepsi",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/CaribicArticles/pepsi.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Fanta",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/CaribicArticles/fanta.png",
+        "deleted": 0
+      },
+      {
+        "name": "Rosa",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 500.0,
+        "description": "obicna voda",
+        "image": "/images/CaribicArticles/rosa.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Knjaz-miloš",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 500.0,
+        "description": "gazirana voda",
+        "image": "/images/CaribicArticles/knjazmilos.jpg",
+        "deleted": 0
+      }
+    ],
     "status": "Otvoren",
     "location": {
       "longitude": 20.019025900000003,
@@ -128,12 +561,133 @@
     },
     "logo": "/images/restaurantLogo2.png",
     "deleted": 0,
-    "averageRating": 4.2
+    "averageRating": 0.0
   },
-  "Tortilla Casa": {
-    "name": "Tortilla Casa",
+  "Tortilla-Casa": {
+    "name": "Tortilla-Casa",
     "restaurantType": "Brza hrana",
-    "articles": [],
+    "articles": [
+    	{
+        "name": "Burito",
+        "price": 400.0,
+        "articleType": "FOOD",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 250.0,
+        "description": "burito",
+        "image": "/images/TortillaCasaArticles/burito.png",
+        "deleted": 0
+      },
+      {
+        "name": "Burito-činija",
+        "price": 500.0,
+        "articleType": "FOOD",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 250.0,
+        "description": "burito u činiji",
+        "image": "/images/TortillaCasaArticles/buritocinija.png",
+        "deleted": 0
+      },
+      {
+        "name": "Crunchwrap",
+        "price": 350.0,
+        "articleType": "FOOD",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 300.0,
+        "description": "crunchwrap",
+        "image": "/images/TortillaCasaArticles/crunchwrap.png",
+        "deleted": 0
+      },
+      {
+        "name": "Naćosi",
+        "price": 400.0,
+        "articleType": "FOOD",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 200.0,
+        "description": "naćosi",
+        "image": "images/TortillaCasaArticles/nacos.png",
+        "deleted": 0
+      },
+      {
+        "name": "Taćosi",
+        "price": 400.0,
+        "articleType": "FOOD",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 300.0,
+        "description": "taćosi",
+        "image": "/images/TortillaCasaArticles/tacos.png",
+        "deleted": 0
+      },
+      {
+        "name": "Taquitos",
+        "price": 370.0,
+        "articleType": "FOOD",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 200.0,
+        "description": "taquitos",
+        "image": "/images/TortillaCasaArticles/taquitos.png",
+        "deleted": 0
+      },
+      {
+        "name": "Coca-cola",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/TortillaCasaArticles/cocacola.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Sprite",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/TortillaCasaArticles/sprite.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pepsi",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/TortillaCasaArticles/pepsi.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Fanta",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/TortillaCasaArticles/fanta.png",
+        "deleted": 0
+      },
+      {
+        "name": "Rosa",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 500.0,
+        "description": "obicna voda",
+        "image": "/images/TortillaCasaArticles/rosa.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Knjaz-miloš",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Tortilla-Casa",
+        "amount": 500.0,
+        "description": "gazirana voda",
+        "image": "/images/TortillaCasaArticles/knjazmilos.jpg",
+        "deleted": 0
+      }
+    ],
     "status": "Zatvoren",
     "location": {
       "longitude": 20.019025900000003,
@@ -148,12 +702,143 @@
     },
     "logo": "/images/restaurantLogo5.png",
     "deleted": 0,
-    "averageRating": 3.2
+    "averageRating": 0.0
   },
   "KFC": {
     "name": "KFC",
     "restaurantType": "Brza hrana",
-    "articles": [],
+    "articles": [
+    	{
+        "name": "Classic-box",
+        "price": 350.0,
+        "articleType": "FOOD",
+        "restaurantID": "KFC",
+        "amount": 250.0,
+        "description": "classic box",
+        "image": "/images/KFCArticles/classicbox.png",
+        "deleted": 0
+      },
+      {
+        "name": "Cheeseburger-box",
+        "price": 450.0,
+        "articleType": "FOOD",
+        "restaurantID": "KFC",
+        "amount": 250.0,
+        "description": "cheeseburger box",
+        "image": "/images/KFCArticles/cheeseburgerbox.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Kentucky-box",
+        "price": 700.0,
+        "articleType": "FOOD",
+        "restaurantID": "KFC",
+        "amount": 300.0,
+        "description": "kentucky box",
+        "image": "/images/KFCArticles/kentuckybox.png",
+        "deleted": 0
+      },
+      {
+        "name": "Wrapper",
+        "price": 450.0,
+        "articleType": "FOOD",
+        "restaurantID": "KFC",
+        "amount": 200.0,
+        "description": "wrapper",
+        "image": "images/KFCArticles/wrapper.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Šejk-čokolada",
+        "price": 200.0,
+        "articleType": "FOOD",
+        "restaurantID": "KFC",
+        "amount": 300.0,
+        "description": "šejk od čokolade",
+        "image": "/images/KFCArticles/shakecokolada.png",
+        "deleted": 0
+      },
+      {
+        "name": "Šejk-karamela",
+        "price": 200.0,
+        "articleType": "FOOD",
+        "restaurantID": "KFC",
+        "amount": 200.0,
+        "description": "šejk od karamele",
+        "image": "/images/KFCArticles/shakekaramela.png",
+        "deleted": 0
+      },
+      {
+        "name": "Šejk-jagoda",
+        "price": 200.0,
+        "articleType": "FOOD",
+        "restaurantID": "KFC",
+        "amount": 200.0,
+        "description": "šejk od jagode",
+        "image": "/images/KFCArticles/shakejagoda.png",
+        "deleted": 0
+      },
+      {
+        "name": "Coca-cola",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "KFC",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/KFCArticles/cocacola.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Sprite",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "KFC",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/KFCArticles/sprite.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pepsi",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "KFC",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/KFCArticles/pepsi.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Fanta",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "KFC",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/KFCArticles/fanta.png",
+        "deleted": 0
+      },
+      {
+        "name": "Rosa",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "KFC",
+        "amount": 500.0,
+        "description": "obicna voda",
+        "image": "/images/KFCArticles/rosa.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Knjaz-miloš",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "KFC",
+        "amount": 500.0,
+        "description": "gazirana voda",
+        "image": "/images/KFCArticles/knjazmilos.jpg",
+        "deleted": 0
+      }
+    ],
     "status": "Zatvoren",
     "location": {
       "longitude": 20.019025900000003,
@@ -168,12 +853,163 @@
     },
     "logo": "/images/restaurantLogo6.png",
     "deleted": 0,
-    "averageRating": 1.2
+    "averageRating": 0.0
   },
   "Papričica": {
     "name": "Papričica",
     "restaurantType": "Grill",
-    "articles": [],
+    "articles": [
+    	{
+        "name": "Pljeskavica",
+        "price": 200.0,
+        "articleType": "FOOD",
+        "restaurantID": "Papričica",
+        "amount": 250.0,
+        "description": "obična pljeskavica",
+        "image": "/images/PapricicaArticles/pljeskavica.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Punjena-pljeskavica",
+        "price": 280.0,
+        "articleType": "FOOD",
+        "restaurantID": "Papričica",
+        "amount": 250.0,
+        "description": "punjena pljeskavica",
+        "image": "/images/PapricicaArticles/punjenapljeskavica.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Špikovana-pljeskavica",
+        "price": 300.0,
+        "articleType": "FOOD",
+        "restaurantID": "Papričica",
+        "amount": 300.0,
+        "description": "špikovana pljeskavica",
+        "image": "/images/PapricicaArticles/spikovana.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Ćevapi",
+        "price": 400.0,
+        "articleType": "FOOD",
+        "restaurantID": "Papričica",
+        "amount": 200.0,
+        "description": "10 ćevapa",
+        "image": "images/PapricicaArticles/cevapi.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Belo-meso",
+        "price": 250.0,
+        "articleType": "FOOD",
+        "restaurantID": "Papričica",
+        "amount": 300.0,
+        "description": "belo meso",
+        "image": "/images/PapricicaArticles/belomeso.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Kobasica",
+        "price": 250.0,
+        "articleType": "FOOD",
+        "restaurantID": "Papričica",
+        "amount": 200.0,
+        "description": "roštilj kobasica",
+        "image": "/images/PapricicaArticles/rostiljkobasica.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Vešalica",
+        "price": 320.0,
+        "articleType": "FOOD",
+        "restaurantID": "Papričica",
+        "amount": 200.0,
+        "description": "dimljena vešalica",
+        "image": "/images/PapricicaArticles/vesalica.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Svinjski-vrat",
+        "price": 400.0,
+        "articleType": "FOOD",
+        "restaurantID": "Papričica",
+        "amount": 200.0,
+        "description": "svinjski vrat na roštilju",
+        "image": "/images/PapricicaArticles/svinjskivrat.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Karadjordjeva-šnicla",
+        "price": 800.0,
+        "articleType": "FOOD",
+        "restaurantID": "Papričica",
+        "amount": 200.0,
+        "description": "porcija karadjordjeva sa pomfritom",
+        "image": "/images/PapricicaArticles/karadjordjeva.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Coca-cola",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Papričica",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/PapricicaArticles/cocacola.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Sprite",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Papričica",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/PapricicaArticles/sprite.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Pepsi",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Papričica",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/PapricicaArticles/pepsi.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Fanta",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Papričica",
+        "amount": 330.0,
+        "description": "gazirani sok",
+        "image": "/images/PapricicaArticles/fanta.png",
+        "deleted": 0
+      },
+      {
+        "name": "Rosa",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Papričica",
+        "amount": 500.0,
+        "description": "obicna voda",
+        "image": "/images/PapricicaArticles/rosa.jpg",
+        "deleted": 0
+      },
+      {
+        "name": "Knjaz-miloš",
+        "price": 100.0,
+        "articleType": "DRINK",
+        "restaurantID": "Papričica",
+        "amount": 500.0,
+        "description": "gazirana voda",
+        "image": "/images/PapricicaArticles/knjazmilos.jpg",
+        "deleted": 0
+      }
+    ],
     "status": "Otvoren",
     "location": {
       "longitude": 20.019025900000003,
@@ -188,6 +1024,6 @@
     },
     "logo": "/images/restaurantLogo4.png",
     "deleted": 0,
-    "averageRating": 3.02
+    "averageRating": 0.0
   }
 }

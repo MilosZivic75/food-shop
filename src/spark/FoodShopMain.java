@@ -234,7 +234,7 @@ public class FoodShopMain {
 				String restaurantID = name.split(" ")[1];
 				Restaurant restaurant = restaurants.get(restaurantID);
 				for (Article article : restaurant.getArticles()) {
-					if (article.getName().contains(articleID))
+					if (article.getName().equals(articleID))
 						articles.add(article);
 				}
 			}
@@ -548,6 +548,10 @@ public class FoodShopMain {
 				susCustomer.setSuspicious(true);
 				customerController.update(susCustomer);
 			}
+			
+			Session session = req.session();
+			Customer newCustomer = customerController.read(username);
+			session.attribute("user", newCustomer);
 
 			return "SUCCESS";
 		});

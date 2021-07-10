@@ -1,7 +1,7 @@
 Vue.component("order", {
     data: function () {
         return {
-            restaurants: null
+            restaurants: []
         }
     },
     template: ` 

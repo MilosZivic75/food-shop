@@ -2,7 +2,7 @@ Vue.component("foundedRestaurants", {
     data: function () {
         return {
             restaurants: [],
-			showingRestaurants: null,
+			showingRestaurants: [],
             filterOpened: false,
             filterGrill: false,
             filterFastFood: false,

@@ -1,10 +1,10 @@
 Vue.component("delivererOrders", {
     data: function () {
         return {
-            orders: null,
+            orders: [],
             user: null,
-            restaurants: null,
-            showingOrders: null,
+            restaurants: [],
+            showingOrders: [],
             searchValue: 'Pretraga',
             nameRes: '',
             startPrice: '',
