@@ -279,6 +279,17 @@ Vue.component("index", {
                 })
         },
         findRestaurants: function () {
+            var regex = /^[a-zA-Z\s]*$/;
+
+            if(!(document.getElementById('nameRes').value).match(regex)) {
+                alert("Ime sadrži samo slova!");
+                return;
+            } 
+
+            if(!(document.getElementById('locationRes').value).match(regex)) {
+                alert("Ulica može sadržati i više reči, ali one moraju biti odvojene razmakom!");
+                return;
+            }
             axios.post('/findRestaurants', {
                 name: document.getElementById('nameRes').value,
                 location: document.getElementById('locationRes').value,
@@ -291,6 +302,21 @@ Vue.component("index", {
                     } else {
                         router.push('/foundedRestaurants');
                     }
+                });
+        },
+
+        showDataOfRestaurant: function(restaurant) {
+            axios.post('/openedRestaurant', {
+                name: restaurant.name,
+                restaurantType: restaurant.restaurantType,
+                articles: restaurant.articles,
+                status: restaurant.status,
+                location: restaurant.location,
+                logo: restaurant.logo,
+                averageRating: restaurant.averageRating
+            })
+                .then(function (response) {
+                    router.push('/showRestaurant');
                 });
         }
     }
