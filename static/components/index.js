@@ -43,13 +43,13 @@ Vue.component("index", {
                 </div>
             </div>
             <label for="" id="findError" style="font-size: 20px; color: red; display: none;"> Molimo oznacite makar jedan parametar za pretragu! </label> <br>
-            <label for="" id="locationError" style="font-size: 20px; color: red; display: none;"> Za pretragu po lokaciji unesite ulicu u kojoj tražie restoran, bez broja! </label>
             <div class="row" style="margin-top: 200px; margin-left: 30px;">
                 <div class="col-2" v-for="restaurant in restaurants">
                     <p
                         style="border:3px; border-style:solid; background-color:#f7f7cb; border-color: #d47400; padding: 1em;">
                         <img :src="restaurant.logo" style="width: 40px; height: 40px;"><br />
                         Ime: {{restaurant.name}}<br>Tip: {{restaurant.restaurantType}}<br> Stanje: {{restaurant.status}}
+                        <br> <button class="btn btn-info btn-sm col-7" v-on:click="showDataOfRestaurant(restaurant)">Prikaži</button>
                     </p>
                 </div>
             </div>
@@ -272,7 +272,20 @@ Vue.component("index", {
 					}
 				})
 		},
+
 		findRestaurants: function() {
+            var regex = /^[a-zA-Z\s]*$/;
+
+            if(!(document.getElementById('nameRes').value).match(regex)) {
+                alert("Ime sadrži samo slova!");
+                return;
+            } 
+
+            if(!(document.getElementById('locationRes').value).match(regex)) {
+                alert("Ulica može sadržati i više reči, ali one moraju biti odvojene razmakom!");
+                return;
+            }
+
 			axios.post('/findRestaurants', {
                 name: document.getElementById('nameRes').value,
                 location: document.getElementById('locationRes').value,
@@ -286,6 +299,21 @@ Vue.component("index", {
 						router.push('/foundedRestaurants');
 					}
                 });
-		}
+		},
+
+        showDataOfRestaurant: function(restaurant) {
+            axios.post('/openedRestaurant', {
+                name: restaurant.name,
+                restaurantType: restaurant.restaurantType,
+                articles: restaurant.articles,
+                status: restaurant.status,
+                location: restaurant.location,
+                logo: restaurant.logo,
+                averageRating: restaurant.averageRating
+            })
+                .then(function (response) {
+                    router.push('/showRestaurant');
+                });
+        }       
 	}
 });

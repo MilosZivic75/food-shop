@@ -36,6 +36,7 @@
     "customerUsername": "the",
     "restaurantID": "McDonalds",
     "text": "Na porudzbinu se dosta ceka, kvalitet mesa prosecan!",
-    "grade": 2
+    "grade": 2,
+    "approved": true
   }
 }
