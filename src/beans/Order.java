@@ -15,6 +15,7 @@ public class Order {
 	private String customerUsername;
 	private OrderStatus orderStatus;
 	private Boolean requested;
+	private Boolean rated;
 	
 	public Order() {
 		super();
@@ -31,6 +32,7 @@ public class Order {
 		this.price = price;
 		this.customerUsername = customerUsername;
 		this.orderStatus = orderStatus;
+		this.rated = false;
 	}
 
 	public String getId() {
@@ -104,4 +106,13 @@ public class Order {
 	public void setRequested(Boolean requested) {
 		this.requested = requested;
 	}
+
+	public Boolean getRated() {
+		return rated;
+	}
+
+	public void setRated(Boolean rated) {
+		this.rated = rated;
+	}
+	
 }

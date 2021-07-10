@@ -18,4 +18,8 @@ public class OrderService extends Service<String, Order>{
 	public void updateOrder(String orderID) {
 		orderRepository.updateOrder(orderID);
 	}
+	
+	public void updateOrderRate(String orderID) {
+		orderRepository.updateOrderRate(orderID);
+	}
 }

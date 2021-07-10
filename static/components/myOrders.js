@@ -27,7 +27,8 @@ Vue.component("user-orders", {
             sortUpDate: false,
             sortDownDate: false,
             sortUpNum: false,
-            sortDownNum: false
+            sortDownNum: false,
+            comments: []
         }
     },
     template: ` 
@@ -152,7 +153,7 @@ Vue.component("user-orders", {
                                 <td> <label for="" :id="order.id" style="margin-left: 40px;"> {{orderValue(order.orderStatus)}} </label> </td>
                                 <td> 
                                     <button class="btn btn-danger" :id="index" style="margin-left: 40px;" v-if="inProcessing(order.orderStatus) === true" v-on:click="cancelOrder(order.id, index, order.price)"> Otkaži </button>
-                                    <button class="btn btn-primary" style="margin-left: 40px;" v-else-if="isOrderDelivered(order.orderStatus) === true" v-on:click="addComment(order.restaurantID)"> Oceni restoran </button>
+                                    <button class="btn btn-primary" style="margin-left: 40px;" v-else-if="isOrderDelivered(order.orderStatus) === true && order.rated === false" v-on:click="addComment(order)"> Oceni restoran </button>
                                 </td>
                             </tr>
                         </table>
@@ -191,6 +192,12 @@ Vue.component("user-orders", {
             .then(response => {
                 this.restaurants = response.data;
             });
+        axios
+            .get('/getAllComments')
+            .then(response => {
+                this.comments = response.data;
+            });
+        
     },
     methods: {
         inProcessing: function(orderStatus){
@@ -239,9 +246,11 @@ Vue.component("user-orders", {
             return false;
         },
 
-        addComment: function(restaurantID) {
+        addComment: function(order) {
             axios.post('/addComment', {
-                id: restaurantID
+                id: order.id,
+                restaurantID: order.restaurantID
+                
             })
                 .then(function (response) {
                     router.push('/rateRestaurant');
@@ -577,6 +586,12 @@ Vue.component("user-orders", {
                     this.showingOrders.push(this.orders[i]); 
                 }
             }            
+        },
+
+        isRated: function(order) {
+            
+
+            return false;
         }
     }
 });

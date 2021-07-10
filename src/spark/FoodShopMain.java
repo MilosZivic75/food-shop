@@ -600,9 +600,9 @@ public class FoodShopMain {
 		});
 
 		post("/addComment", (req, res) -> {
-			restaurantID = req.body().split("}")[0].split(":")[1];
-			restaurantID = restaurantID.substring(1, restaurantID.length() - 1);
-
+			Order order = g.fromJson(req.body(), Order.class);
+			restaurantID = order.getRestaurant();
+			orderController.updateOrderRate(order.getId());
 			return "SUCCESS";
 		});
 

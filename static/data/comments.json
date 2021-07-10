@@ -38,5 +38,25 @@
     "text": "Na porudzbinu se dosta ceka, kvalitet mesa prosecan!",
     "grade": 2,
     "approved": true
+  },
+  "2021-07-10T23:32:43.021632900": {
+    "timeOfOccurrence": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 10
+      },
+      "time": {
+        "hour": 23,
+        "minute": 32,
+        "second": 43,
+        "nano": 21632900
+      }
+    },
+    "customerUsername": "the",
+    "restaurantID": "McDonalds",
+    "text": "Veoma zadovoljan uslugom",
+    "grade": 4,
+    "approved": false
   }
 }

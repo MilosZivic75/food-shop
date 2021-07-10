@@ -426,7 +426,7 @@ Vue.component("delivererOrders", {
         },
 
         getInTransport: function() {
-            if(this.InTransport === false){
+            if(this.filterInTransport === false){
                 this.showingOrders = []
                 for(var i=0; i<this.orders.length; i++){
                     if(this.orders[i].orderStatus === 'IN_TRANSPORT'){

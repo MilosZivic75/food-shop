@@ -20,4 +20,8 @@ public class OrderController extends Controller<String, Order>{
 	public void updateOrder(String orderID) {
 		orderService.updateOrder(orderID);
 	}
+	
+	public void updateOrderRate(String orderID) {
+		orderService.updateOrderRate(orderID);
+	}
 }

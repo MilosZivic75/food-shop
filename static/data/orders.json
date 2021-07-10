@@ -43,7 +43,8 @@
     },
     "price": 484.5,
     "customerUsername": "the",
-    "orderStatus": "DELIVERED"
+    "orderStatus": "DELIVERED",
+    "rated": true
   },
   "3879703329": {
     "id": "3879703329",
@@ -78,7 +79,8 @@
     },
     "price": 873.0,
     "customerUsername": "the",
-    "orderStatus": "CANCELED"
+    "orderStatus": "CANCELED",
+    "rated": false
   },
   "5757912632": {
     "id": "5757912632",
@@ -124,7 +126,8 @@
     },
     "price": 330.0,
     "customerUsername": "the",
-    "orderStatus": "CANCELED"
+    "orderStatus": "CANCELED",
+    "rated": false
   },
   "6542090464": {
     "id": "6542090464",
@@ -159,7 +162,8 @@
     },
     "price": 388.0,
     "customerUsername": "the",
-    "orderStatus": "PROCESSING"
+    "orderStatus": "PROCESSING",
+    "rated": false
   },
   "4461844836": {
     "id": "4461844836",
@@ -194,7 +198,8 @@
     },
     "price": 145.5,
     "customerUsername": "the",
-    "orderStatus": "DELIVERED"
+    "orderStatus": "DELIVERED",
+    "rated": true
   },
   "0246522674": {
     "id": "0246522674",
@@ -240,7 +245,8 @@
     },
     "price": 1697.5,
     "customerUsername": "the",
-    "orderStatus": "PROCESSING"
+    "orderStatus": "PROCESSING",
+    "rated": false
   },
   "6919990498": {
     "id": "6919990498",
@@ -275,7 +281,8 @@
     },
     "price": 339.5,
     "customerUsername": "the",
-    "orderStatus": "CANCELED"
+    "orderStatus": "CANCELED",
+    "rated": false
   },
   "5152525340": {
     "id": "5152525340",
@@ -310,7 +317,55 @@
     },
     "price": 1900.0,
     "customerUsername": "the",
-    "orderStatus": "CANCELED"
+    "orderStatus": "CANCELED",
+    "rated": false
+  },
+  "7497809881": {
+    "id": "7497809881",
+    "articles": [
+      {
+        "name": "Mexicana",
+        "price": 400.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 200.0,
+        "description": "pica mexicana",
+        "image": "images/CaribicArticles/mexico.png",
+        "deleted": 0
+      },
+      {
+        "name": "Capricciosa",
+        "price": 300.0,
+        "articleType": "DRINK",
+        "restaurantID": "Caribic",
+        "amount": 250.0,
+        "description": "pica kaprićoza",
+        "image": "/images/CaribicArticles/kapricoza.png",
+        "deleted": 0
+      }
+    ],
+    "quantity": [
+      2,
+      3
+    ],
+    "restaurantID": "Caribic",
+    "date": {
+      "date": {
+        "year": 2021,
+        "month": 7,
+        "day": 10
+      },
+      "time": {
+        "hour": 23,
+        "minute": 40,
+        "second": 7,
+        "nano": 294358800
+      }
+    },
+    "price": 1649.0,
+    "customerUsername": "the",
+    "orderStatus": "WAITING_FOR_DELIVERY",
+    "rated": false
   },
   "2198985049": {
     "id": "2198985049",
@@ -356,7 +411,8 @@
     },
     "price": 1216.0,
     "customerUsername": "the",
-    "orderStatus": "WAITING_FOR_DELIVERY"
+    "orderStatus": "IN_TRANSPORT",
+    "rated": false
   },
   "0989839544": {
     "id": "0989839544",
@@ -413,7 +469,8 @@
     },
     "price": 1067.0,
     "customerUsername": "the",
-    "orderStatus": "PROCESSING"
+    "orderStatus": "CANCELED",
+    "rated": false
   },
   "6228771025": {
     "id": "6228771025",
@@ -459,6 +516,7 @@
     },
     "price": 1552.0,
     "customerUsername": "the",
-    "orderStatus": "CANCELED"
+    "orderStatus": "CANCELED",
+    "rated": false
   }
 }
