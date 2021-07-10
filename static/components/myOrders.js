@@ -240,7 +240,6 @@ Vue.component("user-orders", {
         },
 
         addComment: function(restaurantID) {
-            alert(this.searchValue);
             axios.post('/addComment', {
                 id: restaurantID
             })

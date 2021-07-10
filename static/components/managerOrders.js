@@ -327,19 +327,75 @@ Vue.component("managerOrders", {
                 this.ordersForView = this.ordersForView.filter(o => (o.price >= this.priceFrom && o.price <= this.priceTo));
             }
             if (this.dateFrom !== '' && this.dateTo !== '') {
-                //this.ordersForView = this.ordersForView.filter(o => ());
+                this.ordersForView = this.ordersForView.filter(o => 
+                (this.compareDates(this.dateFrom + '00-00', this.getDateReversed(o.date)) < 1 &&
+                    this.compareDates(this.dateTo + '00-00', this.getDateReversed(o.date)) > -1
+                ));
             }
 
             if (this.sortParameter === 'price' && this.sort === 'asc')
                 this.ordersForView.sort((a, b) => a.price - b.price);
             else if (this.sortParameter === 'price' && this.sort === 'dsc')
                 this.ordersForView.sort((a, b) => b.price - a.price);
-            /*else if (this.sortParameter === 'date' && this.sort === 'asc')
-                this.usersForView.sort((a, b) => a.lastName.localeCompare(b.lastName));
-            else if (this.sortParameter === 'date' && this.sort === 'dsc')*/
+            else if (this.sortParameter === 'date' && this.sort === 'asc')
+                this.ordersForView.sort((a, b) => this.compareDates(this.getDateReversed(a.date),this.getDateReversed(b.date)));
+            else if (this.sortParameter === 'date' && this.sort === 'dsc')
+                this.ordersForView.sort((a, b) => this.compareDates(this.getDateReversed(b.date),this.getDateReversed(a.date)));
 
             this.ordersForView = this.ordersForView.filter(o => (o.orderStatus.includes(this.status)));
             
+        },
+        compareDates: function (a,b) {
+            let dateA = a.split('-');
+            let dateB = b.split('-');
+            if (dateA[0] < dateB[0]) {
+                return -1;
+            }
+            else if (dateA[0] > dateB[0]) {
+                return 1;
+            }
+            else {
+                if (dateA[1] < dateB[1]) {
+                    return -1;
+                }
+                else if (dateA[1] > dateB[1]) {
+                    return 1;
+                }
+                else {
+                    if (dateA[2] < dateB[2]) {
+                        return -1;
+                    }
+                    else if (dateA[2] > dateB[2]) {
+                        return 1;
+                    }
+                    else {
+                        if (dateA[3] < dateB[3]) {
+                            return -1;
+                        }
+                        else if (dateA[3] > dateB[3]) {
+                            return 1;
+                        }
+                        else {
+                            if (dateA[4] < dateB[4]) {
+                                return -1;
+                            }
+                            else if (dateA[4] > dateB[4]) {
+                                return 1;
+                            }
+                            else {
+                                return 0;
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        getDateReversed: function (date) {
+            let day = (date.date.day < 10) ? '0' + date.date.day : date.date.day;
+            let month = (date.date.month < 10) ? '0' + date.date.month : date.date.month;
+            let hour = (date.time.hour < 10) ? '0' + date.time.hour : date.time.hour;
+            let minute = (date.time.minute < 10) ? '0' + date.time.minute : date.time.minute;
+            return date.date.year + '-' + month + '-' + day + '-' + hour + '-' + minute;
         }
     }
 });

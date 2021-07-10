@@ -113,6 +113,10 @@ public class FoodShopMain {
 			if (registratedUser == null) {
 				return "ERROR";
 			}
+			req.session().attribute("user", registratedUser);
+			res.cookie("sessionID", req.session().id());
+			res.cookie("role", "customer");
+			res.cookie("username", registratedUser.getUsername());
 			return "SUCCESS";
 		});
 
@@ -613,7 +617,6 @@ public class FoodShopMain {
 			//comment.setApproved(false);
 			comment.setTimeOfOccurrence(LocalDateTime.now());
 			commentController.create(comment);
-			//restaurantController.updateAverage(comment.getRestaurant(), commentController.readAllEntities());
 			
 			return "SUCCESS";
 		});
@@ -655,6 +658,9 @@ public class FoodShopMain {
 		post("/updateComment", (req, res) -> {
 			res.type("application/json");
 			Comment comment = g.fromJson(req.body(), Comment.class);
+			if (comment.getApproved()) {
+				restaurantController.updateAverage(comment.getRestaurant(), commentController.readAllEntities());
+			}
 
 			commentController.update(comment);
 			return "SUCCESS";

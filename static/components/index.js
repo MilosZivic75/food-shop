@@ -12,7 +12,7 @@ Vue.component("index", {
                 <div class="col-4">
                     <h1 style="font-size:50px;">Web food shop</h1>
                 </div>
-                <div class="col-3 align-self-end">
+                <div class="col-3 align-self-end" style="margin-right:150px;">
                     <button type="button" class="btn btn-outline-dark" data-toggle="modal"
                         data-target="#loginModal">Prijava</button>
                     <button type="button" class="btn btn-outline-dark" data-toggle="modal"
@@ -152,7 +152,11 @@ Vue.component("index", {
     mounted() {
         axios
             .get('/getRestaurants')
-            .then(response => (this.restaurants = response.data));
+            .then(response => 
+                {
+                    this.restaurants = response.data;
+                    this.restaurants.sort((a,b) => a.status.localeCompare(b.status));
+                });
         axios
             .get('/loggedUser')
             .then(response => {
