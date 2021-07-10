@@ -135,7 +135,7 @@ Vue.component("delivererOrders", {
             </div>
             <div class="row" v-else style="margin-left: 200px; margin-top: 10px; font-size: 22px; text-align: center;">
                 <div class="col-10">
-                    <table>
+                    <table id="orderTable">
                         <tr>
                             <th> Porudžbina </th>
                             <th> Restoran </th>
@@ -150,7 +150,7 @@ Vue.component("delivererOrders", {
                             <td> 
                                 <button class="btn btn-primary" style="margin-left: 40px;" v-on:click="showOrder(order)"> Prikaži </button>
                                 <button class="btn btn-danger" :id="index" style="margin-left: 40px;" v-if="order.requested === false && order.orderStatus === 'WAITING_FOR_DELIVERY'" v-on:click="getOrder(order, index)"> Preuzmi </button>
-                                <button class="btn btn-danger" :id="order.date" style="margin-left: 40px;" v-if="order.orderStatus === 'IN_TRANSPORT'" v-on:click="changeOrderStatus(order)"> Porudžbina dostavljena</button>
+                                <button class="btn btn-danger" :id="order.date" style="margin-left: 40px;" v-if="order.orderStatus === 'IN_TRANSPORT'" v-on:click="changeOrderStatus(order, index)"> Porudžbina dostavljena</button>
                             </td>
                         </tr>
                     </table>
@@ -177,7 +177,9 @@ Vue.component("delivererOrders", {
                 this.orders = response.data;
                 this.showingOrders = response.data;
                 for(var i=0; i<this.user.orders.length; i++){
-                    this.showingOrders.push(this.user.orders[i]);
+                    if(this.user.orders[i].orderStatus !== 'DELIVERED'){
+                        this.showingOrders.push(this.user.orders[i]);
+                    }
                 }
 
             });
@@ -234,16 +236,17 @@ Vue.component("delivererOrders", {
                 });
         },
 
-        changeOrderStatus: function(order) {
+        changeOrderStatus: function(order, index) {
             document.getElementById(order.date).remove();
             document.getElementById(order.id).innerHTML = "DOSTAVLJENA";
+            document.getElementById('orderTable').deleteRow(index+1);
 
             axios.post('/changeOrderStatus', {
                 delivererID: this.user.username,
                 orderID: order.id
             })
                 .then(function (response) {
-                    
+                    alert("Porudžbina dostavljena!");
                 });
         },
 
