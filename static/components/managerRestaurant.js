@@ -96,7 +96,7 @@ Vue.component("managerRestaurant", {
                                 <label for="floatingName">Naziv</label>
                             </div>
                             <div class="form-floating m-4 ">
-                                <input type="number" min="0" oninput="validity.valid||(value='');" class="form-control" v-model="article.price" id="floatingPrice" placeholder="Price">
+                                <input type="number" min="0" step="0.01" oninput="validity.valid||(value='');" class="form-control" v-model="article.price" id="floatingPrice" placeholder="Price">
                                 <label for="floatingPrice">Cena</label>
                             </div>
                             <div class="form-floating m-4">

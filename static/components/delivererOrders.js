@@ -109,20 +109,20 @@ Vue.component("delivererOrders", {
                         </tr>
                         <tr>
                             <td> <label for="" > 1. status </label> </td>
-                            <td> <input type="checkbox" style="margin-left: 30px;" id="opened" v-model="filterProcessing" v-on:click="getProcessing"> Obrada </td>
-                            <td> <input type="checkbox" id="opened" v-model="filterInPreparation" v-on:click="getInPreparation"> U pripremi </td>
-                            <td> <input type="checkbox" id="opened" v-model="filterWaitingDelivery" v-on:click="getWaitingDelivery"> Čeka dostavljača </td>
-                            <td> <input type="checkbox" id="opened" v-model="filterInTransport" v-on:click="getInTransport"> U transportu </td>
-                            <td> <input type="checkbox" id="opened" v-model="filterDelivered" v-on:click="getDelivered"> Dostavljena </td>
-                            <td> <input type="checkbox" id="opened" v-model="filterCanceled" v-on:click="getCanceled"> Otkazana </td>
+                            <td> <input type="radio" style="margin-left: 30px;" id="opened" v-model="filterProcessing" v-on:click="getProcessing"> Obrada </td>
+                            <td> <input type="radio" id="opened" v-model="filterInPreparation" v-on:click="getInPreparation"> U pripremi </td>
+                            <td> <input type="radio" id="opened" v-model="filterWaitingDelivery" v-on:click="getWaitingDelivery"> Čeka dostavljača </td>
+                            <td> <input type="radio" id="opened" v-model="filterInTransport" v-on:click="getInTransport"> U transportu </td>
+                            <td> <input type="radio" id="opened" v-model="filterDelivered" v-on:click="getDelivered"> Dostavljena </td>
+                            <td> <input type="radio" id="opened" v-model="filterCanceled" v-on:click="getCanceled"> Otkazana </td>
                         </tr>
                         <tr>
                             <td> <label for="" > 2. tip restorana </label> </td>
-                            <td> <input type="checkbox" style="margin-left: 30px;" id="fastfood" v-model="filterFastFood" v-on:click="getFastFoodRes"> Brza hrana </td>
-                            <td> <input type="checkbox" id="grill" v-model="filterGrill" v-on:click="getGrillRes"> Roštilj </td>
-                            <td> <input type="checkbox" id="chinese" v-model="filterChinese" v-on:click="getChineseRes"> Kineski </td>
-                            <td> <input type="checkbox" id="pizzeria" v-model="filterPizzeria" v-on:click="getPizzeria"> Picerija </td>
-                            <td> <input type="checkbox" id="fishes" v-model="filterFishes" v-on:click="getFishRes"> Riblji </td>
+                            <td> <input type="radio" style="margin-left: 30px;" id="fastfood" v-model="filterFastFood" v-on:click="getFastFoodRes"> Brza hrana </td>
+                            <td> <input type="radio" id="grill" v-model="filterGrill" v-on:click="getGrillRes"> Roštilj </td>
+                            <td> <input type="radio" id="chinese" v-model="filterChinese" v-on:click="getChineseRes"> Kineski </td>
+                            <td> <input type="radio" id="pizzeria" v-model="filterPizzeria" v-on:click="getPizzeria"> Picerija </td>
+                            <td> <input type="radio" id="fishes" v-model="filterFishes" v-on:click="getFishRes"> Riblji </td>
                         </tr>
                     
                     </table>
@@ -253,6 +253,24 @@ Vue.component("delivererOrders", {
         changeValue: function(value) {
             if(value === 'Pretraga'){
                 this.showingOrders = this.orders;
+
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false,
+                this.sortUpName = false,
+                this.sortDownName = false,
+                this.sortUpDate = false,
+                this.sortDownDate = false,
+                this.sortUpNum = false,
+                this.sortDownNum = false
             }
 
             this.searchValue = value;
@@ -382,12 +400,17 @@ Vue.component("delivererOrders", {
                         this.showingOrders.push(this.orders[i]);
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
             }            
         },
 
@@ -399,12 +422,17 @@ Vue.component("delivererOrders", {
                         this.showingOrders.push(this.orders[i]);
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
+                this.filterProcessing = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
             }            
         },
 
@@ -416,12 +444,17 @@ Vue.component("delivererOrders", {
                         this.showingOrders.push(this.orders[i]);
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
             }            
         },
 
@@ -433,12 +466,17 @@ Vue.component("delivererOrders", {
                         this.showingOrders.push(this.orders[i]);
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
             }            
         },
 
@@ -450,12 +488,17 @@ Vue.component("delivererOrders", {
                         this.showingOrders.push(this.orders[i]);
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
             }            
         },
 
@@ -467,13 +510,18 @@ Vue.component("delivererOrders", {
                         this.showingOrders.push(this.orders[i]);
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
-            }            
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
+            }           
         },
 
         getGrillRes: function() {
@@ -488,12 +536,17 @@ Vue.component("delivererOrders", {
                         }
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
             }            
         }, 
 
@@ -509,13 +562,18 @@ Vue.component("delivererOrders", {
                         }
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
-            }            
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
+            }           
         },
 
         getChineseRes: function() {
@@ -530,13 +588,18 @@ Vue.component("delivererOrders", {
                         }
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
-            }            
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
+            }           
         },
 
         getPizzeria: function() {
@@ -551,12 +614,17 @@ Vue.component("delivererOrders", {
                         }
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterFishes = false
             }            
         },
 
@@ -572,13 +640,18 @@ Vue.component("delivererOrders", {
                         }
                     }
                 }
-            } else {
-                this.showingOrders = [];
 
-                for(var i=0; i<this.orders.length; i++){
-                    this.showingOrders.push(this.orders[i]); 
-                }
-            }            
+                this.filterProcessing = false,
+                this.filterInPreparation = false,
+                this.filterWaitingDelivery = false,
+                this.filterInTransport = false,
+                this.filterDelivered = false,
+                this.filterCanceled = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false
+            }             
         }
 
     }

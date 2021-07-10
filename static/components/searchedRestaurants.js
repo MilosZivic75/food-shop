@@ -32,6 +32,11 @@ Vue.component("foundedRestaurants", {
         </div>
         <div v-else>
             <div class="row">
+                <div class="col-3">
+                    <button class="btn btn-outline-dark" style="margin-left: 200px; " v-on:click="showAll" > Prikaži sve </button>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-4" style="font-size: 20px; margin-left: 120px; margin-top: 20px;">
                     <table>
                         <tr>
@@ -60,15 +65,15 @@ Vue.component("foundedRestaurants", {
                         </tr>
                         <tr>
                             <td> <label for="" > 1. status </label> </td>
-                            <input type="checkbox" style="margin-left: 30px;" id="opened" v-model="filterOpened" v-on:click="getOpened"> Otvoreni
+                            <input type="radio" style="margin-left: 30px;" id="opened" v-model="filterOpened" v-on:click="getOpened"> Otvoreni
                         </tr>
                         <tr>
                             <td> <label for="" > 2. tip restorana </label> </td>
-                            <td> <input type="checkbox" style="margin-left: 30px;" id="fastfood" v-model="filterFastFood" v-on:click="getFastFoodRes"> Brza hrana </td>
-                            <td> <input type="checkbox" id="grill" v-model="filterGrill" v-on:click="getGrillRes"> Roštilj </td>
-                            <td> <input type="checkbox" id="chinese" v-model="filterChinese" v-on:click="getChineseRes"> Kineski </td>
-                            <td> <input type="checkbox" id="pizzeria" v-model="filterPizzeria" v-on:click="getPizzeria"> Picerija </td>
-                            <td> <input type="checkbox" id="fishes" v-model="filterFishes" v-on:click="getFishRes"> Riblji </td>
+                            <td> <input type="radio" style="margin-left: 30px;" id="fastfood" v-model="filterFastFood" v-on:click="getFastFoodRes"> Brza hrana </td>
+                            <td> <input type="radio" id="grill" v-model="filterGrill" v-on:click="getGrillRes"> Roštilj </td>
+                            <td> <input type="radio" id="chinese" v-model="filterChinese" v-on:click="getChineseRes"> Kineski </td>
+                            <td> <input type="radio" id="pizzeria" v-model="filterPizzeria" v-on:click="getPizzeria"> Picerija </td>
+                            <td> <input type="radio" id="fishes" v-model="filterFishes" v-on:click="getFishRes"> Riblji </td>
                         </tr>
                     
                     </table>
@@ -91,7 +96,7 @@ Vue.component("foundedRestaurants", {
                             <td> <label for="" style="margin-left: 40px;"> {{getAddress(restaurant)}} </label> </td>
                             <td> <label for="" style="margin-left: 40px;"> {{restaurant.averageRating}} </label> </td>
                             <td> 
-                                <button class="btn btn-primary" style="margin-left: 40px;" v-on:click="showRestaurant(restaurant)"> Prikaži </button>
+                                <button class="btn btn-primary" style="margin-left: 40px;" v-on:click="showDataOfRestaurant(restaurant)"> Prikaži </button>
                             </td>
                         </tr>
                     </table>
@@ -110,11 +115,41 @@ Vue.component("foundedRestaurants", {
             });
     },
     methods: {
-        showRestaurant: function(restaurant) {},
+        showDataOfRestaurant: function(restaurant) {
+            axios.post('/openedRestaurant', {
+                name: restaurant.name,
+                restaurantType: restaurant.restaurantType,
+                articles: restaurant.articles,
+                status: restaurant.status,
+                location: restaurant.location,
+                logo: restaurant.logo,
+                averageRating: restaurant.averageRating
+            })
+                .then(function (response) {
+                    router.push('/showRestaurant');
+                });
+        },
 
         getAddress: function(restaurant) {
             let address = restaurant.location.address;
             return (address.street + ' ' + address.number + ' ' + ', ' + address.city + ' ' + address.postalCode + ', ' + address.country);
+        },
+
+        showAll: function() {
+            this.showingRestaurants = this.restaurants;
+
+            this.filterOpened = false,
+            this.filterGrill = false,
+            this.filterFastFood = false,
+            this.filterChinese = false,
+            this.filterPizzeria = false,
+            this.filterFishes = false,
+            this.sortUpName = false,
+            this.sortDownName = false,
+            this.sortUpAddress = false,
+            this.sortDownAddress = false,
+            this.sortUpNum = false,
+            this.sortDownNum = false
         },
 
         sortUpByName: function() {
@@ -191,13 +226,13 @@ Vue.component("foundedRestaurants", {
                         this.showingRestaurants.push(this.restaurants[i]);
                     }
                 }
-            } else {
-                this.showingRestaurants = [];
-
-                for(var i=0; i<this.restaurants.length; i++){
-                    this.showingRestaurants.push(this.restaurants[i]); 
-                }
-            }            
+                
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
+            }             
         },
 
         getGrillRes: function() {
@@ -208,12 +243,12 @@ Vue.component("foundedRestaurants", {
                         this.showingRestaurants.push(this.restaurants[i]);
                     }
                 }
-            } else {
-                this.showingRestaurants = [];
 
-                for(var i=0; i<this.restaurants.length; i++){
-                    this.showingRestaurants.push(this.restaurants[i]); 
-                }
+                this.filterOpened = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
             }            
         }, 
 
@@ -225,17 +260,16 @@ Vue.component("foundedRestaurants", {
                         this.showingRestaurants.push(this.restaurants[i]);
                     }
                 }
-            } else {
-                this.showingRestaurants = [];
 
-                for(var i=0; i<this.restaurants.length; i++){
-                    this.showingRestaurants.push(this.restaurants[i]); 
-                }
+                this.filterOpened = false,
+                this.filterGrill = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
             }            
         },
 
         getChineseRes: function() {
-            alert(this.restaurants.length.toString())
             if(this.filterChinese === false){
                 this.showingRestaurants = []
                 for(var i=0; i<this.restaurants.length; i++){
@@ -243,12 +277,12 @@ Vue.component("foundedRestaurants", {
                         this.showingRestaurants.push(this.restaurants[i]);
                     }
                 }
-            } else {
-                this.showingRestaurants = [];
 
-                for(var i=0; i<this.restaurants.length; i++){
-                    this.showingRestaurants.push(this.restaurants[i]); 
-                }
+                this.filterOpened = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterPizzeria = false,
+                this.filterFishes = false
             }            
         },
 
@@ -260,13 +294,13 @@ Vue.component("foundedRestaurants", {
                         this.showingRestaurants.push(this.restaurants[i]);
                     }
                 }
-            } else {
-                this.showingRestaurants = [];
 
-                for(var i=0; i<this.restaurants.length; i++){
-                    this.showingRestaurants.push(this.restaurants[i]); 
-                }
-            }            
+                this.filterOpened = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterFishes = false
+            }             
         },
 
         getFishRes: function() {
@@ -277,12 +311,12 @@ Vue.component("foundedRestaurants", {
                         this.showingRestaurants.push(this.restaurants[i]);
                     }
                 }
-            } else {
-                this.showingRestaurants = [];
 
-                for(var i=0; i<this.restaurants.length; i++){
-                    this.showingRestaurants.push(this.restaurants[i]); 
-                }
+                this.filterOpened = false,
+                this.filterGrill = false,
+                this.filterFastFood = false,
+                this.filterChinese = false,
+                this.filterPizzeria = false
             }            
         }
 

@@ -54,11 +54,11 @@ Vue.component("managerOrders", {
         <div class="row" style=" margin-top: 50px; margin-left: 50px;">
             <div class="container sports-container col-12" >
                 <div class="form-floating" style="display:inline-block">
-                    <input type="number" min="0" oninput="validity.valid||(value=''||value='.');" class="form-control" v-model="priceFrom" id="priceFrom" placeholder="PriceFrom">
+                    <input type="number" min="0" step="0.01" oninput="validity.valid||(value='');" class="form-control" v-model="priceFrom" id="priceFrom" placeholder="PriceFrom">
                     <label for="priceFrom">Cena od</label>
                 </div>
                 <div class="form-floating" style="display:inline-block">
-                    <input type="number" min="0" oninput="validity.valid||(value=''||value='.');" class="form-control" v-model="priceTo" id="priceTo" placeholder="PriceTo">
+                    <input type="number" min="0" step="0.01" oninput="validity.valid||(value='');" class="form-control" v-model="priceTo" id="priceTo" placeholder="PriceTo">
                     <label for="priceTo">Cena do</label>
                 </div>
                 <div class="form-floating" style="display:inline-block">

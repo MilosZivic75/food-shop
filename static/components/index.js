@@ -192,7 +192,6 @@ Vue.component("index", {
                     if (response.data === 'SUCCESS/administrator') {
                         $('#success').text('Korisnik je uspesno prijavljen.');
                         $('#success').show().delay(3000).fadeOut();
-                        console.log(response);
                         router.push('/administrator');
                         $('#loginModal').hide();
                         $('.modal-backdrop').hide();
@@ -201,7 +200,6 @@ Vue.component("index", {
                     else if (response.data === 'SUCCESS/manager') {
                         $('#success').text('Korisnik je uspesno prijavljen.');
                         $('#success').show().delay(3000).fadeOut();
-                        console.log(response);
                         router.push('/manager');
                         $('#loginModal').hide();
                         $('.modal-backdrop').hide();
@@ -210,7 +208,6 @@ Vue.component("index", {
                     else if (response.data === 'SUCCESS/deliverer') {
                         $('#success').text('Korisnik je uspesno prijavljen.');
                         $('#success').show().delay(3000).fadeOut();
-                        console.log(response);
                         router.push('/deliverer');
                         $('#loginModal').hide();
                         $('.modal-backdrop').hide();
@@ -219,7 +216,6 @@ Vue.component("index", {
                     else if (response.data === 'SUCCESS/customer') {
                         $('#success').text('Korisnik je uspesno prijavljen.');
                         $('#success').show().delay(3000).fadeOut();
-                        console.log(response);
                         router.push('/customer');
                         $('#loginModal').hide();
                         $('.modal-backdrop').hide();
@@ -228,12 +224,10 @@ Vue.component("index", {
                     else if (response.data === 'ERROR') {
                         $('#error').text('Pogresno korisnicko ime i/ili lozinka.');
                         $('#error').show().delay(3000).fadeOut();
-                        console.log(response);
                     }
                     else if (response.data === 'BLOCKED') {
                         $('#error').text('Vaš nalog je blokiran, za više informacija obratite se administratoru.');
                         $('#error').show().delay(3000).fadeOut();
-                        console.log(response);
                     }
                 });
         },
@@ -268,7 +262,6 @@ Vue.component("index", {
                         $('#successReg').text('Korisnik je uspesno registrovan.');
                         $('#successReg').show().delay(3000).fadeOut();
                         $('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
-                        console.log(response)
                         router.push('/customer');
                         $('#registrationModal').hide();
                         $('.modal-backdrop').hide();
@@ -278,7 +271,6 @@ Vue.component("index", {
                         $('#errorReg').text('Korisnik sa datim korisničkim imenom već postoji.');
                         $('#errorReg').show().delay(3000).fadeOut();
                         $('#registrationModal').animate({ scrollTop: document.body.scrollHeight }, "fast");
-                        console.log(response)
                     }
                 })
         },
