@@ -150,7 +150,7 @@ Vue.component("delivererOrders", {
                             <td> 
                                 <button class="btn btn-primary" style="margin-left: 40px;" v-on:click="showOrder(order)"> Prikaži </button>
                                 <button class="btn btn-danger" :id="index" style="margin-left: 40px;" v-if="order.requested === false && order.orderStatus === 'WAITING_FOR_DELIVERY'" v-on:click="getOrder(order, index)"> Preuzmi </button>
-                                <button class="btn btn-danger" :id="order.date" style="margin-left: 40px;" v-if="isDelivered(order.orderStatus) === false && order.orderStatus === 'IN_TRANSPORT'" v-on:click="changeOrderStatus(order)"> Porudžbina dostavljena</button>
+                                <button class="btn btn-danger" :id="order.date" style="margin-left: 40px;" v-if="order.orderStatus === 'IN_TRANSPORT'" v-on:click="changeOrderStatus(order)"> Porudžbina dostavljena</button>
                             </td>
                         </tr>
                     </table>
@@ -169,6 +169,7 @@ Vue.component("delivererOrders", {
                     return;
                 }
                 this.user = response.data;
+                
             });
         axios
             .get('/waitingDeliveryOrders')
@@ -244,14 +245,6 @@ Vue.component("delivererOrders", {
                 .then(function (response) {
                     
                 });
-        },
-
-        isDelivered: function(orderStatus){
-            if(orderStatus === 'DELIVERED'){
-                return true;
-            }
-
-            return false;
         },
 
         changeValue: function(value) {

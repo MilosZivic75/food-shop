@@ -738,7 +738,10 @@ public class FoodShopMain {
 			OrderRequest orderRequest = g.fromJson(req.body(), OrderRequest.class);
 			orderController.updateOrder(orderRequest.getOrderID());
 			delivererController.updateDelivererOrders(orderRequest.getOrderID(), orderRequest.getDelivererID());
-			
+			Session session = req.session();
+			Deliverer deliverer = delivererController.read(loggedUserUsername);
+			session.attribute("user", deliverer);
+		
 			return "SUCCESS";
 		});
 		
